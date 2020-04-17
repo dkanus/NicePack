@@ -6,12 +6,12 @@ var float justHeadshotReduction;
 
 defaultproperties
 {
-    justHeadshotReduction=0.250000
-    headshotKillReduction(0)=0.5f
-    headshotKillReduction(1)=1.0f
-    headshotKillReduction(2)=1.25f
-    headshotKillReduction(3)=1.5f
-    headshotKillReduction(4)=2.0f
-    SkillName="Ardour"
-    SkillEffects="Head-shotting enemies reduces your cooldowns."
+     headshotKillReduction(0)=0.500000
+     headshotKillReduction(1)=1.000000
+     headshotKillReduction(2)=1.250000
+     headshotKillReduction(3)=1.500000
+     headshotKillReduction(4)=2.000000
+     justHeadshotReduction=0.250000
+     SkillName="Ardour"
+     SkillEffects="Head-shotting enemies reduces your cooldowns."
 }

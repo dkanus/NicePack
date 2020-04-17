@@ -1,0 +1,37 @@
+class NiceWinchesterFire extends NiceFire;
+
+defaultproperties
+{
+     ProjectileSpeed=37950.000000
+     FireAimedAnim="AimFire"
+     RecoilRate=0.100000
+     maxVerticalRecoilAngle=200
+     maxHorizontalRecoilAngle=64
+     FireSoundRef="KF_RifleSnd.Rifle_Fire"
+     StereoFireSoundRef="KF_RifleSnd.Rifle_FireST"
+     NoAmmoSoundRef="KF_RifleSnd.Rifle_DryFire"
+     DamageType=Class'NicePack.NiceDamTypeWinchester'
+     DamageMin=156
+     DamageMax=156
+     Momentum=18000.000000
+     bPawnRapidFireAnim=True
+     bWaitForRelease=True
+     bModeExclusive=False
+     bAttachSmokeEmitter=True
+     TransientSoundVolume=1.800000
+     FireLoopAnim=
+     FireEndAnim=
+     FireAnimRate=1.600000
+     FireForce="ShockRifleFire"
+     FireRate=0.562500
+     AmmoClass=Class'NicePack.NiceWinchesterAmmo'
+     ShakeRotMag=(X=100.000000,Y=100.000000,Z=500.000000)
+     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+     ShakeRotTime=2.000000
+     ShakeOffsetMag=(X=10.000000,Y=3.000000,Z=12.000000)
+     ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+     ShakeOffsetTime=2.000000
+     BotRefireRate=0.650000
+     FlashEmitterClass=Class'ROEffects.MuzzleFlash1stKar'
+     aimerror=0.000000
+}

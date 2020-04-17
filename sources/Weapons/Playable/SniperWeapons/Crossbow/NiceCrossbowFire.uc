@@ -1,0 +1,4 @@
+class NiceCrossbowFire extends NiceFire;
+defaultproperties
+{    bProjectileFire=True    ProjSpawnOffset=(X=25.000000)    EffectiveRange=2500.000000    ProjectileSpeed=20000.000000    FireAimedAnim="Fire_Iron"    maxVerticalRecoilAngle=100    maxHorizontalRecoilAngle=25    bRandomPitchFireSound=False    FireSoundRef="KF_XbowSnd.Xbow_Fire"    NoAmmoSoundRef="KF_XbowSnd.Xbow_DryFire"    DamageType=Class'NicePack.NiceDamTypeCrossbow'    DamageMax=300    Momentum=150000.000000    bWaitForRelease=True    TransientSoundVolume=1.800000    FireForce="AssaultRifleFire"    FireRate=0.000000    AmmoClass=Class'NicePack.NiceCrossbowAmmo'    ShakeRotMag=(X=3.000000,Y=4.000000,Z=2.000000)    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)    ShakeOffsetMag=(X=3.000000,Y=3.000000,Z=3.000000)    BotRefireRate=1.800000    aimerror=1.000000
+}

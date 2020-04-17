@@ -1,0 +1,4 @@
+class NiceDualGlockFire extends NiceDualiesFire;
+defaultproperties
+{    ProjectileSpeed=18750.000000    maxVerticalRecoilAngle=200    maxHorizontalRecoilAngle=100    ShellEjectClass=Class'NicePack.NiceGlockShell'    FireSoundRef="NicePackSnd.Glock17.glock17_Fire"    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"    DamageType=Class'NicePack.NiceDamTypeGlock'    DamageMax=35    Momentum=18000.000000    bWaitForRelease=False    FireRate=0.087500    AmmoClass=Class'NicePack.NiceDualGlockAmmo'    ShakeRotMag=(Z=290.000000)    ShakeRotRate=(X=10080.000000,Y=10080.000000)    ShakeRotTime=3.500000    ShakeOffsetMag=(Y=1.000000,Z=8.000000)    ShakeOffsetTime=2.500000    FlashEmitterClass=Class'KFMod.MuzzleFlashMK'    aimerror=40.000000
+}

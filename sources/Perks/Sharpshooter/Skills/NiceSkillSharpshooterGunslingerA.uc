@@ -18,14 +18,15 @@ function static SkillDeSelected(NicePlayerController nicePlayer){
     if(nicePlayer.abilityManager == none)   return;
     nicePlayer.abilityManager.RemoveAbility(default.abilityID);
 }
+
 defaultproperties
 {
-    abilityID="Gunslinger"
-    cooldown=80.000000
-    Duration=15.000000
-    reloadMult=1.500000
-    movementMult=1.2500000
-    fireRateMult=1.300000
-    SkillName="Gunslinger"
-    SkillEffects="Reload, fire and move faster. All with no recoil."
+     abilityID="Gunslinger"
+     cooldown=80.000000
+     Duration=15.000000
+     reloadMult=1.500000
+     movementMult=1.250000
+     fireRateMult=1.300000
+     SkillName="Gunslinger"
+     SkillEffects="Reload, fire and move faster. All with no recoil."
 }

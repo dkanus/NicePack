@@ -17,10 +17,11 @@ function static SkillDeSelected(NicePlayerController nicePlayer){
     if(nicePlayer.abilityManager == none)   return;
     nicePlayer.abilityManager.RemoveAbility(default.abilityID);
 }
+
 defaultproperties
 {
-    abilityID="Reaper"
-    cooldown=24.000000
-    SkillName="Reaper"
-    SkillEffects="If it would take 2 head-shot to kill the zed, - it'll die from one."
+     abilityID="Reaper"
+     cooldown=24.000000
+     SkillName="Reaper"
+     SkillEffects="If it would take 2 head-shot to kill the zed, - it'll die from one."
 }

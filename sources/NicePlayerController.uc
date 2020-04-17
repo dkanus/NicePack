@@ -62,10 +62,6 @@ struct WeaponSelector{
     var int                         selectorNumber;
     var array< class<KFWeapon> >    weaponList;
 };
-//  Alternative input flags
-var byte bNiceFire, bNiceAltFire;
-
-
 var bool                    hasZeroSelector;
 var bool                    bUsesMouseWheel;
 var bool                    bMouseWheelLoops;
@@ -100,7 +96,7 @@ struct StuckBulletRecord{
     var NiceBullet  bullet;
     var float       registrationTime;
 };
-//var array<StuckBulletRecord> stuckBulletsSet;
+var array<StuckBulletRecord> stuckBulletsSet;
 var NicePack NicePackMutator;
 var string SteamID64;
 var bool hasExpConverted;
@@ -130,13 +126,13 @@ replication{
             sirenScreamMod;
     reliable if(Role == ROLE_Authority)
        ClientSetSkill, ClientLoadSettings, ClientSaveConfig, ClientSetKey, ClientUpdatePlayedWithDatabase, ClientReceiveSkill, ClientBroadcastEnded, ClientLog, ClientUpdatePawnMaxHealth, ClientSetNiceWeapManagement,
-           ClientSpawnSirenBall, ClientRemoveSirenBall, /*ClientNailsExplosion,*/ ClientSetZedStun, ClientShowScrnMenu;
+           ClientSpawnSirenBall, ClientRemoveSirenBall, ClientNailsExplosion, ClientStickGhostProjectile, ClientSetZedStun, ClientShowScrnMenu;
     unreliable if(Role == ROLE_Authority)
-       ClientSpawnGhosts, ClientPrint;
+       ClientSpawnGhostProjectile, ClientPrint;
     reliable if(Role < ROLE_Authority)
        ServerSetSkill, ServerSetPendingSkill, ServerSetAltSwitchesModes, ServerSetUseServerReload,
            ServerSetHLMessages, ServerMarkSettingsLoaded, ServerStartleZeds, ServerSetDisplayCounters,
-           ServerSetDisplayWeaponProgress, ActivateAbility, ServerSetFireFlags;
+           ServerSetDisplayWeaponProgress, ActivateAbility;
 }
 // Called on server only!
 function PostLogin(){
@@ -1217,7 +1213,7 @@ function ViewTargetChanged(){
     OldViewTarget = ViewTarget;
 }
 // Reloaded to add nice single/dual classes
-/*function LoadDualWieldables(){
+function LoadDualWieldables(){
     local ClientPerkRepLink CPRL;
     local class<NiceWeaponPickup> WP;
     local class<NiceSingle> W;
@@ -1235,10 +1231,10 @@ function ViewTargetChanged(){
            AddDualWieldable(W, W.default.DualClass);
     }
     super.LoadDualWieldables();
-}*/
+}
 // If player only has one pistol out of two possible, then return 'false'
 // Because he's got the right one and new one is the left one; completely different stuff
-/*function bool IsInInventory(class<Pickup> PickupToCheck, bool bCheckForEquivalent, bool bCheckForVariant){
+function bool IsInInventory(class<Pickup> PickupToCheck, bool bCheckForEquivalent, bool bCheckForVariant){
     local bool bResult;
     local Inventory CurInv;
     local NiceSingle singlePistol;
@@ -1254,7 +1250,7 @@ function ViewTargetChanged(){
                break;
        }
     return bResult;
-}*/
+}
 state Spectating{
     exec function Use(){
        local vector HitLocation, HitNormal, TraceEnd, TraceStart;
@@ -1268,12 +1264,17 @@ state Spectating{
            ServerSetViewTarget(A);
     }    
 }
-simulated function ClientSpawnGhosts(int amount, Vector start, int pitch, int yaw, int roll, float spread, NiceFire.NWFireType fireType, NiceFire.NWCFireState fireState){
-    local Rotator bulletDir;
-    bulletDir.Pitch = pitch;
-    bulletDir.Yaw   = yaw;
-    bulletDir.Roll  = roll;
-    class'NiceBulletSpawner'.static.SpawnBullets(amount, start, bulletDir, spread, fireType, fireState);
+simulated function ClientSpawnGhostProjectile(Vector Start, int pitch, int yaw, int roll, NiceFire.ShotType shotParams, NiceFire.FireModeContext fireContext, bool bForceComplexTraj){
+    local Rotator projectileDir;
+    projectileDir.Pitch = pitch;
+    projectileDir.Yaw   = yaw;
+    projectileDir.Roll  = roll;
+    class'NiceProjectileSpawner'.static.SpawnProjectile(Start, projectileDir, shotParams, fireContext, true, bForceComplexTraj);
+}
+simulated function ClientStickGhostProjectile(KFHumanPawn instigator, Actor base, name bone, Vector shift, Rotator rot,
+    NiceBullet.ExplosionData expData, int stuckID){
+    class'NiceProjectileSpawner'.static.SpawnStuckProjectile(instigator, base, bone, shift, rot, expData, true,
+       stuckID);
 }
 simulated function SpawnSirenBall(NiceZombieSiren siren){
     if(NicePackMutator == none || siren == none)
@@ -1292,13 +1293,12 @@ simulated function ClientRemoveSirenBall(int ID){
        return;
     localCollisionManager.RemoveSphereCollision(ID);
 }
-//NICETODO: do we need this?
-/*simulated function ClientNailsExplosion(int amount, Vector start, NiceFire.ShotType shotParams,
+simulated function ClientNailsExplosion(int amount, Vector start, NiceFire.ShotType shotParams,
     NiceFire.FireModeContext fireContext, optional bool bIsGhost){
     local int i;
     for(i = 0;i < amount;i ++)
        class'NiceProjectileSpawner'.static.SpawnProjectile(start, RotRand(true), shotParams, fireContext, bIsGhost);
-}*/
+}
 simulated function AddEffect(){
     effectsSpawned[currentEffectTimeWindow] ++;
 }
@@ -1317,7 +1317,7 @@ simulated function bool CanSpawnEffect(bool bIsGhost){
        return false;
     return true;
 }
-/*simulated function RegisterStuckBullet(NiceBullet bullet){
+simulated function RegisterStuckBullet(NiceBullet bullet){
     local StuckBulletRecord newRecord;
     if(bullet == none)
        return;
@@ -1348,9 +1348,9 @@ simulated function FreeOldStuckBullets(){
        else if(stuckBulletsSet[i].bullet != none)
            stuckBulletsSet[i].bullet.KillBullet();
     stuckBulletsSet = newSet;
-}*/
+}
 // Dualies functions
-/*exec function SwitchDualies(){
+exec function SwitchDualies(){
     local NiceSingle singlePistol;
     local NiceDualies dualPistols;
     if(Pawn != none){
@@ -1382,7 +1382,7 @@ exec function FireRightGun(){
        dualPistols = NiceDualies(Pawn.Weapon);
     if(dualPistols != none)
        dualPistols.FireGivenGun(false);
-}*/
+}
 exec function ActivateAbility(int abilityIndex){
     if(abilityIndex < 0)
        return;
@@ -1438,37 +1438,32 @@ exec simulated function Siren(float value)
     sirenScreamMod = value;
 }
 
-function ServerSetFireFlags(byte bNewFire, byte bNewAltFire){
-    bNiceFire       = bNewFire;
-    bNiceAltFire    = bNewAltFire;
-}
-
 defaultproperties
 {
-    sirenScreamMod=1.0
-    nicePlayerInfoVersionNumber=1
-    bAltSwitchesModes=True
-    bAdvReloadCheck=True
-    bRelCancelByFire=True
-    bRelCancelBySwitching=True
-    bRelCancelByNades=True
-    bRelCancelByAiming=True
-    bNiceWeaponManagement=True
-    bDisplayCounters=True
-    bDisplayWeaponProgress=True
-    bShowScrnMenu=True
-    maxPlayedWithRecords=100
-    WeapGroupMeleeName="Melee"
-    WeapGroupNonMeleeName="NonMelee"
-    WeapGroupPistolsName="Pistols"
-    WeapGroupGeneralName="General"
-    WeapGroupToolsName="Tools"
-    WeapPresetDefaultName="Default"
-    WeapPresetGunslingerName="Gunslinger"
-    tracesPerTickLimit=1000
-    effectsLimitSoft=100
-    effectsLimitHard=200
-    TSCLobbyMenuClassString="NicePack.NiceTSCLobbyMenu"
-    LobbyMenuClassString="NicePack.NiceLobbyMenu"
-    PawnClass=Class'NicePack.NiceHumanPawn'
+     nicePlayerInfoVersionNumber=1
+     bAltSwitchesModes=True
+     bAdvReloadCheck=True
+     bRelCancelByFire=True
+     bRelCancelBySwitching=True
+     bRelCancelByNades=True
+     bRelCancelByAiming=True
+     bNiceWeaponManagement=True
+     bDisplayCounters=True
+     bDisplayWeaponProgress=True
+     bShowScrnMenu=True
+     maxPlayedWithRecords=100
+     WeapGroupMeleeName="Melee"
+     WeapGroupNonMeleeName="NonMelee"
+     WeapGroupPistolsName="Pistols"
+     WeapGroupGeneralName="General"
+     WeapGroupToolsName="Tools"
+     WeapPresetDefaultName="Default"
+     WeapPresetGunslingerName="Gunslinger"
+     tracesPerTickLimit=1000
+     effectsLimitSoft=100
+     effectsLimitHard=200
+     sirenScreamMod=1.000000
+     TSCLobbyMenuClassString="NicePack.NiceTSCLobbyMenu"
+     LobbyMenuClassString="NicePack.NiceLobbyMenu"
+     PawnClass=Class'NicePack.NiceHumanPawn'
 }

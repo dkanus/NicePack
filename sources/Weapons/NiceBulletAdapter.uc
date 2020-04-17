@@ -1,38 +1,39 @@
-//==============================================================================
+//======================================================================================================================
 //  NicePack / NiceBulletAdapter
-//==============================================================================
+//======================================================================================================================
 //  Temporary stand-in for future functionality.
-//==============================================================================
-//  Class hierarchy: Object > NiceBulletAdapter
-//==============================================================================
+//======================================================================================================================
 //  'Nice pack' source
 //  Do whatever the fuck you want with it
 //  Author: dkanus
 //  E-mail: dkanus@gmail.com
-//==============================================================================
+//======================================================================================================================
 class NiceBulletAdapter extends Object;
-
 var const   int BigZedMinHealth;            // If zed's base Health >= this value, zed counts as Big
 var const   int MediumZedMinHealth;         // If zed's base Health >= this value, zed counts as Medium-size
-
-static function Explode(NiceBullet bullet, Vector hitLocation){
-    /*local NiceReplicationInfo niceRI;
-    niceRI = bullet.niceRI;
+static function Explode(NiceBullet bullet, NiceReplicationInfo niceRI, Vector hitLocation, optional Actor explosionTarget){
     if(!bullet.bGhost){
-        niceRI.ServerExplode(bullet.fireType.explosion.damage, bullet.fireType.explosion.radius, bullet.fireType.explosion.exponent,
-            bullet.fireType.explosion.damageType, bullet.fireType.explosion.momentum, hitLocation, bullet.instigator, true,
-            Vector(bullet.Rotation));
-        if(KFMonster(bullet.base) != none && bullet.bStuck && bullet.bStuckToHead)
-            niceRI.ServerDealDamage(KFMonster(bullet.base), bullet.fireType.explosion.damage, bullet.instigator, hitLocation,
-            bullet.fireType.explosion.momentum * vect(0,0,-1), bullet.fireType.explosion.damageType, 1.0);
-    }*/
+       niceRI.ServerExplode(bullet.charExplosionDamage, bullet.charExplosionRadius, bullet.charExplosionExponent,
+           bullet.charExplosionDamageType, bullet.charExplosionMomentum, hitLocation, bullet.instigator, true,
+           explosionTarget, Vector(bullet.Rotation));
+       if(KFMonster(bullet.base) != none && bullet.bStuck && bullet.bStuckToHead)
+           niceRI.ServerDealDamage(KFMonster(bullet.base), bullet.charExplosionDamage, bullet.instigator, hitLocation,
+           bullet.charExplosionMomentum * vect(0,0,-1), bullet.charExplosionDamageType, 1.0);
+    }
 }
-
-/*static function HitWall(NiceBullet bullet, Actor targetWall,
+static function HandleCalibration
+    (
+       bool isHeadshot,
+       NiceHumanPawn nicePawn,
+       NiceMonster targetZed
+    ){
+    if(nicePawn == none)                                    return;
+    if(nicePawn.currentCalibrationState != CALSTATE_ACTIVE) return;
+    nicePawn.ServerUpdateCalibration(isHeadshot, targetZed);
+}
+static function HitWall(NiceBullet bullet, NiceReplicationInfo niceRI, Actor targetWall,
     Vector hitLocation, Vector hitNormal){
     local NicePlayerController nicePlayer;
-    local NiceReplicationInfo niceRI;
-    niceRI = bullet.niceRI;
     nicePlayer = NicePlayerController(bullet.Instigator.Controller);
     if(nicePlayer == none)
        return;
@@ -43,135 +44,97 @@ static function Explode(NiceBullet bullet, Vector hitLocation){
            bullet.charMomentumTransfer * hitNormal, bullet.charDamageType);
        nicePlayer.wallHitsLeft --;
     }
-}*/
-
-static function HitWall//Actor
-(
-    NiceBullet bullet,
-    Actor targetWall,
-    Vector hitLocation,
-    Vector hitNormal
-)
-{
-    local NicePlayerController  nicePlayer;
-    local NiceReplicationInfo   niceRI;
-    if(bullet == none || bullet.instigator == none)
-        return;
-    niceRI = bullet.niceRI;
-    nicePlayer = NicePlayerController(bullet.instigator.controller);
-    if(nicePlayer == none)
-        return;
-    //  No need to deal damage to geometry or static actors
-    if(targetWall.bStatic || targetWall.bWorldGeometry)
-        return;
-    //      If target is a projectile - we must send message about damage,
-    //  otherwise it's probably a wall. And if we hit our limits of reporting
-    //  about wall damages - avoid sending too many replication messages
-    //  about damage.
-    //      NICETODO: should probably find another way to solve the
-    //  `ServerDealDamage` spam issue, this is bullshit.
-    if(Projectile(targetWall) == none && nicePlayer.wallHitsLeft <= 0)
-        return;
-    niceRI.ServerDealDamage(targetWall, bullet.fireType.bullet.damage, bullet.instigator, hitLocation,
-        bullet.fireType.bullet.momentum * hitNormal, bullet.fireType.bullet.shotDamageType);
-    //  We've sent a reliable message about hitting a wall
-    nicePlayer.wallHitsLeft --;
 }
-
-static function HandleScream(NiceBullet bullet, Vector location, Vector entryDirection){
-    bullet.bIsDud = true;
+static function HandleScream(NiceBullet bullet, NiceReplicationInfo niceRI, Vector location, Vector entryDirection){
+    bullet.charIsDud = true;
 }
-
-static function HitPawn(NiceBullet bullet, KFPawn targetPawn, Vector hitLocation,
-    Vector hitNormal){
-   // local NiceMedicProjectile niceDart;
-    local NiceReplicationInfo niceRI;
-    niceRI = bullet.niceRI;
-    /*niceDart = NiceMedicProjectile(bullet);
+static function HitPawn(NiceBullet bullet, NiceReplicationInfo niceRI, KFPawn targetPawn, Vector hitLocation,
+    Vector hitNormal, array<int> hitPoints){
+    local NiceMedicProjectile niceDart;
+    niceDart = NiceMedicProjectile(bullet);
     if(niceDart == none)
-        niceRI.ServerDealDamage(targetPawn, bullet.damage, bullet.instigator, HitLocation,
-            hitNormal * bullet.fireType.bullet.momentum, bullet.fireType.bullet.shotDamageType);
-    else*/ //MEANTODO
-        //niceRI.ServerHealTarget(targetPawn, bullet.damage, bullet.instigator);
+       niceRI.ServerDealDamage(targetPawn, bullet.charDamage, bullet.instigator, HitLocation,
+           hitNormal * bullet.charMomentumTransfer, bullet.charDamageType);
+    else
+       niceRI.ServerHealTarget(NiceHumanPawn(targetPawn), bullet.charDamage, bullet.instigator);
 }
-
-static function HitZed(NiceBullet bullet, NiceMonster niceZed, Vector hitLocation,
+static function HitZed(NiceBullet bullet, NiceReplicationInfo niceRI, KFMonster kfZed, Vector hitLocation,
     Vector hitNormal, float headshotLevel){
-    local bool bIsHeadshot;
+    local bool bIsHeadshot, bIsPreciseHeadshot;
     local float actualDamage;
     local int lockonTicks;
+    local float lockOnTickRate;
     local float angle;
+    local NiceHumanPawn nicePawn;
     local NicePlayerController nicePlayer;
     local class<NiceVeterancyTypes> niceVet;
-    local NiceReplicationInfo niceRI;
-    niceRI = bullet.niceRI;
     bIsHeadshot = (headshotLevel > 0.0);
-   /*  if(bIsHeadshot && bullet.fireState.base.sourceWeapon != none){
-        if(bullet.level.TimeSeconds - bullet.fireState.base.sourceWeapon.lastHeadshotTime <=
-            class'NiceSkillGunslingerPlayful'.default.quickWindow)
-            bullet.fireState.base.sourceWeapon.quickHeadshots ++;
-        bullet.fireState.base.sourceWeapon.lastHeadshotTime = bullet.Level.TimeSeconds;
-    }*/
+    bIsPreciseHeadshot = (headshotLevel > bullet.charDamageType.default.prReqPrecise);
+    if(!bullet.bAlreadyHitZed || bIsHeadshot)
+       HandleCalibration(bIsHeadshot, NiceHumanPawn(bullet.Instigator), NiceMonster(kfZed));
+    if(bIsHeadshot && bullet.sourceWeapon != none)
+       bullet.sourceWeapon.lastHeadshotTime = bullet.Level.TimeSeconds;
     // Try to get necessary variables and bail in case they're unaccessible
     nicePlayer = NicePlayerController(bullet.Instigator.Controller);
     if(nicePlayer == none)
-        return;
+       return;
+    nicePawn = NiceHumanPawn(bullet.instigator);
+    if(     !bIsHeadshot
+       &&  nicePawn != none
+       &&  nicePlayer.abilityManager != none
+       &&  nicePlayer.abilityManager.IsAbilityActive(class'NiceSkillSharpshooterReaperA'.default.abilityID))
+       nicePawn.ServerCooldownAbility(class'NiceSkillSharpshooterReaperA'.default.abilityID);
     niceVet = class'NiceVeterancyTypes'.static.GetVeterancy(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo));
-    if(bullet.fireType.bullet.bCausePain)
-        actualDamage = bullet.fireType.bullet.damage;
+    if(bullet.charCausePain)
+       actualDamage = bullet.charOrigDamage;
     else
-        actualDamage = bullet.damage;
-    if(niceZed == bullet.fireState.lockon.target && bullet.fireState.lockon.time > 0.5
-        && niceVet != none && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSharpshooterKillConfirmed')){
-        lockonTicks = Ceil(2 * bullet.fireState.lockon.time) - 1;
-        //actualDamage *= 1.0 +
-        //    0.5 * lockonTicks * (lockonTicks + 1) * class'NiceSkillSharpshooterKillConfirmed'.default.damageBonus;
-        //damageMod *= 1.0 + lockonTicks * class'NiceSkillSharpshooterKillConfirmed'.default.damageBonus;
-        actualDamage *= 1.0 + lockonTicks * class'NiceSkillSharpshooterKillConfirmed'.default.damageBonus;
-    }/*
-    if(niceVet == class'NiceVetGunslinger' && !bullet.bAlreadyHitZed)
-        niceRI.ServerGunslingerConfirm(niceZed, actualDamage, bullet.instigator, hitLocation,
-            bullet.fireType.bullet.momentum * hitNormal, bullet.fireType.bullet.shotDamageType, headshotLevel, bullet.fireState.lockon.time);*/
+       actualDamage = bullet.charDamage;
+    if(headshotLevel > 0)
+        actualDamage *= bullet.charContiniousBonus;
+    if(bullet.bGrazing)
+       actualDamage *= class'NiceSkillSupportGraze'.default.grazeDamageMult;
+    bullet.bGrazing = false;
+    if(kfZed == bullet.lockonZed && bullet.lockonTime > bullet.sourceWeapon.stdFireRate
+       && niceVet != none && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSharpshooterKillConfirmed')){
+       lockOnTickRate =class'NiceSkillSharpshooterKillConfirmed'.default.stackDelay;
+       lockonTicks = Ceil(bullet.lockonTime / lockOnTickRate) - 1;
+       lockonTicks = Min(class'NiceSkillSharpshooterKillConfirmed'.default.maxStacks, lockonTicks);
+       //actualDamage *= 1.0 +
+       //    0.5 * lockonTicks * (lockonTicks + 1) * class'NiceSkillSharpshooterKillConfirmed'.default.damageBonus;
+       //damageMod *= 1.0 + lockonTicks * class'NiceSkillSharpshooterKillConfirmed'.default.damageBonus;
+       actualDamage *= 1.0 + lockonTicks * class'NiceSkillSharpshooterKillConfirmed'.default.damageBonus;
+    }
     if(!bullet.bGhost)
-        niceRI.ServerDealDamage(niceZed, actualDamage, bullet.instigator, hitLocation,
-            bullet.fireType.bullet.momentum * hitNormal, bullet.fireType.bullet.shotDamageType, headshotLevel, bullet.fireState.lockon.time);
-
+       niceRI.ServerDealDamage(kfZed, actualDamage, bullet.instigator, hitLocation,
+           bullet.charMomentumTransfer * hitNormal, bullet.charDamageType, headshotLevel, bullet.lockonTime);
     //// Handle angled shots
     angle = asin(hitNormal.Z);
-    // Gunslinger skill check
-    /*bGunslingerAngleShot = class'NiceVeterancyTypes'.static.hasSkill(nicePlayer, class'NiceSkillGunslingerCloseAndPersonal');
-    if(bGunslingerAngleShot)
-        bGunslingerAngleShot =
-            VSizeSquared(bullet.instigator.location - niceZed.location) <=
-                class'NiceSkillGunslingerCloseAndPersonal'.default.closeDistance ** 2;*/
     // Apply angled shots
-    if((angle > 0.8 || angle < -0.45) && bullet.bCanAngleDamage && niceZed != none){
-        bullet.bCanAngleDamage = false;
-        bullet.bAlreadyHitZed = true;
-        if(ZedPenetration(bullet.damage, bullet, niceZed, headshotLevel))
-            HitZed(bullet, niceZed, hitLocation, hitNormal, headshotLevel);
+    if((angle > 0.8 || angle < -0.45) && bullet.bCanAngleDamage && kfZed != none){
+       bullet.bCanAngleDamage = false;
+       bullet.bAlreadyHitZed = true;
+       if(ZedPenetration(bullet.charDamage, bullet, kfZed, bIsHeadshot, bIsPreciseHeadshot))
+           HitZed(bullet, niceRI, kfZed, hitLocation, hitNormal, headshotLevel);
     }
-
     //// 'Bore' support skill
     if( niceVet != none && nicePlayer.IsZedTimeActive() && bullet.insideBouncesLeft > 0
-        && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSupportZEDBore')){
-        // Count one bounce
-        bullet.insideBouncesLeft --;
-        // Swap head-shot level
-        if(headshotLevel <= 0.0)
-            headshotLevel = class'NiceSkillSupportZEDBore'.default.minHeadshotPrecision;
-        else
-            headshotLevel = -headshotLevel;
-        // Deal next batch of damage
-        ZedPenetration(bullet.damage, bullet, niceZed, 0.0);
-        HitZed(bullet, niceZed, hitLocation, hitNormal, headshotLevel);
+       && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSupportZEDBore')){
+       // Count one bounce
+       bullet.insideBouncesLeft --;
+       // Swap head-shot level
+       if(headshotLevel <= 0.0)
+           headshotLevel = class'NiceSkillSupportZEDBore'.default.minHeadshotPrecision;
+       else
+           headshotLevel = -headshotLevel;
+       // Deal next batch of damage
+       ZedPenetration(bullet.charDamage, bullet, kfZed, false, false);
+       HitZed(bullet, niceRI, kfZed, hitLocation, hitNormal, headshotLevel);
     }
     bullet.insideBouncesLeft = 2;
 }
-
-static function bool ZedPenetration(out float Damage, NiceBullet bullet, NiceMonster niceZed, float headshotLevel){
-    local float penReduction;
-    local bool bIsHeadshot, bIsPreciseHeadshot;
+static function bool ZedPenetration(out float Damage, NiceBullet bullet, KFMonster targetZed, bool bIsHeadshot, bool bIsPreciseHeadshot){
+    local float reductionMod;
+    local NiceMonster niceZed;
     local NicePlayerController nicePlayer;
     local int actualMaxPenetrations;
     local class<NiceVeterancyTypes> niceVet;
@@ -179,47 +142,51 @@ static function bool ZedPenetration(out float Damage, NiceBullet bullet, NiceMon
     // True if we can penetrate even body, but now penetrating a head and shouldn't reduce damage too much
     local bool bEasyHeadPenetration;
     // Init variables
+    niceZed = NiceMonster(targetZed);
     nicePlayer = NicePlayerController(bullet.Instigator.Controller);
-    niceVet = class'NiceVeterancyTypes'.static.GetVeterancy(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo));
-    niceDmgType = bullet.fireType.bullet.shotDamageType;
-    bIsHeadshot = (headshotLevel > 0.0);
-    bIsPreciseHeadshot = (headshotLevel > bullet.fireType.bullet.shotDamageType.default.prReqPrecise);
+    niceVet = none;
+    if(nicePlayer != none)
+       niceVet = class'NiceVeterancyTypes'.static.GetVeterancy(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo));
+    niceDmgType = bullet.charDamageType;
     bEasyHeadPenetration = bIsHeadshot && !niceDmgType.default.bPenetrationHSOnly;
-
-    penReduction = niceDmgType.default.PenDmgReduction;
+    reductionMod = 1.0f;
     // Apply zed reduction and perk reduction of reduction`
     if(niceZed != none){
-        // Railgun skill exception
-        if(niceVet != none && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSharpshooterZEDRailgun') && nicePlayer.IsZedTimeActive())
-            return true;
-        if(niceZed.default.Health >= default.BigZedMinHealth && !bEasyHeadPenetration)
-            penReduction *= niceDmgType.default.BigZedPenDmgReduction;
-        else if(niceZed.default.Health >= default.MediumZedMinHealth && !bEasyHeadPenetration)
-            penReduction *= niceDmgType.default.MediumZedPenDmgReduction;
+       // Railgun skill exception
+       if(niceVet != none && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSharpshooterZEDRailgun') && nicePlayer.IsZedTimeActive())
+           return true;
+       if(niceZed.default.Health >= default.BigZedMinHealth && !bEasyHeadPenetration)
+           reductionMod *= niceDmgType.default.BigZedPenDmgReduction;
+       else if(niceZed.default.Health >= default.MediumZedMinHealth && !bEasyHeadPenetration)
+           reductionMod *= niceDmgType.default.MediumZedPenDmgReduction;
     }
     else
-        penReduction *= niceDmgType.default.BigZedPenDmgReduction;
+       reductionMod *= niceDmgType.default.BigZedPenDmgReduction;
     if(niceVet != none)
-        penReduction = niceVet.static.GetPenetrationDamageMulti(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo), penReduction, niceDmgType);
-    if(niceVet != none && nicePlayer.pawn.bIsCrouched && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSharpshooterSurgical') && bIsHeadshot)
-        penReduction = FMax(penReduction, class'NiceSkillSharpshooterSurgical'.default.penDmgReduction);
+       reductionMod = niceVet.static.GetPenetrationDamageMulti(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo), reductionMod, niceDmgType);
+   actualMaxPenetrations = niceDmgType.default.maxPenetrations;  
+    if(niceVet != none && !bullet.charWasHipFired && niceVet.static.hasSkill(nicePlayer, class'NiceSkillSharpshooterSurgical') && bIsHeadshot){
+      actualMaxPenetrations += 1;
+       reductionMod = FMax(reductionMod, class'NiceSkillSharpshooterSurgical'.default.penDmgReduction);
+   }
     // Assign new damage value and tell us if we should stop with penetration
-    Damage *= penReduction;
-    actualMaxPenetrations = niceDmgType.default.maxPenetrations;
-    if(actualMaxPenetrations >= 0)
-        actualMaxPenetrations +=
-            niceVet.static.GetAdditionalPenetrationAmount(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo));
+    Damage *= reductionMod * niceDmgType.default.PenDmgReduction;
+    bullet.decapMod *= reductionMod * niceDmgType.default.PenDecapReduction;
+    bullet.incapMod *= reductionMod * niceDmgType.default.PenIncapReduction;
+    if(niceVet != none && actualMaxPenetrations >= 0)
+       actualMaxPenetrations +=
+           niceVet.static.GetAdditionalPenetrationAmount(KFPlayerReplicationInfo(nicePlayer.PlayerReplicationInfo));
     if(!bIsHeadshot && niceDmgType.default.bPenetrationHSOnly)
-        return false;
+       return false;
     if(actualMaxPenetrations < 0)
-        return true;
-    if(Damage / bullet.fireType.bullet.damage < (niceDmgType.default.PenDmgReduction ** (actualMaxPenetrations + 1)) + 0.0001 || Damage < 1)
-        return false;
+       return true;
+    if(Damage / bullet.charOrigDamage < (niceDmgType.default.PenDmgReduction ** (actualMaxPenetrations + 1)) + 0.0001 || Damage < 1)
+       return false;
     return true;
 }
 
 defaultproperties
 {
-    BigZedMinHealth=1000
-    MediumZedMinHealth=500
+     BigZedMinHealth=1000
+     MediumZedMinHealth=500
 }

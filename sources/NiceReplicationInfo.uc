@@ -15,10 +15,10 @@ replication{
     reliable if(Role < ROLE_Authority)
        ServerDamagePawn, ServerDealDamage, ServerDealMeleeDamage,
        ServerUpdateHit, ServerExplode, ServerJunkieExtension,
-       /*ServerStickProjectile*/ServerHealTarget;
+       ServerStickProjectile, ServerHealTarget;
 }
 //  Makes server to spawn a sticked projectile.
-/*simulated function ServerStickProjectile
+simulated function ServerStickProjectile
 (
     KFHumanPawn instigator,
     Actor base,
@@ -29,7 +29,7 @@ replication{
 ){
     class'NiceProjectileSpawner'.static.
        StickProjectile(instigator, base, bone, shift, direction, expData);
-}*/
+}
 //  Returns scale value that determines how to scale explosion damage to
 //      given victim.
 //  Method assumes that a valid victim was passed.
@@ -216,12 +216,12 @@ simulated function ServerHealTarget(NiceHumanPawn healed, float charPotency,
     healTotal = charPotency * healPotency;
     
     healer.AlphaAmount = 255;
-   /* if(NiceMedicGun(healer.weapon) != none)
+    if(NiceMedicGun(healer.weapon) != none)
        NiceMedicGun(healer.weapon).ClientSuccessfulHeal(healer, healed);
     if(healed.health >= healed.healthMax){
        healed.GiveHealth(healTotal, healed.healthMax);
        return;
-    }*/
+    }
     HandleNiceHealingMechanicsAndSkills(healer, healed, healPotency);
     if(healed.health < healed.healthMax){
        healed.TakeHealing( healed, healTotal, healPotency,
@@ -454,6 +454,7 @@ simulated function ServerJunkieExtension(   NicePlayerController player,
            Mut.JunkieZedTimeExtend();
     }
 }
+
 defaultproperties
 {
 }

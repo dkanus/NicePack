@@ -15,15 +15,19 @@ simulated function SetNiceData(NicePlainData.Data newData){
 simulated function InitDroppedPickupFor(Inventory Inv){
     local NiceWeapon niceWeap;
     niceWeap = NiceWeapon(Inv);
-    if(niceWeap != none)       SetNiceData(niceWeap.GetNiceData());
+    if(niceWeap != none)
+       SetNiceData(niceWeap.GetNiceData());
     // Do as usual
-    if(Role == ROLE_Authority)       super.InitDroppedPickupFor(Inv);
+    if(Role == ROLE_Authority)
+       super.InitDroppedPickupFor(Inv);
 }
 function Destroyed(){
-    if(bDropped && Inventory != none && class<Weapon>(Inventory.Class) != none && KFGameType(Level.Game) != none)       KFGameType(Level.Game).WeaponDestroyed(class<Weapon>(Inventory.Class));
+    if(bDropped && Inventory != none && class<Weapon>(Inventory.Class) != none && KFGameType(Level.Game) != none)
+       KFGameType(Level.Game).WeaponDestroyed(class<Weapon>(Inventory.Class));
     super(WeaponPickup).Destroyed();
 }
+
 defaultproperties
 {
-    cost=1000
+     cost=1000
 }

@@ -1,0 +1,38 @@
+class NiceSealSquealFire extends NiceFire;
+defaultproperties
+{
+    ProjSpawnOffset=(X=5.000000)
+    EffectiveRange=2500.000000
+    ProjectileSpeed=3000.000000
+    bulletClass=Class'NicePack.NiceBallisticHarpoon'
+    ExplosionDamageType=Class'NicePack.NiceDamTypeSealSquealExplosion'
+    ExplosionDamage=480
+    ExplosionRadius=200.000000
+    explosionExponent=1.000000
+    ExplosionMomentum=75000.000000
+    fuseTime=15.000000
+    explodeOnFuse=True
+    bShouldStick=True
+    FireAimedAnim="Iron_Fire"
+    maxVerticalRecoilAngle=1500
+    maxHorizontalRecoilAngle=250
+    FireSoundRef="KF_FY_SealSquealSND.WEP_Harpoon_Fire_M"
+    StereoFireSoundRef="KF_FY_SealSquealSND.WEP_Harpoon_Fire"
+    NoAmmoSoundRef="KF_M79Snd.M79_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeSealSquealBlunt'
+    DamageMax=150
+    bWaitForRelease=True
+    TransientSoundVolume=1.800000
+    FireForce="AssaultRifleFire"
+    FireRate=0.750000
+    AmmoClass=Class'NicePack.NiceSealSquealAmmo'
+    ShakeRotMag=(X=75.000000,Y=75.000000,Z=400.000000)
+    ShakeRotRate=(X=12500.000000,Y=12500.000000,Z=10000.000000)
+    ShakeRotTime=3.500000
+    ShakeOffsetMag=(X=6.000000,Y=1.000000,Z=8.000000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=2.500000
+    BotRefireRate=1.800000
+    FlashEmitterClass=Class'KFMod.SealSquealMuzzleFlash1P'
+    aimerror=42.000000
+}

@@ -1,0 +1,37 @@
+class NiceMKb42Fire extends NiceFire;
+defaultproperties
+{
+    zedTimeFireSpeedUp=2.000000
+    ProjectileSpeed=34250.000000
+    FireAimedAnim="Fire_Iron"
+    RecoilRate=0.070000
+    maxVerticalRecoilAngle=210
+    maxHorizontalRecoilAngle=105
+    ShellEjectClass=Class'ROEffects.KFShellEjectMkb'
+    ShellEjectBoneName="Shell_eject"
+    bAccuracyBonusForSemiAuto=True
+    FireSoundRef="KF_mkb42Snd.mkb42_Fire_Single_M"
+    StereoFireSoundRef="KF_mkb42Snd.mkb42_Fire_Single_S"
+    NoAmmoSoundRef="KF_AK47Snd.AK47_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeMKb42AssaultRifle'
+    DamageMin=99
+    DamageMax=99
+    Momentum=8500.000000
+    bPawnRapidFireAnim=True
+    bWaitForRelease=True
+    TransientSoundVolume=1.800000
+    FireLoopAnim="Fire"
+    TweenTime=0.025000
+    FireForce="AssaultRifleFire"
+    FireRate=0.1750000
+    AmmoClass=Class'NicePack.NiceMKb42Ammo'
+    ShakeRotMag=(X=50.000000,Y=50.000000,Z=350.000000)
+    ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
+    ShakeRotTime=0.750000
+    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=7.500000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=1.250000
+    BotRefireRate=0.990000
+    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'
+    aimerror=42.000000
+}

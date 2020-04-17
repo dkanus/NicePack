@@ -1,0 +1,4 @@
+class NiceMK23Fire extends NiceSingleFire;
+defaultproperties
+{    ProjectileSpeed=13000.000000    maxVerticalRecoilAngle=400    maxHorizontalRecoilAngle=200    FireSoundRef="KF_MK23Snd.MK23_Fire_M"    StereoFireSoundRef="KF_MK23Snd.MK23_Fire_S"    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"    DamageType=Class'NicePack.NiceDamTypeMK23Pistol'    DamageMin=55    DamageMax=55    Momentum=18000.000000    FireLoopAnim=    FireEndAnim=    FireRate=0.350000    AmmoClass=Class'NicePack.NiceMK23Ammo'    ShakeRotMag=(Z=290.000000)    ShakeRotRate=(X=10080.000000,Y=10080.000000)    ShakeRotTime=3.500000    ShakeOffsetMag=(Y=1.000000,Z=8.000000)    ShakeOffsetTime=2.500000    BotRefireRate=0.650000    FlashEmitterClass=Class'KFMod.MuzzleFlashMK'
+}

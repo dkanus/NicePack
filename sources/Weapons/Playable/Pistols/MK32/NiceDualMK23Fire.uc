@@ -1,0 +1,4 @@
+class NiceDualMK23Fire extends NiceDualiesFire;
+defaultproperties
+{    ProjectileSpeed=13000.000000    maxVerticalRecoilAngle=400    maxHorizontalRecoilAngle=200    ShellEjectClass=Class'KFMod.MK23Shell'    FireSoundRef="KF_MK23Snd.MK23_Fire_M"    StereoFireSoundRef="KF_MK23Snd.MK23_Fire_S"    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"    DamageType=Class'NicePack.NiceDamTypeMK23Pistol'    DamageMin=55    DamageMax=55    Momentum=18000.000000    NoAmmoSound=None    FireRate=0.175000    AmmoClass=Class'NicePack.NiceDualMK23Ammo'    ShakeRotMag=(Z=290.000000)    ShakeRotRate=(X=10080.000000,Y=10080.000000)    ShakeRotTime=3.500000    ShakeOffsetMag=(Y=1.000000,Z=8.000000)    ShakeOffsetTime=2.500000    FlashEmitterClass=Class'KFMod.MuzzleFlashMK'    aimerror=40.000000
+}

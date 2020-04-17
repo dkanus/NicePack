@@ -62,8 +62,8 @@ simulated function bool IsZedExtentionsRecorded(NiceMonster niceZed){
 }
 function ReplaceRequiredEquipment(){
     Super.ReplaceRequiredEquipment();
-    RequiredEquipment[0] = String(class'ScrnBalanceSrv.ScrnKnife');//String(class'NicePack.NiceKnife');
-    RequiredEquipment[1] = String(class'NicePack.NiceWinchester');//String(class'NicePack.Nice9mmPlus');
+    RequiredEquipment[0] = String(class'NicePack.NiceKnife');
+    RequiredEquipment[1] = String(class'NicePack.Nice9mmPlus');
     RequiredEquipment[2] = String(class'ScrnBalanceSrv.ScrnFrag');
     RequiredEquipment[3] = String(class'ScrnBalanceSrv.ScrnSyringe');
     RequiredEquipment[4] = String(class'KFMod.Welder');
@@ -359,7 +359,7 @@ simulated function Tick(float deltaTime){
        holsteredReloadCountDown = 0.25;
     }
 }
-/*function ServerBuyWeapon(class<Weapon> WClass, float ItemWeight){
+function ServerBuyWeapon(class<Weapon> WClass, float ItemWeight){
     local Inventory I;
     local NiceSingle nicePistol;
     local class<NiceWeaponPickup> WP;
@@ -435,7 +435,7 @@ function ServerSellWeapon(class<Weapon> WClass){
            SetTraderUpdate();
        }
     }
-}*/
+}
 // NICETODO: do we even need this one?
 simulated function ClientChangeWeapon(NiceWeapon newWeap){
     weapon = newWeap;
@@ -535,15 +535,14 @@ simulated function ThrowGrenade(){
 }
 simulated function HandleNadeThrowAnim()
 {
-    if(NiceWinchester(Weapon) != none)
-       SetAnimAction('Frag_Winchester');
-    /*if(NiceM14EBRBattleRifle(Weapon) != none || NiceMaulerRifle(Weapon) != none)
+    if(NiceM14EBRBattleRifle(Weapon) != none || NiceMaulerRifle(Weapon) != none)
        SetAnimAction('Frag_M14');
-    else
+    else if(NiceWinchester(Weapon) != none)
+       SetAnimAction('Frag_Winchester');
     else if(Crossbow(Weapon) != none)
        SetAnimAction('Frag_Crossbow');
     else if(NiceM99SniperRifle(Weapon) != none)
-       SetAnimAction('Frag_M4203');//MEANTODO
+       SetAnimAction('Frag_M4203');
     else if(NiceAK47AssaultRifle(Weapon) != none)
        SetAnimAction('Frag_AK47');
     else if(NiceBullpup(Weapon) != none || NiceNailGun(Weapon) != none)
@@ -559,7 +558,7 @@ simulated function HandleNadeThrowAnim()
     else if(NiceM4AssaultRifle(Weapon) != none || NiceMKb42AssaultRifle(Weapon) != none)
        SetAnimAction('Frag_M4');
     else if(NiceThompsonDrumSMG(Weapon) != none)
-       SetAnimAction('Frag_IJC_spThompson_Drum');*/
+       SetAnimAction('Frag_IJC_spThompson_Drum');
     Super.HandleNadeThrowAnim();
 }
 // Remove blur for sharpshooter with a right skill
@@ -788,7 +787,7 @@ function Timer(){
        hmgShieldLevel ++;
     }
 }
-/*simulated function Fire(optional float F){
+simulated function Fire(optional float F){
     local bool bRecManualReload;
     local NiceSingle singleWeap;
     local ScrnPlayerController PC;
@@ -802,7 +801,7 @@ function Timer(){
     }
     else
        super.Fire(F);
-}*/
+}
 function  float AssessThreatTo(KFMonsterController  Monster, optional bool CheckDistance){
     return super(SRHumanPawn).AssessThreatTo(Monster, CheckDistance);
 }
@@ -824,14 +823,15 @@ function VeterancyChanged(){
     
     super.VeterancyChanged();
 }
-/*simulated function AltFire(optional float F){
+simulated function AltFire(optional float F){
     if(NiceMedicGun(Weapon) != none)
        super(SRHumanPawn).AltFire(F);
     else
        super.AltFire(F);
-}*/
+}
+
 defaultproperties
 {
-    defaultInvincibilityDuration=2.000000
-    BaseMeleeIncrease=0.000000
+     defaultInvincibilityDuration=2.000000
+     BaseMeleeIncrease=0.000000
 }

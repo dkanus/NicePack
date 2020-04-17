@@ -35,16 +35,17 @@ function static int UpdateCounterValue(string counterName, NicePlayerController 
     if(niceF == none)
        return 0;
     lockOnTickRate = class'NiceSkillSharpshooterKillConfirmed'.default.stackDelay;
-    lockonTicks = Ceil(niceF.fireState.lockon.time / lockOnTickRate) - 1;
+    lockonTicks = Ceil(niceF.currentContext.lockonTime / lockOnTickRate) - 1;
     lockonTicks = Min(class'NiceSkillSharpshooterKillConfirmed'.default.maxStacks, lockonTicks);
     lockonTicks = Max(lockonTicks, 0);
     return lockonTicks;
 }
+
 defaultproperties
 {
-    damageBonus=1.000000
-    stackDelay=1.000000
-    maxStacks=1
-    SkillName="Kill confirmed"
-    SkillEffects="Aiming at zed's head for a second doubles the damage of the shot."
+     damageBonus=1.000000
+     stackDelay=1.000000
+     maxStacks=1
+     SkillName="Kill confirmed"
+     SkillEffects="Aiming at zed's head for a second doubles the damage of the shot."
 }
