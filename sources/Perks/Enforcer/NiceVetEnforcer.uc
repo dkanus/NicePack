@@ -21,7 +21,8 @@ static function float GetPenetrationDamageMulti(KFPlayerReplicationInfo KFPRI, f
     bonusReduction = 0.0;
     if(class<NiceDamageTypeVetEnforcerBullets>(fireIntance) != none)
         return DefaultPenDamageReduction;
-    if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillSupportStubbornness'))       bonusReduction = class'NiceSkillSupportStubbornness'.default.penLossRed;
+    if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillSupportStubbornness'))
+       bonusReduction = class'NiceSkillSupportStubbornness'.default.penLossRed;
     PenDamageInverse = (1.0 - FMax(0, DefaultPenDamageReduction)); 
     return DefaultPenDamageReduction + PenDamageInverse * (0.6 + 0.4 * bonusReduction);  // 60% better penetrations + bonus
 }
@@ -29,14 +30,25 @@ static function float GetPenetrationDamageMulti(KFPlayerReplicationInfo KFPRI, f
 static function int AddStunScore(KFPlayerReplicationInfo KFPRI, KFMonster Injured, KFPawn DamageTaker, int InStunScore, class<NiceWeaponDamageType> DmgType){
     local class<NiceWeaponPickup> pickupClass;
     pickupClass = GetPickupFromDamageType(DmgType);
-    if(KFPRI != none && IsPerkedPickup(pickupClass) && HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillEnforcerBombard'))       return InStunScore * class'NiceSkillEnforcerBombard'.default.stunMult;
+    if(KFPRI != none && IsPerkedPickup(pickupClass) && HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillEnforcerBombard'))
+       return InStunScore * class'NiceSkillEnforcerBombard'.default.stunMult;
     return InStunScore;
 }
 
 static function class<Grenade> GetNadeType(KFPlayerReplicationInfo KFPRI){
-    /*if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillSupportCautious'))       return class'NicePack.NiceDelayedNade';
+    /*if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillSupportCautious'))
+       return class'NicePack.NiceDelayedNade';
     return class'NicePack.NiceNailNade';*/
     return class'NicePack.NiceCryoNade';
+}
+
+static function float AddExtraAmmoFor(KFPlayerReplicationInfo KFPRI, Class<Ammunition> AmmoType){
+    local float bonusNades;
+    // Default bonus
+    bonusNades = 2;
+    if(AmmoType == class'NicePack.NiceCryoNade' || AmmoType == class'NicePack.NiceNailNade')
+       return 1.0 + 0.2 * bonusNades;
+    return 1.0;
 }
 
 static function int ReduceDamage(KFPlayerReplicationInfo KFPRI, KFPawn Injured, Pawn Instigator, int InDamage, class<DamageType> DmgType){
@@ -112,7 +124,34 @@ static function string GetCustomLevelInfo(byte Level){
     return default.CustomLevelInfo;
 }
 defaultproperties
-{    bNewTypePerk=True
-    SkillGroupA(0)=Class'NicePack.NiceSkillEnforcerUnstoppable'    SkillGroupA(1)=Class'NicePack.NiceSkillEnforcerBombard'    SkillGroupA(2)=Class'NicePack.NiceSkillEnforcerFullCounter'    SkillGroupA(4)=Class'NicePack.NiceSkillEnforcerZEDBarrage'
-    SkillGroupB(0)=Class'NicePack.NiceSkillEnforcerUnshakable'    SkillGroupB(1)=Class'NicePack.NiceSkillEnforcerMultitasker'    SkillGroupB(2)=Class'NicePack.NiceSkillEnforcerDetermination'    SkillGroupB(4)=Class'NicePack.NiceSkillEnforcerZEDJuggernaut'    progressArray0(0)=100    progressArray0(1)=1000    progressArray0(2)=3000    progressArray0(3)=10000    progressArray0(4)=30000    progressArray0(5)=100000    progressArray0(6)=200000    DefaultDamageType=Class'NicePack.NiceDamageTypeVetEnforcer'    OnHUDIcons(0)=(PerkIcon=Texture'KillingFloorHUD.Perks.Perk_Support',StarIcon=Texture'KillingFloorHUD.HUD.Hud_Perk_Star',DrawColor=(B=255,G=255,R=255,A=255))    OnHUDIcons(1)=(PerkIcon=Texture'KillingFloor2HUD.Perk_Icons.Perk_Support_Gold',StarIcon=Texture'KillingFloor2HUD.Perk_Icons.Hud_Perk_Star_Gold',DrawColor=(B=255,G=255,R=255,A=255))    OnHUDIcons(2)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Green',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Green',DrawColor=(B=255,G=255,R=255,A=255))    OnHUDIcons(3)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Blue',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Blue',DrawColor=(B=255,G=255,R=255,A=255))    OnHUDIcons(4)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Purple',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Purple',DrawColor=(B=255,G=255,R=255,A=255))    OnHUDIcons(5)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Orange',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Orange',DrawColor=(B=255,G=255,R=255,A=255))    CustomLevelInfo="Level up by doing damage with perked weapons|60% better penetration with all weapons"    PerkIndex=1    OnHUDIcon=Texture'KillingFloorHUD.Perks.Perk_Support'    OnHUDGoldIcon=Texture'KillingFloor2HUD.Perk_Icons.Perk_Support_Gold'    VeterancyName="Enforcer"    Requirements(0)="Required experience for the next level: %x"
+{
+    bNewTypePerk=True
+    SkillGroupA(0)=Class'NicePack.NiceSkillEnforcerUnstoppable'
+    SkillGroupA(1)=Class'NicePack.NiceSkillEnforcerBombard'
+    SkillGroupA(2)=Class'NicePack.NiceSkillEnforcerFullCounter'
+    SkillGroupA(4)=Class'NicePack.NiceSkillEnforcerZEDBarrage'
+    SkillGroupB(0)=Class'NicePack.NiceSkillEnforcerUnshakable'
+    SkillGroupB(1)=Class'NicePack.NiceSkillEnforcerMultitasker'
+    SkillGroupB(2)=Class'NicePack.NiceSkillEnforcerDetermination'
+    SkillGroupB(4)=Class'NicePack.NiceSkillEnforcerZEDJuggernaut'
+    progressArray0(0)=100
+    progressArray0(1)=1000
+    progressArray0(2)=3000
+    progressArray0(3)=10000
+    progressArray0(4)=30000
+    progressArray0(5)=100000
+    progressArray0(6)=200000
+    DefaultDamageType=Class'NicePack.NiceDamageTypeVetEnforcer'
+    OnHUDIcons(0)=(PerkIcon=Texture'KillingFloorHUD.Perks.Perk_Support',StarIcon=Texture'KillingFloorHUD.HUD.Hud_Perk_Star',DrawColor=(B=255,G=255,R=255,A=255))
+    OnHUDIcons(1)=(PerkIcon=Texture'KillingFloor2HUD.Perk_Icons.Perk_Support_Gold',StarIcon=Texture'KillingFloor2HUD.Perk_Icons.Hud_Perk_Star_Gold',DrawColor=(B=255,G=255,R=255,A=255))
+    OnHUDIcons(2)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Green',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Green',DrawColor=(B=255,G=255,R=255,A=255))
+    OnHUDIcons(3)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Blue',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Blue',DrawColor=(B=255,G=255,R=255,A=255))
+    OnHUDIcons(4)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Purple',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Purple',DrawColor=(B=255,G=255,R=255,A=255))
+    OnHUDIcons(5)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Support_Orange',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Orange',DrawColor=(B=255,G=255,R=255,A=255))
+    CustomLevelInfo="Level up by doing damage with perked weapons|60% better penetration with all weapons|+2 grenades"
+    PerkIndex=1
+    OnHUDIcon=Texture'KillingFloorHUD.Perks.Perk_Support'
+    OnHUDGoldIcon=Texture'KillingFloor2HUD.Perk_Icons.Perk_Support_Gold'
+    VeterancyName="Enforcer"
+    Requirements(0)="Required experience for the next level: %x"
 }

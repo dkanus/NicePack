@@ -11,10 +11,14 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner)
 function bool SkillChange(GUIComponent Sender){
     local byte newSkillChoice;
     local NicePlayerController skillOwner;
-    if(isAltSkill)       newSkillChoice = 1;
-    else       newSkillChoice = 0;
+    if(isAltSkill)
+       newSkillChoice = 1;
+    else
+       newSkillChoice = 0;
     skillOwner = NicePlayerController(PlayerOwner());
-    if(skillOwner != none){       skillOwner.ServerSetSkill(skillPerkIndex, skillIndex, newSkillChoice);       skillOwner.SaveConfig();
+    if(skillOwner != none){
+       skillOwner.ServerSetSkill(skillPerkIndex, skillIndex, newSkillChoice);
+       skillOwner.SaveConfig();
     }
     return true;
 }
@@ -33,38 +37,110 @@ function bool DrawSkillButton(Canvas cnvs){
     // Get skill parameters
     skillOwner = NicePlayerController(PlayerOwner());
     bAvailable = class'NiceVeterancyTypes'.static.CanUseSkill(skillOwner, associatedSkill);
-    if(bAvailable)       bSelected = class'NiceVeterancyTypes'.static.HasSkill(skillOwner, associatedSkill);
+    if(bAvailable)
+       bSelected = class'NiceVeterancyTypes'.static.HasSkill(skillOwner, associatedSkill);
     bPending = class'NiceVeterancyTypes'.static.IsSkillPending(skillOwner, associatedSkill);
-    if(skillOwner == none || associatedSkill == none)       return true;
+    if(skillOwner == none || associatedSkill == none)
+       return true;
     // Text offset parameters that seem to give a good result
-    horizontalOffset = 10;
     verticalOffset = 5;
     smVerticalOffset = 2;
+    if (ActualWidth() > 400)
+    {
+      horizontalOffset = 10;
+    }
+    else if (ActualWidth() > 320)
+    {
+      horizontalOffset = 5;
+    }
     // Backup old font values and set the new ones
     oldFont = cnvs.Font;
     oldFontScaleX = cnvs.FontScaleX;
     oldFontScaleY = cnvs.FontScaleY;
-    cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(3);
     cnvs.FontScaleX = 1.0;
     cnvs.FontScaleY = 1.0;
+    if (ActualWidth() > 700)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(3);
+    }
+    else if (ActualWidth() > 500)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(5);
+    }
+    else if (ActualWidth() > 400)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(6);
+    }
+    else if (ActualWidth() > 320)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(7);
+    }
+    else if (ActualWidth() > 250)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(8);
+    }
+    else
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(8);
+      cnvs.FontScaleX = 0.9;
+      cnvs.FontScaleY = 0.9;
+    }
     // Draw text
     // - Name
     cnvs.SetPos(ActualLeft() + horizontalOffset, ActualTop() + verticalOffset);
-    if(!bAvailable)       cnvs.SetDrawColor(0, 0, 0);
-    else if(bSelected)       cnvs.SetDrawColor(255, 255, 255);
-    else       cnvs.SetDrawColor(128, 128, 128);
+    if(!bAvailable)
+       cnvs.SetDrawColor(0, 0, 0);
+    else if(bSelected)
+       cnvs.SetDrawColor(255, 255, 255);
+    else
+       cnvs.SetDrawColor(128, 128, 128);
+    //cnvs.DrawText(string(ActualWidth()));
     cnvs.DrawText(associatedSkill.default.skillName);
     cnvs.TextSize(associatedSkill.default.skillName, textWidth, nameHeight);
     // - Description
-    cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(5);
-    if(!bAvailable)       cnvs.SetDrawColor(0, 0, 0);
-    else if(bSelected)       cnvs.SetDrawColor(220, 220, 220);//180
-    else       cnvs.SetDrawColor(140, 140, 140);//100
+    if (ActualWidth() > 700)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(5);
+    }
+    else if (ActualWidth() > 500)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(6);
+    }
+    else if (ActualWidth() > 400)
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(7);
+    }
+    else
+    {
+      cnvs.Font = class'ROHUD'.Static.LoadSmallFontStatic(8);
+    }
+    if(!bAvailable)
+       cnvs.SetDrawColor(0, 0, 0);
+    else if(bSelected)
+       cnvs.SetDrawColor(220, 220, 220);//180
+    else
+       cnvs.SetDrawColor(140, 140, 140);//100
     skillEffects = associatedSkill.default.skillEffects;
-    while(Len(skillEffects) > 0){       cnvs.WrapText(skillEffects, line, ActualWidth() - horizontalOffset * 2, cnvs.Font, cnvs.FontScaleX);       cnvs.SetPos(ActualLeft() + horizontalOffset, ActualTop() + verticalOffset + nameHeight + smVerticalOffset + descLineOffset);       cnvs.DrawText(line);       cnvs.TextSize(line, textWidth, textHeight);       descLineOffset += textHeight;
+    while(Len(skillEffects) > 0){
+       cnvs.WrapText(skillEffects, line, ActualWidth() - horizontalOffset * 2, cnvs.Font, cnvs.FontScaleX);
+       cnvs.SetPos(ActualLeft() + horizontalOffset, ActualTop() + verticalOffset + nameHeight + smVerticalOffset + descLineOffset);
+       cnvs.DrawText(line);
+       cnvs.TextSize(line, textWidth, textHeight);
+       descLineOffset += textHeight;
     }
     // Draw border
-    if(bAvailable && bSelected || bPending){       if(bAvailable && bSelected)           cnvs.SetDrawColor(255, 255, 255);       else           cnvs.SetDrawColor(64, 64, 64);       cnvs.SetPos(ActualLeft(), ActualTop());       cnvs.DrawLine(3, ActualWidth());       cnvs.DrawLine(1, ActualHeight());       cnvs.SetPos(ActualLeft() + ActualWidth() + 2, ActualTop() + ActualHeight());       cnvs.DrawLine(2, ActualWidth() + 2);       cnvs.SetPos(ActualLeft() + ActualWidth(), ActualTop() + ActualHeight() + 2);       cnvs.DrawLine(0, ActualHeight() + 2);
+    if(bAvailable && bSelected || bPending){
+       if(bAvailable && bSelected)
+           cnvs.SetDrawColor(255, 255, 255);
+       else
+           cnvs.SetDrawColor(64, 64, 64);
+       cnvs.SetPos(ActualLeft(), ActualTop());
+       cnvs.DrawLine(3, ActualWidth());
+       cnvs.DrawLine(1, ActualHeight());
+       cnvs.SetPos(ActualLeft() + ActualWidth() + 2, ActualTop() + ActualHeight());
+       cnvs.DrawLine(2, ActualWidth() + 2);
+       cnvs.SetPos(ActualLeft() + ActualWidth(), ActualTop() + ActualHeight() + 2);
+       cnvs.DrawLine(0, ActualHeight() + 2);
     }
     cnvs.Font = oldFont;
     cnvs.FontScaleX = oldFontScaleX;

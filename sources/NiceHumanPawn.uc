@@ -71,12 +71,14 @@ function ReplaceRequiredEquipment(){
 simulated function int CalculateCalibrationScore(){
     local float accuracy;
     accuracy = (float(calibrationHits)) / (float(calibrationTotalShots));
+    if(calibrationTotalShots <= 0)
+        return 3;
     //  Very low accuracy (<60%) or not enough shots (<2) - 1 star
-    if(calibrationTotalShots < 2 || accuracy < 0.6)
+    if(accuracy < 0.6)
        return 1;
     //  Here we definitely have at least 60% accuracy and 2 shots.
     //  Low accuracy (<80%) or not enough shots (<5) - 2 stars.
-    if(calibrationTotalShots < 5 || accuracy < 0.8)
+    if(accuracy < 0.8)
        return 2;
     //  Here we definitely have at least 80% accuracy and 5 shots.
     //  If amount of shots is below 7 - it's 3 stars at most.

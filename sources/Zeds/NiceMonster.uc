@@ -668,36 +668,28 @@ function ModDamage( out int damage,
                    float headshotLevel,
                    KFPlayerReplicationInfo KFPRI,
                    optional float lockonTime){
-    local NicePlayerController  nicePlayer;
-    local NiceMonster           niceZed;
-    local bool                  hasThinOut;
-    local bool                  isRelated;
-    local float                 maxDistance;
-    if(KFPRI == none || KFPRI.ClientVeteranSkill == none) return;
-    //  Add perked damage
-    damage = KFPRI.ClientVeteranSkill.Static.AddDamage( KFPRI, self,
-                                                       KFPawn(instigatedBy),
-                                                       damage, damageType);
-    // Skill bonuses
-    if(nicePlayer == none || instigatedBy == none)
-       return;
-    hasThinOut = class'NiceVeterancyTypes'.static.hasSkill(nicePlayer,
-                                           class'NiceSkillCommandoThinOut');
-    if(!hasThinOut)
-       return;
-    maxDistance = class'NiceSkillCommandoThinOut'.default.maxDistance;
-    foreach instigatedBy.RadiusActors(class'NiceMonster', niceZed, maxDistance){
-       if(!nicePlayer.CanSee(niceZed)) continue;
-       if(niceZed == none || niceZed == self) continue;
-       if(niceZed.health <= 0) continue;
-       if(default.health < 500) continue;
-       isRelated =     ClassIsChildOf(niceZed.class, class) 
-                   ||  ClassIsChildOf(class, niceZed.class);
-       if(niceZed.default.health >= 1000 || isRelated){
-           damage *= class'NiceSkillCommandoThinOut'.default.damageMult;
-           break;
-       }
-    }
+   local NicePlayerController  nicePlayer;
+   local bool                  hasGiantSlayer;
+   local int                   bonusDamageStacks;
+   if(KFPRI == none || KFPRI.ClientVeteranSkill == none) return;
+   //  Add perked damage
+   damage = KFPRI.ClientVeteranSkill.Static.AddDamage( KFPRI, self,
+                                                      KFPawn(instigatedBy),
+                                                      damage, damageType);
+   // Skill bonuses
+   if(instigatedBy == none)
+      return;
+   nicePlayer = NicePlayerController(instigatedBy.controller);
+   if(nicePlayer == none)
+      return;
+   hasGiantSlayer = class'NiceVeterancyTypes'.static.hasSkill(nicePlayer,
+                                          class'NiceSkillCommandoGiantSlayer');
+   if(!hasGiantSlayer)
+      return;
+   bonusDamageStacks =
+      int(health / class'NiceSkillCommandoGiantSlayer'.default.healthStep);
+   damage *= 1.0f + bonusDamageStacks *
+      class'NiceSkillCommandoGiantSlayer'.default.bonusDamageMult;
 }
 function ModRegularDamage(  out int damage,
                            Pawn instigatedBy,
@@ -945,8 +937,10 @@ function DealDecapDamage(   int damage,
                        damageType, headshotLevel, KFPRI, lockonTime);
     }
     else
-       decapDmg = HealthMax * GetDecapDamageModifier(  damageType, nicePlayer,
-                                                       KFPRI);
+    {
+       decapDmg = Ceil(HealthMax * GetDecapDamageModifier(  damageType,
+                                                      nicePlayer, KFPRI));
+    }
     DealBodyDamage( decapDmg, instigatedBy, hitLocation, momentum, damageType,
                    headshotLevel, KFPRI, lockonTime);
     if(class'NiceVeterancyTypes'.static.
@@ -1057,7 +1051,9 @@ function DealBodyDamage(int damage,
     // Reduce health
     Health -= actualDamage;
     if(IsFinisher(damage, damageType, nicePlayer))
+    {
        Health -= actualDamage;
+    }
     // Update location
     if(hitLocation == vect(0,0,0))
        hitLocation = Location;
@@ -1771,7 +1767,7 @@ simulated function RemoveHead(){
     //  No more raspy breathin'...cuz he has no throat or mouth :S
     AmbientSound = MiscSound;
     if(Health > 0)
-       BleedOutTime = Level.TimeSeconds +  BleedOutDuration;
+       BleedOutTime = Level.TimeSeconds + BleedOutDuration;
     if(MeleeAnims[1] == 'Claw3')
        MeleeAnims[1] = 'Claw1';
     if(MeleeAnims[2] == 'Claw3')

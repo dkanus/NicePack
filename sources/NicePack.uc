@@ -175,7 +175,7 @@ simulated function PostBeginPlay(){
     super.PostBeginPlay();
     class'NicePack'.default.Mut = self;
     // Gun skins
-    /*class'NicePack.NiceMaulerPickup'.default.VariantClasses[class'NicePack.NiceMaulerPickup'.default.VariantClasses.length] = class'ScrnBalanceSrv.ScrnSPSniperPickup';
+    class'NicePack.NiceMaulerPickup'.default.VariantClasses[class'NicePack.NiceMaulerPickup'.default.VariantClasses.length] = class'ScrnBalanceSrv.ScrnSPSniperPickup';
     class'NicePack.NiceDeaglePickup'.default.VariantClasses[class'NicePack.NiceDeaglePickup'.default.VariantClasses.length] = class'NicePack.SkinExecutionerPickup';
     class'NicePack.NiceDualDeaglePickup'.default.VariantClasses[class'NicePack.NiceDualDeaglePickup'.default.VariantClasses.length] = class'NicePack.SkinDualExecutionerPickup';
     class'NicePack.NiceMagnumPickup'.default.VariantClasses[class'NicePack.NiceMagnumPickup'.default.VariantClasses.length] = class'NicePack.SkinCowboyMagnumPickup';
@@ -183,7 +183,7 @@ simulated function PostBeginPlay(){
     class'NicePack.NiceWinchesterPickup'.default.VariantClasses[class'NicePack.NiceWinchesterPickup'.default.VariantClasses.length] = class'NicePack.SkinRetroLARPickup';
     class'NicePack.NiceM14EBRPickup'.default.VariantClasses[class'NicePack.NiceM14EBRPickup'.default.VariantClasses.length] = class'NicePack.SkinM14EBR2ProPickup';
     class'ScrnBalanceSrv.ScrnKrissMPickup'.default.VariantClasses[class'ScrnBalanceSrv.ScrnKrissMPickup'.default.VariantClasses.length] = class'NicePack.SkinGoldenKrissPickup';
-    class'NicePack.NiceSCARMK17Pickup'.default.VariantClasses[class'NicePack.NiceSCARMK17Pickup'.default.VariantClasses.length] = class'NicePack.SkinCamoSCARMK17Pickup';*/
+    class'NicePack.NiceSCARMK17Pickup'.default.VariantClasses[class'NicePack.NiceSCARMK17Pickup'.default.VariantClasses.length] = class'NicePack.SkinCamoSCARMK17Pickup';
     // Abilities
     class'NiceAbilityManager'.default.events.static.AddAdapter(class'NiceSharpshooterAbilitiesAdapter', level);
     SetTimer(0.25, true);
