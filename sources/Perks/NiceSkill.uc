@@ -6,18 +6,26 @@ var string  SkillName, SkillEffects;
 function static SkillSelected(NicePlayerController nicePlayer){
     local NiceHumanPawn nicePawn;
     nicePawn = NiceHumanPawn(nicePlayer.Pawn);
-    if(nicePawn != none){       nicePawn.RecalcAmmo();       if(nicePawn.Role < Role_AUTHORITY)           nicePawn.ApplyWeaponStats(nicePawn.weapon);
+    if(nicePawn != none){
+       nicePawn.RecalcAmmo();
+       if(nicePawn.Role < Role_AUTHORITY)
+           nicePawn.ApplyWeaponStats(nicePawn.weapon);
     }
 }
 function static SkillDeSelected(NicePlayerController nicePlayer){
     local NiceHumanPawn nicePawn;
     nicePawn = NiceHumanPawn(nicePlayer.Pawn);
-    if(nicePawn != none){       nicePawn.RecalcAmmo();       if(nicePawn.Role < Role_AUTHORITY)           nicePawn.ApplyWeaponStats(nicePawn.weapon);
+    if(nicePawn != none){
+       nicePawn.RecalcAmmo();
+       if(nicePawn.Role < Role_AUTHORITY)
+           nicePawn.ApplyWeaponStats(nicePawn.weapon);
     }
 }
 function static int UpdateCounterValue(string counterName, NicePlayerController nicePlayer){
     return 0;
 }
 defaultproperties
-{    SkillName="All Fiction"    SkillEffects="Does nothing!"
+{
+    SkillName="All Fiction"
+    SkillEffects="Does nothing!"
 }

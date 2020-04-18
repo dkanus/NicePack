@@ -1,4 +1,22 @@
 class NiceGlockFire extends NiceSingleFire;
 defaultproperties
-{    ProjectileSpeed=18750.000000    RecoilRate=0.030000    maxVerticalRecoilAngle=200    maxHorizontalRecoilAngle=100    FireSoundRef="NicePackSnd.Glock17.glock17_Fire"    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"    DamageType=Class'NicePack.NiceDamTypeGlock'    DamageMax=35    Momentum=18000.000000    FireRate=0.17500000    AmmoClass=Class'NicePack.NiceGlockAmmo'    ShakeRotMag=(Z=290.000000)    ShakeRotRate=(X=10080.000000,Y=10080.000000)    ShakeRotTime=3.500000    ShakeOffsetMag=(Y=1.000000,Z=8.000000)    ShakeOffsetTime=2.500000    BotRefireRate=0.650000    FlashEmitterClass=Class'KFMod.MuzzleFlashMK'
+{
+    ProjectileSpeed=18750.000000
+    RecoilRate=0.030000
+    maxVerticalRecoilAngle=200
+    maxHorizontalRecoilAngle=100
+    FireSoundRef="NicePackSnd.Glock17.glock17_Fire"
+    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeGlock'
+    DamageMax=35
+    Momentum=18000.000000
+    FireRate=0.17500000
+    AmmoClass=Class'NicePack.NiceGlockAmmo'
+    ShakeRotMag=(Z=290.000000)
+    ShakeRotRate=(X=10080.000000,Y=10080.000000)
+    ShakeRotTime=3.500000
+    ShakeOffsetMag=(Y=1.000000,Z=8.000000)
+    ShakeOffsetTime=2.500000
+    BotRefireRate=0.650000
+    FlashEmitterClass=Class'KFMod.MuzzleFlashMK'
 }

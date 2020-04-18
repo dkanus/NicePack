@@ -1,4 +1,54 @@
 class NiceVALDTAssaultRifle extends NiceAssaultRifle;
 defaultproperties
-{    reloadPreEndFrame=0.121000    reloadEndFrame=0.477000    reloadChargeEndFrame=0.748000    reloadMagStartFrame=0.299000    reloadChargeStartFrame=0.598000    MagazineBone="clip"    MagCapacity=20    ReloadRate=3.500000    ReloadAnim="Reload"    ReloadAnimRate=1.100000    WeaponReloadAnim="Reload_AK47"    Weight=5.000000    bHasAimingMode=True    IdleAimAnim="Iron_Idle"    StandardDisplayFOV=65.000000    SleeveNum=3    TraderInfoTexture=Texture'ScrnWeaponPack_T.Val.ValDT_Trader'    bIsTier2Weapon=True    MeshRef="ScrnWeaponPack_A.ValDTmesh"    SkinRefs(0)="ScrnWeaponPack_T.VAL.wpn_vss"    SkinRefs(1)="ScrnWeaponPack_T.VAL.newvss"    SkinRefs(2)="ScrnWeaponPack_T.VAL.wpn_bullet1_545"    SkinRefs(3)="KF_Weapons2_Trip_T.hands.BritishPara_Hands_1st_P"    SelectSoundRef="KF_PumpSGSnd.SG_Select"    HudImageRef="ScrnWeaponPack_T.VAL.ValDT_unselected"    SelectedHudImageRef="ScrnWeaponPack_T.VAL.ValDT_selected"    PlayerIronSightFOV=65.000000    ZoomedDisplayFOV=32.000000    FireModeClass(0)=Class'NicePack.NiceVALDTFire'    FireModeClass(1)=Class'NicePack.NiceVALDTFire'    PutDownAnim="PutDown"    SelectForce="SwitchToAssaultRifle"    AIRating=0.550000    CurrentRating=0.550000    bShowChargingBar=True    Description="The AS VAL (Avtomat Specialnyj Val or Special Automatic Rifle, code name: 'Shaft') is a Soviet designed assault rifle featuring an integrated suppressor. It was developed during the late 1980s by TsNIITochMash (Central Institute for Precision Machine Building) and is used by Russian Spetsnaz special forces and the MVD, FSB and select units of the Russian Army."    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)    DisplayFOV=65.000000    Priority=135    CustomCrosshair=11    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"    InventoryGroup=3    GroupOffset=7    PickupClass=Class'NicePack.NiceVALDTPickup'    PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-5.000000)    BobDamping=5.000000    AttachmentClass=Class'ScrnWeaponPack.VALDTAttachment'    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)    ItemName="AS 'VAL'"    TransientSoundVolume=1.250000
+{
+    reloadPreEndFrame=0.121000
+    reloadEndFrame=0.477000
+    reloadChargeEndFrame=0.748000
+    reloadMagStartFrame=0.299000
+    reloadChargeStartFrame=0.598000
+    MagazineBone="clip"
+    MagCapacity=20
+    ReloadRate=3.500000
+    ReloadAnim="Reload"
+    ReloadAnimRate=1.100000
+    WeaponReloadAnim="Reload_AK47"
+    Weight=5.000000
+    bHasAimingMode=True
+    IdleAimAnim="Iron_Idle"
+    StandardDisplayFOV=65.000000
+    SleeveNum=3
+    TraderInfoTexture=Texture'ScrnWeaponPack_T.Val.ValDT_Trader'
+    bIsTier2Weapon=True
+    MeshRef="ScrnWeaponPack_A.ValDTmesh"
+    SkinRefs(0)="ScrnWeaponPack_T.VAL.wpn_vss"
+    SkinRefs(1)="ScrnWeaponPack_T.VAL.newvss"
+    SkinRefs(2)="ScrnWeaponPack_T.VAL.wpn_bullet1_545"
+    SkinRefs(3)="KF_Weapons2_Trip_T.hands.BritishPara_Hands_1st_P"
+    SelectSoundRef="KF_PumpSGSnd.SG_Select"
+    HudImageRef="ScrnWeaponPack_T.VAL.ValDT_unselected"
+    SelectedHudImageRef="ScrnWeaponPack_T.VAL.ValDT_selected"
+    PlayerIronSightFOV=65.000000
+    ZoomedDisplayFOV=32.000000
+    FireModeClass(0)=Class'NicePack.NiceVALDTFire'
+    FireModeClass(1)=Class'NicePack.NiceVALDTFire'
+    PutDownAnim="PutDown"
+    SelectForce="SwitchToAssaultRifle"
+    AIRating=0.550000
+    CurrentRating=0.550000
+    bShowChargingBar=True
+    Description="The AS VAL (Avtomat Specialnyj Val or Special Automatic Rifle, code name: 'Shaft') is a Soviet designed assault rifle featuring an integrated suppressor. It was developed during the late 1980s by TsNIITochMash (Central Institute for Precision Machine Building) and is used by Russian Spetsnaz special forces and the MVD, FSB and select units of the Russian Army."
+    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)
+    DisplayFOV=65.000000
+    Priority=135
+    CustomCrosshair=11
+    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"
+    InventoryGroup=3
+    GroupOffset=7
+    PickupClass=Class'NicePack.NiceVALDTPickup'
+    PlayerViewOffset=(X=10.000000,Y=10.000000,Z=-5.000000)
+    BobDamping=5.000000
+    AttachmentClass=Class'ScrnWeaponPack.VALDTAttachment'
+    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)
+    ItemName="AS 'VAL'"
+    TransientSoundVolume=1.250000
 }

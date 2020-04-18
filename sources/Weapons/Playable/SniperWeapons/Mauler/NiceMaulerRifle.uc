@@ -2,5 +2,52 @@ class NiceMaulerRifle extends NiceWeapon
     config(user);
 #exec OBJ LOAD FILE=NicePackSM.usx
 defaultproperties
-{    reloadPreEndFrame=0.200000    reloadEndFrame=0.550000    reloadChargeEndFrame=0.894000    reloadMagStartFrame=0.280000    reloadChargeStartFrame=0.647000    MagCapacity=10    ReloadRate=2.866000    ReloadAnim="Reload"    ReloadAnimRate=1.000000    WeaponReloadAnim="Reload_spSinper"    Weight=6.000000    bHasAimingMode=True    IdleAimAnim="Idle_Iron"    StandardDisplayFOV=55.000000    SleeveNum=0    TraderInfoTexture=Texture'NicePackT.Silver.Trader_Sniper'    bIsTier2Weapon=True    MeshRef="NicePackA.SniperRifle"    SkinRefs(1)="NicePackT.Silver.Sniper_cmb"    SkinRefs(2)="NicePackT.Silver.sniperrifle_scope_shader"    SelectSoundRef="NicePackSnd.Silver.KFO_Sniper_Select"    HudImageRef="KF_IJC_HUD.WeaponSelect.Sniper_unselected"    SelectedHudImageRef="KF_IJC_HUD.WeaponSelect.Sniper"    PlayerIronSightFOV=60.000000    ZoomedDisplayFOV=25.000000    FireModeClass(0)=Class'NicePack.NiceMaulerFire'    FireModeClass(1)=Class'KFMod.NoFire'    PutDownAnim="PutDown"    SelectForce="SwitchToAssaultRifle"    AIRating=0.550000    CurrentRating=0.550000    bShowChargingBar=True    Description="A finely crafted rifle with relatively low impact damage, but able to deal devastating blows with precise aiming."    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)    DisplayFOV=55.000000    Priority=155    CustomCrosshair=11    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"    InventoryGroup=3    GroupOffset=18    PickupClass=Class'NicePack.NiceMaulerPickup'    PlayerViewOffset=(X=25.000000,Y=17.000000,Z=-8.000000)    BobDamping=6.000000    AttachmentClass=Class'NicePack.NiceMaulerAttachment'    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)    ItemName="S.P. Mauler"    TransientSoundVolume=1.250000
+{
+    reloadPreEndFrame=0.200000
+    reloadEndFrame=0.550000
+    reloadChargeEndFrame=0.894000
+    reloadMagStartFrame=0.280000
+    reloadChargeStartFrame=0.647000
+    MagCapacity=10
+    ReloadRate=2.866000
+    ReloadAnim="Reload"
+    ReloadAnimRate=1.000000
+    WeaponReloadAnim="Reload_spSinper"
+    Weight=6.000000
+    bHasAimingMode=True
+    IdleAimAnim="Idle_Iron"
+    StandardDisplayFOV=55.000000
+    SleeveNum=0
+    TraderInfoTexture=Texture'NicePackT.Silver.Trader_Sniper'
+    bIsTier2Weapon=True
+    MeshRef="NicePackA.SniperRifle"
+    SkinRefs(1)="NicePackT.Silver.Sniper_cmb"
+    SkinRefs(2)="NicePackT.Silver.sniperrifle_scope_shader"
+    SelectSoundRef="NicePackSnd.Silver.KFO_Sniper_Select"
+    HudImageRef="KF_IJC_HUD.WeaponSelect.Sniper_unselected"
+    SelectedHudImageRef="KF_IJC_HUD.WeaponSelect.Sniper"
+    PlayerIronSightFOV=60.000000
+    ZoomedDisplayFOV=25.000000
+    FireModeClass(0)=Class'NicePack.NiceMaulerFire'
+    FireModeClass(1)=Class'KFMod.NoFire'
+    PutDownAnim="PutDown"
+    SelectForce="SwitchToAssaultRifle"
+    AIRating=0.550000
+    CurrentRating=0.550000
+    bShowChargingBar=True
+    Description="A finely crafted rifle with relatively low impact damage, but able to deal devastating blows with precise aiming."
+    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)
+    DisplayFOV=55.000000
+    Priority=155
+    CustomCrosshair=11
+    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"
+    InventoryGroup=3
+    GroupOffset=18
+    PickupClass=Class'NicePack.NiceMaulerPickup'
+    PlayerViewOffset=(X=25.000000,Y=17.000000,Z=-8.000000)
+    BobDamping=6.000000
+    AttachmentClass=Class'NicePack.NiceMaulerAttachment'
+    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)
+    ItemName="S.P. Mauler"
+    TransientSoundVolume=1.250000
 }

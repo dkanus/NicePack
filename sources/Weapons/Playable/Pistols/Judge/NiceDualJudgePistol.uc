@@ -1,4 +1,43 @@
 class NiceDualJudgePistol extends NiceDualies;
 defaultproperties
-{    SingleClass=Class'NicePack.NiceJudgePistol'    leftEject=0.192000    rightEject=0.626000    leftInsert=0.396000    rightInsert=0.747000    MagCapacity=10    ReloadRate=5.933333    ReloadAnimRate=1.200000    WeaponReloadAnim="Reload_DualRevolver"    Weight=8.000000    StandardDisplayFOV=60.000000    SleeveNum=6    TraderInfoTexture=Texture'NicePackT.judge.dualjuj_p_trader'    bIsTier2Weapon=True    MeshRef="NicePackA.Judge.dual_judges"    SkinRefs(0)="NicePackT.Judge.kfjudge_cmb"    SkinRefs(1)="NicePackT.Judge.trit_grn_shdr"    SkinRefs(2)="KF_Weapons4_Trip_T.Weapons.Revolver_cmb"    SkinRefs(3)="NicePackT.Judge.jujload"    SkinRefs(4)="NicePackT.Judge.trit_red_shdr"    SkinRefs(5)="NicePackT.Judge.juj_shell_cmb"    SelectSoundRef="NicePackSnd.Judge.judge_draw"    HudImageRef="NicePackT.Judge.dualjuj_p_unsel"    SelectedHudImageRef="NicePackT.Judge.dualjuj_p_sel"    ZoomedDisplayFOV=50.000000    FireModeClass(0)=Class'NicePack.NiceDualJudgePistolFire'    AIRating=0.450000    CurrentRating=0.450000    Description="Dual .50 calibre action express handgun. Dual 50's is double the fun."    DisplayFOV=60.000000    Priority=125    GroupOffset=14    PickupClass=Class'NicePack.NiceDualJudgePistolPickup'    PlayerViewOffset=(X=25.000000)    BobDamping=6.000000    AttachmentClass=Class'NicePack.NiceDualJudgePistolAttachment'    IconCoords=(X1=250,Y1=110,X2=330,Y2=145)    ItemName="Dual Raging Judges"    DrawScale=1.000000
+{
+    SingleClass=Class'NicePack.NiceJudgePistol'
+    leftEject=0.192000
+    rightEject=0.626000
+    leftInsert=0.396000
+    rightInsert=0.747000
+    MagCapacity=10
+    ReloadRate=5.933333
+    ReloadAnimRate=1.200000
+    WeaponReloadAnim="Reload_DualRevolver"
+    Weight=8.000000
+    StandardDisplayFOV=60.000000
+    SleeveNum=6
+    TraderInfoTexture=Texture'NicePackT.judge.dualjuj_p_trader'
+    bIsTier2Weapon=True
+    MeshRef="NicePackA.Judge.dual_judges"
+    SkinRefs(0)="NicePackT.Judge.kfjudge_cmb"
+    SkinRefs(1)="NicePackT.Judge.trit_grn_shdr"
+    SkinRefs(2)="KF_Weapons4_Trip_T.Weapons.Revolver_cmb"
+    SkinRefs(3)="NicePackT.Judge.jujload"
+    SkinRefs(4)="NicePackT.Judge.trit_red_shdr"
+    SkinRefs(5)="NicePackT.Judge.juj_shell_cmb"
+    SelectSoundRef="NicePackSnd.Judge.judge_draw"
+    HudImageRef="NicePackT.Judge.dualjuj_p_unsel"
+    SelectedHudImageRef="NicePackT.Judge.dualjuj_p_sel"
+    ZoomedDisplayFOV=50.000000
+    FireModeClass(0)=Class'NicePack.NiceDualJudgePistolFire'
+    AIRating=0.450000
+    CurrentRating=0.450000
+    Description="Dual .50 calibre action express handgun. Dual 50's is double the fun."
+    DisplayFOV=60.000000
+    Priority=125
+    GroupOffset=14
+    PickupClass=Class'NicePack.NiceDualJudgePistolPickup'
+    PlayerViewOffset=(X=25.000000)
+    BobDamping=6.000000
+    AttachmentClass=Class'NicePack.NiceDualJudgePistolAttachment'
+    IconCoords=(X1=250,Y1=110,X2=330,Y2=145)
+    ItemName="Dual Raging Judges"
+    DrawScale=1.000000
 }

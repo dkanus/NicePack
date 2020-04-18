@@ -18,13 +18,17 @@ simulated event StopFire(int Mode)
 }
 simulated function bool PutDown()
 {
-    if ( bFiring && Instigator != none && Instigator.PendingWeapon != none && AmmoAmount(0) > 0 ) {       Instigator.PendingWeapon = none;       return false;
+    if ( bFiring && Instigator != none && Instigator.PendingWeapon != none && AmmoAmount(0) > 0 ) {
+       Instigator.PendingWeapon = none;
+       return false;
     }
     return Super.PutDown();
 }
 function bool AllowReload()
 {
-    if ( bFiring )       return false;       return Super.AllowReload();
+    if ( bFiring )
+       return false;
+       return Super.AllowReload();
 }
 simulated function WeaponTick(float dt)
 {
@@ -37,5 +41,11 @@ simulated function WeaponTick(float dt)
 //    Skins[4] = default.Skins[4];
 }
 defaultproperties
-{    MagCapacity=30    Weight=8.000000    bModeZeroCanDryFire=False    FireModeClass(0)=Class'NicePack.NiceFlameBurstFire'    PickupClass=Class'NicePack.NiceFlameThrowerPickup'    ItemName="FlameThrower NW"
+{
+    MagCapacity=30
+    Weight=8.000000
+    bModeZeroCanDryFire=False
+    FireModeClass(0)=Class'NicePack.NiceFlameBurstFire'
+    PickupClass=Class'NicePack.NiceFlameThrowerPickup'
+    ItemName="FlameThrower NW"
 }

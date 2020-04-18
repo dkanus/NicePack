@@ -20,10 +20,14 @@ simulated function bool AllowFire()
 }
 function ModeDoFire()
 {
-    if (!AllowFire())       return;       Weapon.ConsumeAmmo(ThisModeNum, MaxChargeAmmo-1); // +1 will be consumed in parent function
+    if (!AllowFire())
+       return;
+       Weapon.ConsumeAmmo(ThisModeNum, MaxChargeAmmo-1); // +1 will be consumed in parent function
     super(KFShotgunFire).ModeDoFire();
 }
 */
 defaultproperties
-{    MaxChargeAmmo=30    ProjectileClass=Class'NicePack.NiceHuskGunProjectile_Alt'
+{
+    MaxChargeAmmo=30
+    ProjectileClass=Class'NicePack.NiceHuskGunProjectile_Alt'
 }

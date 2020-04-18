@@ -1,4 +1,38 @@
 class NiceL85A2Fire extends NiceFire;
 defaultproperties
-{    zedTimeFireSpeedUp=2.500000    ProjectileSpeed=46500.000000    bBetterBurst=True    FireAimedAnim="Fire_Iron"    RecoilRate=0.050000    maxVerticalRecoilAngle=75    maxHorizontalRecoilAngle=37    ShellEjectClass=Class'ROEffects.KFShellEjectSCAR'    ShellEjectBoneName="Shell_eject"    bRandomPitchFireSound=False    FireSoundRef="KF_M4RifleSnd.M4Rifle_Fire_Single_M"    StereoFireSoundRef="KF_M4RifleSnd.M4Rifle_Fire_Single_S"    NoAmmoSoundRef="KF_AK47Snd.AK47_DryFire"    DamageType=Class'NicePack.NiceDamTypeL85A2Z'    DamageMin=81    DamageMax=81    Momentum=10000.000000    bPawnRapidFireAnim=True    bWaitForRelease=True    bAttachSmokeEmitter=True    TransientSoundVolume=1.800000    TweenTime=0.025000    FireForce="AssaultRifleFire"    FireRate=0.250000    AmmoClass=Class'NicePack.NiceL85A2Ammo'    ShakeRotMag=(X=75.000000,Y=75.000000,Z=250.000000)    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)    ShakeRotTime=3.000000    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=10.000000)    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)    ShakeOffsetTime=2.000000    BotRefireRate=0.350000    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'    aimerror=30.000000
+{
+    zedTimeFireSpeedUp=2.500000
+    ProjectileSpeed=46500.000000
+    bBetterBurst=True
+    FireAimedAnim="Fire_Iron"
+    RecoilRate=0.050000
+    maxVerticalRecoilAngle=75
+    maxHorizontalRecoilAngle=37
+    ShellEjectClass=Class'ROEffects.KFShellEjectSCAR'
+    ShellEjectBoneName="Shell_eject"
+    bRandomPitchFireSound=False
+    FireSoundRef="KF_M4RifleSnd.M4Rifle_Fire_Single_M"
+    StereoFireSoundRef="KF_M4RifleSnd.M4Rifle_Fire_Single_S"
+    NoAmmoSoundRef="KF_AK47Snd.AK47_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeL85A2Z'
+    DamageMin=81
+    DamageMax=81
+    Momentum=10000.000000
+    bPawnRapidFireAnim=True
+    bWaitForRelease=True
+    bAttachSmokeEmitter=True
+    TransientSoundVolume=1.800000
+    TweenTime=0.025000
+    FireForce="AssaultRifleFire"
+    FireRate=0.250000
+    AmmoClass=Class'NicePack.NiceL85A2Ammo'
+    ShakeRotMag=(X=75.000000,Y=75.000000,Z=250.000000)
+    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+    ShakeRotTime=3.000000
+    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=10.000000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=2.000000
+    BotRefireRate=0.350000
+    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'
+    aimerror=30.000000
 }

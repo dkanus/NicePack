@@ -1,4 +1,47 @@
 class NiceJudgePistol extends NiceSingle;
 defaultproperties
-{    DualClass=Class'NicePack.NiceDualJudgePistol'    reloadPreEndFrame=0.272000    reloadEndFrame=0.790000    reloadChargeEndFrame=-1.000000    reloadMagStartFrame=0.400000    reloadChargeStartFrame=-1.000000    MagCapacity=5    ReloadRate=2.277778    ReloadAnimRate=1.200000    WeaponReloadAnim="Reload_Revolver"    Weight=4.000000    StandardDisplayFOV=60.000000    SleeveNum=6    TraderInfoTexture=Texture'NicePackT.judge.juj_p_trader'    bIsTier2Weapon=True    MeshRef="NicePackA.Judge.judge"    SkinRefs(0)="NicePackT.Judge.kfjudge_cmb"    SkinRefs(1)="NicePackT.Judge.trit_grn_shdr"    SkinRefs(2)="KF_Weapons4_Trip_T.Weapons.Revolver_cmb"    SkinRefs(3)="NicePackT.Judge.jujload"    SkinRefs(4)="NicePackT.Judge.trit_red_shdr"    SkinRefs(5)="NicePackT.Judge.juj_shell_cmb"    SelectSoundRef="NicePackSnd.Judge.judge_draw"    HudImageRef="NicePackT.Judge.juj_p_unsel"    SelectedHudImageRef="NicePackT.Judge.juj_p_sel"    ZoomedDisplayFOV=50.000000    FireModeClass(0)=Class'NicePack.NiceJudgePistolFire'    SelectAnimRate=1.000000    BringUpTime=0.533333    AIRating=0.450000    CurrentRating=0.450000    Description=".50 calibre action express handgun. This is about as big and nasty as personal weapons are going to get. But with a 5 round magazine, it should be used conservatively."    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)    DisplayFOV=60.000000    Priority=100    GroupOffset=13    PickupClass=Class'NicePack.NiceJudgePistolPickup'    PlayerViewOffset=(X=30.000000,Y=20.000000)    AttachmentClass=Class'NicePack.NiceJudgePistolAttachment'    IconCoords=(X1=250,Y1=110,X2=330,Y2=145)    ItemName="Taurus Raging Judge"    bUseDynamicLights=True    TransientSoundVolume=1.000000
+{
+    DualClass=Class'NicePack.NiceDualJudgePistol'
+    reloadPreEndFrame=0.272000
+    reloadEndFrame=0.790000
+    reloadChargeEndFrame=-1.000000
+    reloadMagStartFrame=0.400000
+    reloadChargeStartFrame=-1.000000
+    MagCapacity=5
+    ReloadRate=2.277778
+    ReloadAnimRate=1.200000
+    WeaponReloadAnim="Reload_Revolver"
+    Weight=4.000000
+    StandardDisplayFOV=60.000000
+    SleeveNum=6
+    TraderInfoTexture=Texture'NicePackT.judge.juj_p_trader'
+    bIsTier2Weapon=True
+    MeshRef="NicePackA.Judge.judge"
+    SkinRefs(0)="NicePackT.Judge.kfjudge_cmb"
+    SkinRefs(1)="NicePackT.Judge.trit_grn_shdr"
+    SkinRefs(2)="KF_Weapons4_Trip_T.Weapons.Revolver_cmb"
+    SkinRefs(3)="NicePackT.Judge.jujload"
+    SkinRefs(4)="NicePackT.Judge.trit_red_shdr"
+    SkinRefs(5)="NicePackT.Judge.juj_shell_cmb"
+    SelectSoundRef="NicePackSnd.Judge.judge_draw"
+    HudImageRef="NicePackT.Judge.juj_p_unsel"
+    SelectedHudImageRef="NicePackT.Judge.juj_p_sel"
+    ZoomedDisplayFOV=50.000000
+    FireModeClass(0)=Class'NicePack.NiceJudgePistolFire'
+    SelectAnimRate=1.000000
+    BringUpTime=0.533333
+    AIRating=0.450000
+    CurrentRating=0.450000
+    Description=".50 calibre action express handgun. This is about as big and nasty as personal weapons are going to get. But with a 5 round magazine, it should be used conservatively."
+    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)
+    DisplayFOV=60.000000
+    Priority=100
+    GroupOffset=13
+    PickupClass=Class'NicePack.NiceJudgePistolPickup'
+    PlayerViewOffset=(X=30.000000,Y=20.000000)
+    AttachmentClass=Class'NicePack.NiceJudgePistolAttachment'
+    IconCoords=(X1=250,Y1=110,X2=330,Y2=145)
+    ItemName="Taurus Raging Judge"
+    bUseDynamicLights=True
+    TransientSoundVolume=1.000000
 }

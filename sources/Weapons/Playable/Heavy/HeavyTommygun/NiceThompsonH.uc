@@ -1,4 +1,52 @@
 class NiceThompsonH extends NiceHeavyGun;
 defaultproperties
-{    reloadPreEndFrame=0.196000    reloadEndFrame=0.587000    reloadChargeEndFrame=0.783000    reloadMagStartFrame=0.380000    reloadChargeStartFrame=0.641000    MagazineBone="mag"    MagCapacity=40    ReloadRate=3.000000    ReloadAnim="Reload"    ReloadAnimRate=1.000000    WeaponReloadAnim="Reload_AK47"    Weight=6.000000    bHasAimingMode=True    IdleAimAnim="Iron_Idle"    StandardDisplayFOV=65.000000    SleeveNum=0    TraderInfoTexture=Texture'HMG_T.Thompson.Thompson_Trader'    bIsTier2Weapon=True    MeshRef="HMG_A.thompson_mesh"    SkinRefs(0)="KF_Weapons_Trip_T.hands.hands_1stP_military_cmb"    SkinRefs(1)="HMG_T.Thompson.Main"    SkinRefs(2)="HMG_T.Thompson.stuff"    SelectSoundRef="KF_IJC_HalloweenSnd.Thompson_Handling_Bolt_Back"    HudImageRef="HMG_T.Thompson.Thompson_unselected"    SelectedHudImageRef="HMG_T.Thompson.Thompson_selected"    PlayerIronSightFOV=65.000000    ZoomedDisplayFOV=32.000000    FireModeClass(0)=Class'NicePack.NiceThompsonHFire'    FireModeClass(1)=Class'KFMod.NoFire'    PutDownAnim="PutDown"    SelectForce="SwitchToAssaultRifle"    AIRating=0.550000    CurrentRating=0.550000    Description="Alternative, heavier version of the Thompson gun. Uses different type of ammunition, the one more suited for straight-up destroying zed, rather than quickly dispatching them."    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)    DisplayFOV=65.000000    Priority=95    CustomCrosshair=11    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"    InventoryGroup=3    GroupOffset=7    PickupClass=Class'NicePack.NiceThompsonHPickup'    PlayerViewOffset=(X=4.000000,Y=5.000000,Z=-3.000000)    BobDamping=4.000000    AttachmentClass=Class'NicePack.NiceThompsonHAttachment'    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)    ItemName="Heavy Tommy Gun"    TransientSoundVolume=1.250000
+{
+    reloadPreEndFrame=0.196000
+    reloadEndFrame=0.587000
+    reloadChargeEndFrame=0.783000
+    reloadMagStartFrame=0.380000
+    reloadChargeStartFrame=0.641000
+    MagazineBone="mag"
+    MagCapacity=40
+    ReloadRate=3.000000
+    ReloadAnim="Reload"
+    ReloadAnimRate=1.000000
+    WeaponReloadAnim="Reload_AK47"
+    Weight=6.000000
+    bHasAimingMode=True
+    IdleAimAnim="Iron_Idle"
+    StandardDisplayFOV=65.000000
+    SleeveNum=0
+    TraderInfoTexture=Texture'HMG_T.Thompson.Thompson_Trader'
+    bIsTier2Weapon=True
+    MeshRef="HMG_A.thompson_mesh"
+    SkinRefs(0)="KF_Weapons_Trip_T.hands.hands_1stP_military_cmb"
+    SkinRefs(1)="HMG_T.Thompson.Main"
+    SkinRefs(2)="HMG_T.Thompson.stuff"
+    SelectSoundRef="KF_IJC_HalloweenSnd.Thompson_Handling_Bolt_Back"
+    HudImageRef="HMG_T.Thompson.Thompson_unselected"
+    SelectedHudImageRef="HMG_T.Thompson.Thompson_selected"
+    PlayerIronSightFOV=65.000000
+    ZoomedDisplayFOV=32.000000
+    FireModeClass(0)=Class'NicePack.NiceThompsonHFire'
+    FireModeClass(1)=Class'KFMod.NoFire'
+    PutDownAnim="PutDown"
+    SelectForce="SwitchToAssaultRifle"
+    AIRating=0.550000
+    CurrentRating=0.550000
+    Description="Alternative, heavier version of the Thompson gun. Uses different type of ammunition, the one more suited for straight-up destroying zed, rather than quickly dispatching them."
+    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)
+    DisplayFOV=65.000000
+    Priority=95
+    CustomCrosshair=11
+    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"
+    InventoryGroup=3
+    GroupOffset=7
+    PickupClass=Class'NicePack.NiceThompsonHPickup'
+    PlayerViewOffset=(X=4.000000,Y=5.000000,Z=-3.000000)
+    BobDamping=4.000000
+    AttachmentClass=Class'NicePack.NiceThompsonHAttachment'
+    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)
+    ItemName="Heavy Tommy Gun"
+    TransientSoundVolume=1.250000
 }

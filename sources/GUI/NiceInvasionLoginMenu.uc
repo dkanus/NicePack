@@ -31,19 +31,37 @@ function InitComponent(GUIController MyController, GUIComponent MyOwner){
     Panels[4].ClassName = "ScrnBalanceSrv.ScrnTab_Achievements";
     Panels[4].Caption = "Achievements";
     Panels[4].Hint = "ScrN server-side achievements";
-    if(default.bShowScrnMenu){       Panels[5].ClassName = "ScrnBalanceSrv.ScrnTab_UserSettings";       Panels[5].Caption = "ScrN Features";       Panels[5].Hint = "ScrN Balance features, settings and info";       indexAfterScrn = 6;
+    if(default.bShowScrnMenu){
+       Panels[5].ClassName = "ScrnBalanceSrv.ScrnTab_UserSettings";
+       Panels[5].Caption = "ScrN Features";
+       Panels[5].Hint = "ScrN Balance features, settings and info";
+       indexAfterScrn = 6;
     }
-    else       indexAfterScrn = 5;
+    else
+       indexAfterScrn = 5;
     Panels[indexAfterScrn].ClassName = "NicePack.NiceGUISettings";
     Panels[indexAfterScrn].Caption = "Nice settings";
     Panels[indexAfterScrn].Hint = "Settings specific to NicePack mutator";
     Panels.Length = indexAfterScrn + 1;
     Super(UT2K4PlayerLoginMenu).InitComponent(MyController, MyOwner);
     // Mod menus
-    foreach MyController.ViewportOwner.Actor.DynamicActors(class'SRMenuAddition',M)       if( M.bHasInit )       {           AddOnList[AddOnList.Length] = M;           M.NotifyMenuOpen(Self,MyController);       }
-      s = GetSizingCaption();
+    foreach MyController.ViewportOwner.Actor.DynamicActors(class'SRMenuAddition',M)
+       if( M.bHasInit )
+       {
+           AddOnList[AddOnList.Length] = M;
+           M.NotifyMenuOpen(Self,MyController);
+       }
+
+      s = GetSizingCaption();
     for ( i = 0; i < Controls.Length; i++ )
-    {       if (GUIButton(Controls[i]) != none)       {           GUIButton(Controls[i]).bAutoSize = true;           GUIButton(Controls[i]).SizingCaption = s;           GUIButton(Controls[i]).AutoSizePadding.HorzPerc = 0.04;           GUIButton(Controls[i]).AutoSizePadding.VertPerc = 0.5;       }
+    {
+       if (GUIButton(Controls[i]) != none)
+       {
+           GUIButton(Controls[i]).bAutoSize = true;
+           GUIButton(Controls[i]).SizingCaption = s;
+           GUIButton(Controls[i]).AutoSizePadding.HorzPerc = 0.04;
+           GUIButton(Controls[i]).AutoSizePadding.VertPerc = 0.5;
+       }
     }
     s = class'KFTab_MidGamePerks'.default.PlayerStyleName;
     PlayerStyle = MyController.GetStyle(s, fs);

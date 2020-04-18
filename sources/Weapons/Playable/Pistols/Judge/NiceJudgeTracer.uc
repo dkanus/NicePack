@@ -1,4 +1,23 @@
 class NiceJudgeTracer extends pclSmoke;
 defaultproperties
-{    mParticleType=PT_Stream    mStartParticles=0    mMaxParticles=40    mLifeRange(0)=0.050000    mLifeRange(1)=0.050000    mRegenRange(0)=60.000000    mRegenRange(1)=60.000000    mSpawnVecB=(X=20.000000,Z=0.000000)    mSizeRange(0)=2.000000    mSizeRange(1)=2.000000    mGrowthRate=-0.500000    mColorRange(0)=(B=82,G=231,R=252,A=60)    mColorRange(1)=(B=82,G=231,R=252,A=60)    mNumTileColumns=1    mNumTileRows=1    Physics=PHYS_Trailer    LifeSpan=1.300000    Skins(0)=Texture'KFX.TransTrailT'    Style=STY_Additive
+{
+    mParticleType=PT_Stream
+    mStartParticles=0
+    mMaxParticles=40
+    mLifeRange(0)=0.050000
+    mLifeRange(1)=0.050000
+    mRegenRange(0)=60.000000
+    mRegenRange(1)=60.000000
+    mSpawnVecB=(X=20.000000,Z=0.000000)
+    mSizeRange(0)=2.000000
+    mSizeRange(1)=2.000000
+    mGrowthRate=-0.500000
+    mColorRange(0)=(B=82,G=231,R=252,A=60)
+    mColorRange(1)=(B=82,G=231,R=252,A=60)
+    mNumTileColumns=1
+    mNumTileRows=1
+    Physics=PHYS_Trailer
+    LifeSpan=1.300000
+    Skins(0)=Texture'KFX.TransTrailT'
+    Style=STY_Additive
 }

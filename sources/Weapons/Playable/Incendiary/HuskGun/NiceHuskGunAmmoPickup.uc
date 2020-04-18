@@ -1,4 +1,5 @@
 class NiceHuskGunAmmoPickup extends ScrnHuskGunAmmoPickup;
 defaultproperties
-{    InventoryType=Class'NicePack.NiceHuskGunAmmo'
+{
+    InventoryType=Class'NicePack.NiceHuskGunAmmo'
 }

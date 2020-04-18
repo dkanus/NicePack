@@ -1,4 +1,26 @@
 class NiceSPShotgunFire extends NiceShotgunFire;
 defaultproperties
-{    KickMomentum=(X=-35.000000,Z=5.000000)    ProjectileSpeed=3500.000000    maxVerticalRecoilAngle=1000    maxHorizontalRecoilAngle=500    ShellEjectClass=Class'ROEffects.KFShellEjectShotty'    ShellEjectBoneName="Shell_eject"    FireSoundRef="KF_SP_ZEDThrowerSnd.KFO_Shotgun_Primary_Fire_M"    StereoFireSoundRef="KF_SP_ZEDThrowerSnd.KFO_Shotgun_Primary_Fire_S"    NoAmmoSoundRef="KF_AA12Snd.AA12_DryFire"    DamageType=Class'NicePack.NiceDamTypeSPShotgun'    DamageMax=30    Momentum=60000.000000    bWaitForRelease=False    FireAnimRate=1.200000    FireRate=0.292000    AmmoClass=Class'NicePack.NiceSPShotgunAmmo'    ShakeRotMag=(Z=250.000000)    ShakeRotTime=3.000000    ShakeOffsetMag=(Z=6.000000)    ShakeOffsetTime=1.250000    BotRefireRate=0.250000    Spread=1500.000000
+{
+    KickMomentum=(X=-35.000000,Z=5.000000)
+    ProjectileSpeed=3500.000000
+    maxVerticalRecoilAngle=1000
+    maxHorizontalRecoilAngle=500
+    ShellEjectClass=Class'ROEffects.KFShellEjectShotty'
+    ShellEjectBoneName="Shell_eject"
+    FireSoundRef="KF_SP_ZEDThrowerSnd.KFO_Shotgun_Primary_Fire_M"
+    StereoFireSoundRef="KF_SP_ZEDThrowerSnd.KFO_Shotgun_Primary_Fire_S"
+    NoAmmoSoundRef="KF_AA12Snd.AA12_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeSPShotgun'
+    DamageMax=30
+    Momentum=60000.000000
+    bWaitForRelease=False
+    FireAnimRate=1.200000
+    FireRate=0.292000
+    AmmoClass=Class'NicePack.NiceSPShotgunAmmo'
+    ShakeRotMag=(Z=250.000000)
+    ShakeRotTime=3.000000
+    ShakeOffsetMag=(Z=6.000000)
+    ShakeOffsetTime=1.250000
+    BotRefireRate=0.250000
+    Spread=1500.000000
 }

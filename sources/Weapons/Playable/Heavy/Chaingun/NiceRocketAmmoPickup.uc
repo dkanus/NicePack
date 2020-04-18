@@ -1,4 +1,5 @@
 class NiceRocketAmmoPickup extends RocketAmmoPickup;
 defaultproperties
-{    InventoryType=Class'NicePack.NiceRocketAmmo'
+{
+    InventoryType=Class'NicePack.NiceRocketAmmo'
 }

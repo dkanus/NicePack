@@ -5,25 +5,35 @@ var     float       RageFrustrationTimer;       // Tracks how long we have been 
 var     float       RageFrustrationThreshhold;  // Base value for how long the FP should walk torward an enemy without reaching them before getting frustrated and raging
 function TimedFireWeaponAtEnemy()
 {
-    if ( (Enemy == none) || FireWeaponAt(Enemy) )       SetCombatTimer();
-    else       SetTimer(0.01, True);
+    if ( (Enemy == none) || FireWeaponAt(Enemy) )
+       SetCombatTimer();
+    else
+       SetTimer(0.01, True);
 }
 state ZombieCharge
 {
     function bool StrafeFromDamage(float Damage, class<DamageType> DamageType, bool bFindDest)
-    {       return false;
+    {
+       return false;
     }
     function bool TryStrafe(vector sideDir)
-    {       return false;
+    {
+       return false;
     }
     function Timer()
-    {       Disable('NotifyBump');       Target = Enemy;       TimedFireWeaponAtEnemy();
+    {
+       Disable('NotifyBump');
+       Target = Enemy;
+       TimedFireWeaponAtEnemy();
     }
     function BeginState()
-    {       super.BeginState();
-       RageFrustrationThreshhold = default.RageFrustrationThreshhold + (Frand() * 5);
+    {
+       super.BeginState();
+
+       RageFrustrationThreshhold = default.RageFrustrationThreshhold + (Frand() * 5);
     }
 }
 defaultproperties
-{    RageFrustrationThreshhold=10.000000
+{
+    RageFrustrationThreshhold=10.000000
 }

@@ -3,7 +3,8 @@ class NiceProtecta extends Protecta;
 simulated function AltFire(float F)
 {
     if(ReadyToFire(0))
-    {       DoToggle();
+    {
+       DoToggle();
     }
 }
 exec function SwitchModes()
@@ -11,5 +12,8 @@ exec function SwitchModes()
     DoToggle();
 }
 defaultproperties
-{    FireModeClass(0)=Class'NicePack.NiceProtectaFire'    PickupClass=Class'NicePack.NiceProtectaPickup'    ItemName="Flare Shotgun 'Protecta' NW"
+{
+    FireModeClass(0)=Class'NicePack.NiceProtectaFire'
+    PickupClass=Class'NicePack.NiceProtectaPickup'
+    ItemName="Flare Shotgun 'Protecta' NW"
 }

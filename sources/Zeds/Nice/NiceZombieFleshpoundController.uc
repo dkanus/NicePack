@@ -14,26 +14,55 @@ function Tick(float Delta){
     local NiceZombieFleshPound ZFP;
     super.Tick(Delta);
     bSeesPlayers = false;
-    for(PC = Level.ControllerList;PC != none;PC = PC.NextController){       Human = KFHumanPawn(PC.Pawn);       if(Human != none && Human.Health > 0 && !Human.bPendingDelete && CanSee(Human)){           bSeesPlayers = true;           break;       }
+    for(PC = Level.ControllerList;PC != none;PC = PC.NextController){
+       Human = KFHumanPawn(PC.Pawn);
+       if(Human != none && Human.Health > 0 && !Human.bPendingDelete && CanSee(Human)){
+           bSeesPlayers = true;
+           break;
+       }
     }
-    if(bSeesPlayers){       if(RageFrustrationTimer < RageFrustrationThreshhold){           RageFrustrationTimer += Delta;           if(RageFrustrationTimer >= RageFrustrationThreshhold){               ZFP = NiceZombieFleshPound(Pawn);               if(ZFP != none && !ZFP.bChargingPlayer){                   ZFP.StartChargingFP(Pawn(focus));                   ZFP.bFrustrated = true;               }           }       }
+    if(bSeesPlayers){
+       if(RageFrustrationTimer < RageFrustrationThreshhold){
+           RageFrustrationTimer += Delta;
+           if(RageFrustrationTimer >= RageFrustrationThreshhold){
+               ZFP = NiceZombieFleshPound(Pawn);
+               if(ZFP != none && !ZFP.bChargingPlayer){
+                   ZFP.StartChargingFP(Pawn(focus));
+                   ZFP.bFrustrated = true;
+               }
+           }
+       }
     }
-    else       RageFrustrationTimer = 0;
+    else
+       RageFrustrationTimer = 0;
 }
 // Never do that, you too cool
 function GetOutOfTheWayOfShot(vector ShotDirection, vector ShotOrigin){}
 state ZombieHunt
 {
     event SeePlayer(Pawn SeenPlayer)
-    {       if ( !bDoneSpottedCheck && PlayerController(SeenPlayer.Controller) != none )       {           // 25% chance of first player to see this Fleshpound saying something           if ( !KFGameType(Level.Game).bDidSpottedFleshpoundMessage && FRand() < 0.25 )           {               PlayerController(SeenPlayer.Controller).Speech('AUTO', 12, "");               KFGameType(Level.Game).bDidSpottedFleshpoundMessage = true;           }
-           bDoneSpottedCheck = true;       }
-       super.SeePlayer(SeenPlayer);
+    {
+       if ( !bDoneSpottedCheck && PlayerController(SeenPlayer.Controller) != none )
+       {
+           // 25% chance of first player to see this Fleshpound saying something
+           if ( !KFGameType(Level.Game).bDidSpottedFleshpoundMessage && FRand() < 0.25 )
+           {
+               PlayerController(SeenPlayer.Controller).Speech('AUTO', 12, "");
+               KFGameType(Level.Game).bDidSpottedFleshpoundMessage = true;
+           }
+
+           bDoneSpottedCheck = true;
+       }
+
+       super.SeePlayer(SeenPlayer);
     }
 }
 function TimedFireWeaponAtEnemy()
 {
-    if ( (Enemy == none) || FireWeaponAt(Enemy) )       SetCombatTimer();
-    else       SetTimer(0.01, True);
+    if ( (Enemy == none) || FireWeaponAt(Enemy) )
+       SetCombatTimer();
+    else
+       SetTimer(0.01, True);
 }
 state SpinAttack
 {
@@ -41,38 +70,53 @@ ignores EnemyNotVisible;
     // Don't do this in this state
     function GetOutOfTheWayOfShot(vector ShotDirection, vector ShotOrigin){}
     function DoSpinDamage()
-    {       local Actor A;
-       //log("FLESHPOUND DOSPINDAMAGE!");       foreach CollidingActors(class'actor', A, (NiceZombieFleshpound(pawn).MeleeRange * 1.5)+pawn.CollisionRadius, pawn.Location)           NiceZombieFleshpound(pawn).SpinDamage(A);
+    {
+       local Actor A;
+
+       //log("FLESHPOUND DOSPINDAMAGE!");
+       foreach CollidingActors(class'actor', A, (NiceZombieFleshpound(pawn).MeleeRange * 1.5)+pawn.CollisionRadius, pawn.Location)
+           NiceZombieFleshpound(pawn).SpinDamage(A);
     }
 Begin:
 WaitForAnim:
     While( KFM.bShotAnim )
-    {       Sleep(0.1);       DoSpinDamage();
+    {
+       Sleep(0.1);
+       DoSpinDamage();
     }
     WhatToDoNext(152);
-    if ( bSoaking )       SoakStop("STUCK IN SPINATTACK!!!");
+    if ( bSoaking )
+       SoakStop("STUCK IN SPINATTACK!!!");
 }
 state ZombieCharge
 {
     function bool StrafeFromDamage(float Damage, class<DamageType> DamageType, bool bFindDest)
-    {       return false;
+    {
+       return false;
     }
     // I suspect this function causes bloats to get confused
     function bool TryStrafe(vector sideDir)
-    {       return false;
+    {
+       return false;
     }
     function Timer()
-    {       Disable('NotifyBump');       Target = Enemy;       TimedFireWeaponAtEnemy();
+    {
+       Disable('NotifyBump');
+       Target = Enemy;
+       TimedFireWeaponAtEnemy();
     }
 WaitForAnim:
     if ( Monster(Pawn).bShotAnim )
-    {       Goto('Moving');
+    {
+       Goto('Moving');
     }
-    if ( !FindBestPathToward(Enemy, false,true) )       GotoState('ZombieRestFormation');
+    if ( !FindBestPathToward(Enemy, false,true) )
+       GotoState('ZombieRestFormation');
 Moving:
     MoveToward(Enemy);
     WhatToDoNext(17);
-    if ( bSoaking )       SoakStop("STUCK IN CHARGING!");
+    if ( bSoaking )
+       SoakStop("STUCK IN CHARGING!");
 }
 // Used to set a timeout for the WaitForAnim state. This is a bit of a hack fix
 // for the FleshPound getting stuck in its idle anim on a dedicated server when it
@@ -90,27 +134,64 @@ Ignores SeePlayer,HearNoise,Timer,EnemyNotVisible,NotifyBump;
     // Don't do this in this state
     function GetOutOfTheWayOfShot(vector ShotDirection, vector ShotOrigin){}
     function BeginState()
-    {       bUseFreezeHack = False;
+    {
+       bUseFreezeHack = False;
     }
     // The rage anim has ended, clear the flags and let the AI do its thing
     function RageTimeout()
-    {       if( bUseFreezeHack )       {           if( Pawn!=none )           {               Pawn.AccelRate = Pawn.Default.AccelRate;               Pawn.GroundSpeed = Pawn.Default.GroundSpeed;           }           bUseFreezeHack = False;           AnimEnd(0);       }
+    {
+       if( bUseFreezeHack )
+       {
+           if( Pawn!=none )
+           {
+               Pawn.AccelRate = Pawn.Default.AccelRate;
+               Pawn.GroundSpeed = Pawn.Default.GroundSpeed;
+           }
+           bUseFreezeHack = False;
+           AnimEnd(0);
+       }
     }
     function Tick( float Delta )
-    {       Global.Tick(Delta);
-       if( RageAnimTimeout > 0 )       {           RageAnimTimeout -= Delta;
-           if( RageAnimTimeout <= 0 )           {               RageAnimTimeout = 0;               RageTimeout();           }       }
-       if( bUseFreezeHack )       {           MoveTarget = none;           MoveTimer = -1;           Pawn.Acceleration = vect(0,0,0);           Pawn.GroundSpeed = 1;           Pawn.AccelRate = 0;       }
+    {
+       Global.Tick(Delta);
+
+       if( RageAnimTimeout > 0 )
+       {
+           RageAnimTimeout -= Delta;
+
+           if( RageAnimTimeout <= 0 )
+           {
+               RageAnimTimeout = 0;
+               RageTimeout();
+           }
+       }
+
+       if( bUseFreezeHack )
+       {
+           MoveTarget = none;
+           MoveTimer = -1;
+           Pawn.Acceleration = vect(0,0,0);
+           Pawn.GroundSpeed = 1;
+           Pawn.AccelRate = 0;
+       }
     }
     function EndState()
-    {       if( Pawn!=none )       {           Pawn.AccelRate = Pawn.Default.AccelRate;           Pawn.GroundSpeed = Pawn.Default.GroundSpeed;       }       bUseFreezeHack = False;
+    {
+       if( Pawn!=none )
+       {
+           Pawn.AccelRate = Pawn.Default.AccelRate;
+           Pawn.GroundSpeed = Pawn.Default.GroundSpeed;
+       }
+       bUseFreezeHack = False;
     }
 Begin:
     While( KFM.bShotAnim )
-    {       Sleep(0.15);
+    {
+       Sleep(0.15);
     }
     WhatToDoNext(99);
 }
 defaultproperties
-{    RageFrustrationThreshhold=10.000000
+{
+    RageFrustrationThreshhold=10.000000
 }

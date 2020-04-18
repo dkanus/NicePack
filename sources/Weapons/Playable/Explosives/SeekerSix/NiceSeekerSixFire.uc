@@ -9,5 +9,7 @@
 //=============================================================================
 class NiceSeekerSixFire extends SeekerSixFire;
 defaultproperties
-{    AmmoClass=Class'NicePack.NiceSeekerSixAmmo'    ProjectileClass=Class'NicePack.NiceSeekerSixRocketProjectile'
+{
+    AmmoClass=Class'NicePack.NiceSeekerSixAmmo'
+    ProjectileClass=Class'NicePack.NiceSeekerSixRocketProjectile'
 }

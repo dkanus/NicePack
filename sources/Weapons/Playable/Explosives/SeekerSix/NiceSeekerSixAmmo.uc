@@ -9,5 +9,8 @@
 //=============================================================================
 class NiceSeekerSixAmmo extends SeekerSixAmmo;
 defaultproperties
-{    MaxAmmo=66    InitialAmount=30    PickupClass=Class'NicePack.NiceSeekerSixAmmoPickup'
+{
+    MaxAmmo=66
+    InitialAmount=30
+    PickupClass=Class'NicePack.NiceSeekerSixAmmoPickup'
 }

@@ -11,10 +11,15 @@
 //==============================================================================
 class NiceAbilitiesAdapter extends Object;
 var LevelInfo           level;
-static function AbilityActivated(   string abilityID,                                   NicePlayerController relatedPlayer);
-static function AbilityAdded(   string abilityID,                               NicePlayerController relatedPlayer);
-static function AbilityRemoved( string abilityID,                               NicePlayerController relatedPlayer);
-static function ModAbilityCooldown( string abilityID,                                   NicePlayerController relatedPlayer,                                   out float cooldown);
+static function AbilityActivated(   string abilityID,
+                                   NicePlayerController relatedPlayer);
+static function AbilityAdded(   string abilityID,
+                               NicePlayerController relatedPlayer);
+static function AbilityRemoved( string abilityID,
+                               NicePlayerController relatedPlayer);
+static function ModAbilityCooldown( string abilityID,
+                                   NicePlayerController relatedPlayer,
+                                   out float cooldown);
 defaultproperties
 {
 }

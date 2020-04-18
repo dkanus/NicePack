@@ -1,4 +1,37 @@
 class NiceAK47Fire extends NiceFire;
 defaultproperties
-{    zedTimeFireSpeedUp=2.500000    ProjectileSpeed=35750.000000    FireAimedAnim="Fire_Iron"    RecoilRate=0.070000    maxVerticalRecoilAngle=210    maxHorizontalRecoilAngle=105    ShellEjectClass=Class'ROEffects.KFShellEjectAK'    ShellEjectBoneName="Shell_eject"    bAccuracyBonusForSemiAuto=True    bRandomPitchFireSound=False    FireSoundRef="KF_AK47Snd.AK47_Fire"    StereoFireSoundRef="KF_AK47Snd.AK47_FireST"    NoAmmoSoundRef="KF_AK47Snd.AK47_DryFire"    DamageType=Class'NicePack.NiceDamTypeAK47AssaultRifle'    DamageMin=60    DamageMax=60    Momentum=8500.000000    bPawnRapidFireAnim=True    TransientSoundVolume=1.800000    FireLoopAnim="Fire"    TweenTime=0.025000    FireForce="AssaultRifleFire"    FireRate=0.109000    AmmoClass=Class'NicePack.NiceAK47Ammo'    ShakeRotMag=(X=50.000000,Y=50.000000,Z=350.000000)    ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)    ShakeRotTime=0.750000    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=7.500000)    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)    ShakeOffsetTime=1.250000    BotRefireRate=0.990000    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'    aimerror=42.000000
+{
+    zedTimeFireSpeedUp=2.500000
+    ProjectileSpeed=35750.000000
+    FireAimedAnim="Fire_Iron"
+    RecoilRate=0.070000
+    maxVerticalRecoilAngle=210
+    maxHorizontalRecoilAngle=105
+    ShellEjectClass=Class'ROEffects.KFShellEjectAK'
+    ShellEjectBoneName="Shell_eject"
+    bAccuracyBonusForSemiAuto=True
+    bRandomPitchFireSound=False
+    FireSoundRef="KF_AK47Snd.AK47_Fire"
+    StereoFireSoundRef="KF_AK47Snd.AK47_FireST"
+    NoAmmoSoundRef="KF_AK47Snd.AK47_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeAK47AssaultRifle'
+    DamageMin=60
+    DamageMax=60
+    Momentum=8500.000000
+    bPawnRapidFireAnim=True
+    TransientSoundVolume=1.800000
+    FireLoopAnim="Fire"
+    TweenTime=0.025000
+    FireForce="AssaultRifleFire"
+    FireRate=0.109000
+    AmmoClass=Class'NicePack.NiceAK47Ammo'
+    ShakeRotMag=(X=50.000000,Y=50.000000,Z=350.000000)
+    ShakeRotRate=(X=5000.000000,Y=5000.000000,Z=5000.000000)
+    ShakeRotTime=0.750000
+    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=7.500000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=1.250000
+    BotRefireRate=0.990000
+    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'
+    aimerror=42.000000
 }

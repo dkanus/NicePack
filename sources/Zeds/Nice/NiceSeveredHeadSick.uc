@@ -9,5 +9,6 @@
 //=============================================================================
 class NiceSeveredHeadSick extends SeveredHead;
 defaultproperties
-{    StaticMesh=StaticMesh'NicePackSM.MonsterSick.head'
+{
+    StaticMesh=StaticMesh'NicePackSM.MonsterSick.head'
 }

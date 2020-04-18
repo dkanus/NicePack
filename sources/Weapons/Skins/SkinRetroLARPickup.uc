@@ -1,4 +1,5 @@
 class SkinRetroLARPickup extends NiceWinchesterPickup;
 defaultproperties
-{    InventoryType=Class'NicePack.SkinRetroLAR'
+{
+    InventoryType=Class'NicePack.SkinRetroLAR'
 }

@@ -1,4 +1,31 @@
 class NiceColtFire extends NiceFire;
 defaultproperties
-{    RecoilRate=0.850000    maxVerticalRecoilAngle=150    maxHorizontalRecoilAngle=75    FireSoundRef="ScrnWeaponPack_SND.Colt.357_fire3"    StereoFireSoundRef="ScrnWeaponPack_SND.Colt.ScrnWeaponPack.357_fire3_ST"    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"    DamageType=Class'NicePack.NiceDamTypeColt'    DamageMin=175    DamageMax=175    Momentum=10000.000000    bWaitForRelease=True    bAttachSmokeEmitter=True    TransientSoundVolume=2.500000    FireAnimRate=1.200000    TweenTime=0.025000    FireForce="AssaultRifleFire"    FireRate=0.900000    AmmoClass=Class'NicePack.NiceColtAmmo'    ShakeRotMag=(X=75.000000,Y=75.000000,Z=400.000000)    ShakeRotRate=(X=12500.000000,Y=12500.000000,Z=10000.000000)    ShakeRotTime=3.500000    ShakeOffsetMag=(X=6.000000,Y=1.000000,Z=8.000000)    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)    ShakeOffsetTime=2.500000    BotRefireRate=0.350000    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stKar'    aimerror=30.000000
+{
+    RecoilRate=0.850000
+    maxVerticalRecoilAngle=150
+    maxHorizontalRecoilAngle=75
+    FireSoundRef="ScrnWeaponPack_SND.Colt.357_fire3"
+    StereoFireSoundRef="ScrnWeaponPack_SND.Colt.ScrnWeaponPack.357_fire3_ST"
+    NoAmmoSoundRef="KF_HandcannonSnd.50AE_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeColt'
+    DamageMin=175
+    DamageMax=175
+    Momentum=10000.000000
+    bWaitForRelease=True
+    bAttachSmokeEmitter=True
+    TransientSoundVolume=2.500000
+    FireAnimRate=1.200000
+    TweenTime=0.025000
+    FireForce="AssaultRifleFire"
+    FireRate=0.900000
+    AmmoClass=Class'NicePack.NiceColtAmmo'
+    ShakeRotMag=(X=75.000000,Y=75.000000,Z=400.000000)
+    ShakeRotRate=(X=12500.000000,Y=12500.000000,Z=10000.000000)
+    ShakeRotTime=3.500000
+    ShakeOffsetMag=(X=6.000000,Y=1.000000,Z=8.000000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=2.500000
+    BotRefireRate=0.350000
+    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stKar'
+    aimerror=30.000000
 }

@@ -1,4 +1,5 @@
 class NiceVetBerserkerExp extends SRCustomProgressInt;
 defaultproperties
-{    ProgressName="Berserker exp."
+{
+    ProgressName="Berserker exp."
 }

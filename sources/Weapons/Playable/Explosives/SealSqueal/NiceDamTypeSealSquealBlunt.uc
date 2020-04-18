@@ -1,5 +1,6 @@
 class NiceDamTypeSealSquealBlunt extends NiceDamTypeDemoBlunt
     abstract;
 defaultproperties
-{    WeaponClass=Class'NicePack.NiceSealSquealHarpoonBomber'
+{
+    WeaponClass=Class'NicePack.NiceSealSquealHarpoonBomber'
 }

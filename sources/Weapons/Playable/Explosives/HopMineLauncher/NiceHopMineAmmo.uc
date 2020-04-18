@@ -1,4 +1,5 @@
 class NiceHopMineAmmo extends HopMineAmmo;
 defaultproperties
-{    PickupClass=Class'NicePack.NiceHopMineAmmoPickup'
+{
+    PickupClass=Class'NicePack.NiceHopMineAmmoPickup'
 }

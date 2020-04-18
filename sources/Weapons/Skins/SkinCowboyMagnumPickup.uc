@@ -1,4 +1,5 @@
 class SkinCowboyMagnumPickup extends NiceMagnumPickup;
 defaultproperties
-{    InventoryType=Class'NicePack.SkinCowboyMagnum'
+{
+    InventoryType=Class'NicePack.SkinCowboyMagnum'
 }

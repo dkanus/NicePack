@@ -4,5 +4,8 @@ simulated function Trigger(Actor other, Pawn eventInstigator){
 	emitters[0].SpawnParticle(1);
 }
 defaultproperties
-{    Style=STY_Additive    bHardAttach=True    bDirectional=True
+{
+    Style=STY_Additive
+    bHardAttach=True
+    bDirectional=True
 }

@@ -1,4 +1,50 @@
 class NiceThompsonDrumSMG extends NiceAssaultRifle;
 defaultproperties
-{    bSemiAutoFireEnabled=False    reloadPreEndFrame=0.132000    reloadEndFrame=0.570000    reloadChargeEndFrame=0.810000    reloadMagStartFrame=0.347000    reloadChargeStartFrame=0.670000    MagazineBone="Magazine_Drum"    MagCapacity=40    ReloadRate=3.800000    ReloadAnim="Reload"    ReloadAnimRate=1.000000    WeaponReloadAnim="Reload_IJC_spThompson_Drum"    Weight=5.000000    bHasAimingMode=True    IdleAimAnim="Idle_Iron"    StandardDisplayFOV=55.000000    SleeveNum=0    TraderInfoTexture=Texture'KF_IJC_HUD.Trader_Weapon_Icons.Trader_Thompson_Drum'    bIsTier2Weapon=True    MeshRef="KF_IJC_Summer_Weps1.ThompsonDrum"    SkinRefs(1)="KF_IJC_Summer_Weapons.Thompson_Drum.thompson_drum_cmb"    SelectSoundRef="KF_IJC_HalloweenSnd.Thompson_Handling_Bolt_Back"    HudImageRef="KF_IJC_HUD.WeaponSelect.Thompson_Drum_unselected"    SelectedHudImageRef="KF_IJC_HUD.WeaponSelect.Thompson_Drum"    PlayerIronSightFOV=65.000000    ZoomedDisplayFOV=40.000000    FireModeClass(0)=Class'NicePack.NiceThompsonDrumFire'    FireModeClass(1)=Class'KFMod.NoFire'    PutDownAnim="PutDown"    SelectForce="SwitchToAssaultRifle"    AIRating=0.550000    CurrentRating=0.550000    bShowChargingBar=True    Description="This Tommy gun with a drum magazine was used heavily during the WWII pacific battles."    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)    DisplayFOV=55.000000    Priority=124    InventoryGroup=3    GroupOffset=20    PickupClass=Class'NicePack.NiceThompsonDrumPickup'    PlayerViewOffset=(X=10.000000,Y=16.000000,Z=-7.000000)    BobDamping=4.000000    AttachmentClass=Class'NicePack.NiceThompsonDrumAttachment'    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)    ItemName="Rising Storm Tommy Gun"    TransientSoundVolume=1.250000
+{
+    bSemiAutoFireEnabled=False
+    reloadPreEndFrame=0.132000
+    reloadEndFrame=0.570000
+    reloadChargeEndFrame=0.810000
+    reloadMagStartFrame=0.347000
+    reloadChargeStartFrame=0.670000
+    MagazineBone="Magazine_Drum"
+    MagCapacity=40
+    ReloadRate=3.800000
+    ReloadAnim="Reload"
+    ReloadAnimRate=1.000000
+    WeaponReloadAnim="Reload_IJC_spThompson_Drum"
+    Weight=5.000000
+    bHasAimingMode=True
+    IdleAimAnim="Idle_Iron"
+    StandardDisplayFOV=55.000000
+    SleeveNum=0
+    TraderInfoTexture=Texture'KF_IJC_HUD.Trader_Weapon_Icons.Trader_Thompson_Drum'
+    bIsTier2Weapon=True
+    MeshRef="KF_IJC_Summer_Weps1.ThompsonDrum"
+    SkinRefs(1)="KF_IJC_Summer_Weapons.Thompson_Drum.thompson_drum_cmb"
+    SelectSoundRef="KF_IJC_HalloweenSnd.Thompson_Handling_Bolt_Back"
+    HudImageRef="KF_IJC_HUD.WeaponSelect.Thompson_Drum_unselected"
+    SelectedHudImageRef="KF_IJC_HUD.WeaponSelect.Thompson_Drum"
+    PlayerIronSightFOV=65.000000
+    ZoomedDisplayFOV=40.000000
+    FireModeClass(0)=Class'NicePack.NiceThompsonDrumFire'
+    FireModeClass(1)=Class'KFMod.NoFire'
+    PutDownAnim="PutDown"
+    SelectForce="SwitchToAssaultRifle"
+    AIRating=0.550000
+    CurrentRating=0.550000
+    bShowChargingBar=True
+    Description="This Tommy gun with a drum magazine was used heavily during the WWII pacific battles."
+    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)
+    DisplayFOV=55.000000
+    Priority=124
+    InventoryGroup=3
+    GroupOffset=20
+    PickupClass=Class'NicePack.NiceThompsonDrumPickup'
+    PlayerViewOffset=(X=10.000000,Y=16.000000,Z=-7.000000)
+    BobDamping=4.000000
+    AttachmentClass=Class'NicePack.NiceThompsonDrumAttachment'
+    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)
+    ItemName="Rising Storm Tommy Gun"
+    TransientSoundVolume=1.250000
 }

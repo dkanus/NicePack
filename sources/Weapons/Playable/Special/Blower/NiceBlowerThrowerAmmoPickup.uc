@@ -1,4 +1,5 @@
 class NiceBlowerThrowerAmmoPickup extends BlowerThrowerAmmoPickup;
 defaultproperties
-{    InventoryType=Class'NicePack.NiceBlowerThrowerAmmo'
+{
+    InventoryType=Class'NicePack.NiceBlowerThrowerAmmo'
 }

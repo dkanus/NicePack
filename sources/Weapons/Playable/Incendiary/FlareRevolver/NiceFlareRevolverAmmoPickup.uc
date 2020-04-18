@@ -1,4 +1,5 @@
 class NiceFlareRevolverAmmoPickup extends ScrnFlareRevolverAmmoPickup;
 defaultproperties
-{    InventoryType=Class'NicePack.NiceFlareRevolverAmmo'
+{
+    InventoryType=Class'NicePack.NiceFlareRevolverAmmo'
 }

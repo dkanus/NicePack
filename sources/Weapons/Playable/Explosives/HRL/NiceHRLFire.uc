@@ -1,4 +1,5 @@
 class NiceHRLFire extends HRLFire;
 defaultproperties
-{    ProjectileClass=Class'NicePack.NiceHRLProj'
+{
+    ProjectileClass=Class'NicePack.NiceHRLProj'
 }

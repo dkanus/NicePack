@@ -1,4 +1,43 @@
 class NiceShotgunFire extends NiceFire;
 defaultproperties
-{    bProjectileFire=True    ProjPerFire=10//7    ProjSpawnOffset=(X=25.000000,Y=5.000000,Z=-6.000000)    EffectiveRange=700.000000    KickMomentum=(X=-85.000000,Z=15.000000)    LowGravKickMomentumScale=10.000000    ProjectileSpeed=18200.000000    bulletClass=Class'NicePack.NiceShotgunPellet'    FireAimedAnim="Fire_Iron"    RecoilRate=0.050000    maxVerticalRecoilAngle=1500    maxHorizontalRecoilAngle=900    bRandomPitchFireSound=False    FireSoundRef="KF_PumpSGSnd.SG_Fire"    StereoFireSoundRef="KF_PumpSGSnd.SG_FireST"    NoAmmoSoundRef="KF_PumpSGSnd.SG_DryFire"    DamageType=Class'NicePack.NiceDamTypeShotgun'    DamageMax=63//56    Momentum=50000.000000    bWaitForRelease=True    bAttachSmokeEmitter=True    TransientSoundVolume=2.000000    TransientSoundRadius=500.000000    FireEndAnim=    FireAnimRate=0.950000    FireForce="FlakCannonFire"    FireRate=0.965000    AmmoClass=Class'NicePack.NiceShotgunAmmo'    ShakeRotMag=(X=50.000000,Y=50.000000,Z=400.000000)    ShakeRotRate=(X=12500.000000,Y=12500.000000,Z=12500.000000)    ShakeRotTime=5.000000    ShakeOffsetMag=(X=6.000000,Y=2.000000,Z=10.000000)    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)    ShakeOffsetTime=3.000000    BotRefireRate=1.500000    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stKar'    aimerror=1.000000    Spread=3000.0//1125.000000    SpreadStyle=SS_Random
+{
+    bProjectileFire=True
+    ProjPerFire=10//7
+    ProjSpawnOffset=(X=25.000000,Y=5.000000,Z=-6.000000)
+    EffectiveRange=700.000000
+    KickMomentum=(X=-85.000000,Z=15.000000)
+    LowGravKickMomentumScale=10.000000
+    ProjectileSpeed=18200.000000
+    bulletClass=Class'NicePack.NiceShotgunPellet'
+    FireAimedAnim="Fire_Iron"
+    RecoilRate=0.050000
+    maxVerticalRecoilAngle=1500
+    maxHorizontalRecoilAngle=900
+    bRandomPitchFireSound=False
+    FireSoundRef="KF_PumpSGSnd.SG_Fire"
+    StereoFireSoundRef="KF_PumpSGSnd.SG_FireST"
+    NoAmmoSoundRef="KF_PumpSGSnd.SG_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeShotgun'
+    DamageMax=63//56
+    Momentum=50000.000000
+    bWaitForRelease=True
+    bAttachSmokeEmitter=True
+    TransientSoundVolume=2.000000
+    TransientSoundRadius=500.000000
+    FireEndAnim=
+    FireAnimRate=0.950000
+    FireForce="FlakCannonFire"
+    FireRate=0.965000
+    AmmoClass=Class'NicePack.NiceShotgunAmmo'
+    ShakeRotMag=(X=50.000000,Y=50.000000,Z=400.000000)
+    ShakeRotRate=(X=12500.000000,Y=12500.000000,Z=12500.000000)
+    ShakeRotTime=5.000000
+    ShakeOffsetMag=(X=6.000000,Y=2.000000,Z=10.000000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=3.000000
+    BotRefireRate=1.500000
+    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stKar'
+    aimerror=1.000000
+    Spread=3000.0//1125.000000
+    SpreadStyle=SS_Random
 }

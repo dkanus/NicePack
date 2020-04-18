@@ -2,7 +2,23 @@ class NiceFlareRevolverPickup extends ScrnFlareRevolverPickup;
 function inventory SpawnCopy( pawn Other ) {
     local Inventory CurInv;
     local KFWeapon PistolInInventory;
-    For( CurInv=Other.Inventory; CurInv!=none; CurInv=CurInv.Inventory ) {       PistolInInventory = KFWeapon(CurInv);       if( PistolInInventory != none && PistolInInventory.class == default.InventoryType ) {           // destroy the inventory to force parent SpawnCopy() to make a new instance of class           // we specified below           if( Inventory!=none )               Inventory.Destroy();           // spawn dual guns instead of another instance of single           InventoryType = DualInventoryType;           // Make dualies to cost twice of lowest value in case of PERKED+UNPERKED pistols           SellValue = 2 * min(SellValue, PistolInInventory.SellValue);           AmmoAmount[0]+= PistolInInventory.AmmoAmount(0);           MagAmmoRemaining+= PistolInInventory.MagAmmoRemaining;           CurInv.Destroyed();           CurInv.Destroy();           Return Super(KFWeaponPickup).SpawnCopy(Other);       }
+    For( CurInv=Other.Inventory; CurInv!=none; CurInv=CurInv.Inventory ) {
+       PistolInInventory = KFWeapon(CurInv);
+       if( PistolInInventory != none && PistolInInventory.class == default.InventoryType ) {
+           // destroy the inventory to force parent SpawnCopy() to make a new instance of class
+           // we specified below
+           if( Inventory!=none )
+               Inventory.Destroy();
+           // spawn dual guns instead of another instance of single
+           InventoryType = DualInventoryType;
+           // Make dualies to cost twice of lowest value in case of PERKED+UNPERKED pistols
+           SellValue = 2 * min(SellValue, PistolInInventory.SellValue);
+           AmmoAmount[0]+= PistolInInventory.AmmoAmount(0);
+           MagAmmoRemaining+= PistolInInventory.MagAmmoRemaining;
+           CurInv.Destroyed();
+           CurInv.Destroy();
+           Return Super(KFWeaponPickup).SpawnCopy(Other);
+       }
     }
     InventoryType = Default.InventoryType;
     Return Super(KFWeaponPickup).SpawnCopy(Other);
@@ -12,13 +28,37 @@ function bool CheckCanCarry(KFHumanPawn Hm) {
     local bool bHasSinglePistol;
     local float AddWeight;
     AddWeight = class<KFWeapon>(default.InventoryType).default.Weight;
-    for ( CurInv = Hm.Inventory; CurInv != none; CurInv = CurInv.Inventory ) {       if ( CurInv.class == default.DualInventoryType ) {           //already have duals, can't carry a single           if ( LastCantCarryTime < Level.TimeSeconds && PlayerController(Hm.Controller) != none )           {               LastCantCarryTime = Level.TimeSeconds + 0.5;               PlayerController(Hm.Controller).ReceiveLocalizedMessage(Class'KFMainMessages', 2);           }           return false;        }       else if ( CurInv.class == default.InventoryType ) {           bHasSinglePistol = true;           AddWeight = default.DualInventoryType.default.Weight - AddWeight;           break;       }
+    for ( CurInv = Hm.Inventory; CurInv != none; CurInv = CurInv.Inventory ) {
+       if ( CurInv.class == default.DualInventoryType ) {
+           //already have duals, can't carry a single
+           if ( LastCantCarryTime < Level.TimeSeconds && PlayerController(Hm.Controller) != none )
+           {
+               LastCantCarryTime = Level.TimeSeconds + 0.5;
+               PlayerController(Hm.Controller).ReceiveLocalizedMessage(Class'KFMainMessages', 2);
+           }
+           return false; 
+       }
+       else if ( CurInv.class == default.InventoryType ) {
+           bHasSinglePistol = true;
+           AddWeight = default.DualInventoryType.default.Weight - AddWeight;
+           break;
+       }
     }
-    if ( !Hm.CanCarry(AddWeight) ) {       if ( LastCantCarryTime < Level.TimeSeconds && PlayerController(Hm.Controller) != none )       {           LastCantCarryTime = Level.TimeSeconds + 0.5;           PlayerController(Hm.Controller).ReceiveLocalizedMessage(Class'KFMainMessages', 2);       }
-       return false;
+    if ( !Hm.CanCarry(AddWeight) ) {
+       if ( LastCantCarryTime < Level.TimeSeconds && PlayerController(Hm.Controller) != none )
+       {
+           LastCantCarryTime = Level.TimeSeconds + 0.5;
+           PlayerController(Hm.Controller).ReceiveLocalizedMessage(Class'KFMainMessages', 2);
+       }
+
+       return false;
     }
     return true;
 }
 defaultproperties
-{    DualInventoryType=Class'NicePack.NiceDualFlareRevolver'    ItemName="Flare Revolver NW"    ItemShortName="Flare Rev. NW"    InventoryType=Class'NicePack.NiceFlareRevolver'
+{
+    DualInventoryType=Class'NicePack.NiceDualFlareRevolver'
+    ItemName="Flare Revolver NW"
+    ItemShortName="Flare Rev. NW"
+    InventoryType=Class'NicePack.NiceFlareRevolver'
 }

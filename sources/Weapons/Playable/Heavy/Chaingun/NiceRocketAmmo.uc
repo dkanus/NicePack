@@ -4,5 +4,7 @@
 class NiceRocketammo extends Rocketammo;
 #EXEC OBJ LOAD FILE=KillingFloorHUD.utx
 defaultproperties
-{    MaxAmmo=16    PickupClass=Class'NicePack.NiceRocketAmmoPickup'
+{
+    MaxAmmo=16
+    PickupClass=Class'NicePack.NiceRocketAmmoPickup'
 }

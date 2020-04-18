@@ -34,12 +34,96 @@ var             int     SneakCount;         // Keep track of the loop that sends
 var()           float   PipeBombDamageScale;// Scale the pipe bomb damage over time
 replication
 {
-    reliable if( Role==ROLE_Authority )       bChargingPlayer,SyringeCount,TraceHitPos,bMinigunning,bIsBossView;
+    reliable if( Role==ROLE_Authority )
+       bChargingPlayer,SyringeCount,TraceHitPos,bMinigunning,bIsBossView;
 }
 //-------------------------------------------------------------------------------
 // NOTE: All Code resides in the child class(this class was only created to
 //         eliminate hitching caused by loading default properties during play)
 //-------------------------------------------------------------------------------
 defaultproperties
-{    ChargingAnim="RunF"    HealingLevels(0)=5600    HealingLevels(1)=3500    HealingLevels(2)=2187    HealingAmount=1750    MGDamage=6.000000    ClawMeleeDamageRange=85.000000    ImpaleMeleeDamageRange=45.000000    fuelRatio=0.400000    bFrugalFuelUsage=False    clientHeadshotScale=1.200000    ZapThreshold=5.000000    ZappedDamageMod=1.250000    ZapResistanceScale=1.000000    bHarpoonToHeadStuns=False    bHarpoonToBodyStuns=False    ZombieFlag=3    MeleeDamage=75    damageForce=170000    bFatAss=True    KFRagdollName="Patriarch_Trip"    bMeleeStunImmune=True    CrispUpThreshhold=1    bCanDistanceAttackDoors=True    bUseExtendedCollision=True    ColOffset=(Z=65.000000)    ColRadius=27.000000    ColHeight=25.000000    SeveredArmAttachScale=1.100000    SeveredLegAttachScale=1.200000    SeveredHeadAttachScale=1.500000    PlayerCountHealthScale=0.750000    BurningWalkFAnims(0)="WalkF"    BurningWalkFAnims(1)="WalkF"    BurningWalkFAnims(2)="WalkF"    BurningWalkAnims(0)="WalkF"    BurningWalkAnims(1)="WalkF"    BurningWalkAnims(2)="WalkF"    OnlineHeadshotOffset=(X=28.000000,Z=75.000000)    OnlineHeadshotScale=1.200000    HeadHealth=100000.000000    MotionDetectorThreat=10.000000    bOnlyDamagedByCrossbow=True    bBoss=True    ScoringValue=500    IdleHeavyAnim="BossIdle"    IdleRifleAnim="BossIdle"    RagDeathVel=80.000000    RagDeathUpKick=100.000000    MeleeRange=10.000000    GroundSpeed=120.000000    WaterSpeed=120.000000    HealthMax=8000.000000    Health=8000    HeadScale=1.300000    MenuName="Nice Patriarch"    MovementAnims(0)="WalkF"    MovementAnims(1)="WalkF"    MovementAnims(2)="WalkF"    MovementAnims(3)="WalkF"    AirAnims(0)="JumpInAir"    AirAnims(1)="JumpInAir"    AirAnims(2)="JumpInAir"    AirAnims(3)="JumpInAir"    TakeoffAnims(0)="JumpTakeOff"    TakeoffAnims(1)="JumpTakeOff"    TakeoffAnims(2)="JumpTakeOff"    TakeoffAnims(3)="JumpTakeOff"    LandAnims(0)="JumpLanded"    LandAnims(1)="JumpLanded"    LandAnims(2)="JumpLanded"    LandAnims(3)="JumpLanded"    AirStillAnim="JumpInAir"    TakeoffStillAnim="JumpTakeOff"    IdleCrouchAnim="BossIdle"    IdleWeaponAnim="BossIdle"    IdleRestAnim="BossIdle"    DrawScale=1.050000    PrePivot=(Z=3.000000)    SoundVolume=75    bNetNotify=False    Mass=1000.000000    RotationRate=(Yaw=36000,Roll=0)
+{
+    ChargingAnim="RunF"
+    HealingLevels(0)=5600
+    HealingLevels(1)=3500
+    HealingLevels(2)=2187
+    HealingAmount=1750
+    MGDamage=6.000000
+    ClawMeleeDamageRange=85.000000
+    ImpaleMeleeDamageRange=45.000000
+    fuelRatio=0.400000
+    bFrugalFuelUsage=False
+    clientHeadshotScale=1.200000
+    ZapThreshold=5.000000
+    ZappedDamageMod=1.250000
+    ZapResistanceScale=1.000000
+    bHarpoonToHeadStuns=False
+    bHarpoonToBodyStuns=False
+    ZombieFlag=3
+    MeleeDamage=75
+    damageForce=170000
+    bFatAss=True
+    KFRagdollName="Patriarch_Trip"
+    bMeleeStunImmune=True
+    CrispUpThreshhold=1
+    bCanDistanceAttackDoors=True
+    bUseExtendedCollision=True
+    ColOffset=(Z=65.000000)
+    ColRadius=27.000000
+    ColHeight=25.000000
+    SeveredArmAttachScale=1.100000
+    SeveredLegAttachScale=1.200000
+    SeveredHeadAttachScale=1.500000
+    PlayerCountHealthScale=0.750000
+    BurningWalkFAnims(0)="WalkF"
+    BurningWalkFAnims(1)="WalkF"
+    BurningWalkFAnims(2)="WalkF"
+    BurningWalkAnims(0)="WalkF"
+    BurningWalkAnims(1)="WalkF"
+    BurningWalkAnims(2)="WalkF"
+    OnlineHeadshotOffset=(X=28.000000,Z=75.000000)
+    OnlineHeadshotScale=1.200000
+    HeadHealth=100000.000000
+    MotionDetectorThreat=10.000000
+    bOnlyDamagedByCrossbow=True
+    bBoss=True
+    ScoringValue=500
+    IdleHeavyAnim="BossIdle"
+    IdleRifleAnim="BossIdle"
+    RagDeathVel=80.000000
+    RagDeathUpKick=100.000000
+    MeleeRange=10.000000
+    GroundSpeed=120.000000
+    WaterSpeed=120.000000
+    HealthMax=8000.000000
+    Health=8000
+    HeadScale=1.300000
+    MenuName="Nice Patriarch"
+    MovementAnims(0)="WalkF"
+    MovementAnims(1)="WalkF"
+    MovementAnims(2)="WalkF"
+    MovementAnims(3)="WalkF"
+    AirAnims(0)="JumpInAir"
+    AirAnims(1)="JumpInAir"
+    AirAnims(2)="JumpInAir"
+    AirAnims(3)="JumpInAir"
+    TakeoffAnims(0)="JumpTakeOff"
+    TakeoffAnims(1)="JumpTakeOff"
+    TakeoffAnims(2)="JumpTakeOff"
+    TakeoffAnims(3)="JumpTakeOff"
+    LandAnims(0)="JumpLanded"
+    LandAnims(1)="JumpLanded"
+    LandAnims(2)="JumpLanded"
+    LandAnims(3)="JumpLanded"
+    AirStillAnim="JumpInAir"
+    TakeoffStillAnim="JumpTakeOff"
+    IdleCrouchAnim="BossIdle"
+    IdleWeaponAnim="BossIdle"
+    IdleRestAnim="BossIdle"
+    DrawScale=1.050000
+    PrePivot=(Z=3.000000)
+    SoundVolume=75
+    bNetNotify=False
+    Mass=1000.000000
+    RotationRate=(Yaw=36000,Roll=0)
 }

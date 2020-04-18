@@ -1,4 +1,5 @@
 class SkinExecutionerPickup extends NiceDeaglePickup;
 defaultproperties
-{    InventoryType=Class'NicePack.SkinExecutioner'
+{
+    InventoryType=Class'NicePack.SkinExecutioner'
 }

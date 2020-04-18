@@ -15,23 +15,47 @@ var float bileCoolDownTimer,bileCoolDownMax;
  */
 simulated function Tick(float DeltaTime) {
     Super.Tick(DeltaTime);
-    if(!bDecapitated && bAmIBarfing) {       bileCoolDownTimer+= DeltaTime;       if(bileCoolDownTimer >= bileCoolDownMax) {           SpawnTwoShots();           bileCoolDownTimer= 0.0;       }
+    if(!bDecapitated && bAmIBarfing) {
+       bileCoolDownTimer+= DeltaTime;
+       if(bileCoolDownTimer >= bileCoolDownMax) {
+           SpawnTwoShots();
+           bileCoolDownTimer= 0.0;
+       }
     }
 }
 function Touch(Actor Other) {
     super.Touch(Other);
-    if (Other.IsA('ShotgunBullet')) {       ShotgunBullet(Other).Damage = 0;
+    if (Other.IsA('ShotgunBullet')) {
+       ShotgunBullet(Other).Damage = 0;
     }
 }
 function RangedAttack(Actor A) {
     local int LastFireTime;
-    if ( bShotAnim )       return;
-    if ( Physics == PHYS_Swimming ) {       SetAnimAction('Claw');       bShotAnim = true;       LastFireTime = Level.TimeSeconds;
+    if ( bShotAnim )
+       return;
+    if ( Physics == PHYS_Swimming ) {
+       SetAnimAction('Claw');
+       bShotAnim = true;
+       LastFireTime = Level.TimeSeconds;
     }
-    else if ( VSize(A.Location - Location) < MeleeRange + CollisionRadius + A.CollisionRadius ) {       bShotAnim = true;       LastFireTime = Level.TimeSeconds;       SetAnimAction('Claw');       //PlaySound(sound'Claw2s', SLOT_Interact); KFTODO: Replace this       Controller.bPreparingMove = true;       Acceleration = vect(0,0,0);
+    else if ( VSize(A.Location - Location) < MeleeRange + CollisionRadius + A.CollisionRadius ) {
+       bShotAnim = true;
+       LastFireTime = Level.TimeSeconds;
+       SetAnimAction('Claw');
+       //PlaySound(sound'Claw2s', SLOT_Interact); KFTODO: Replace this
+       Controller.bPreparingMove = true;
+       Acceleration = vect(0,0,0);
     }
-    else if ( (KFDoorMover(A) != none || VSize(A.Location-Location) <= 250) && !bDecapitated ) {       bShotAnim = true;       SetAnimAction('ZombieBarfMoving');       RunAttackTimeout = GetAnimDuration('ZombieBarf', 1.0);       bMovingPukeAttack=true;
-       // Randomly send out a message about Bloat Vomit burning(3% chance)       if ( FRand() < 0.03 && KFHumanPawn(A) != none && PlayerController(KFHumanPawn(A).Controller) != none ) {           PlayerController(KFHumanPawn(A).Controller).Speech('AUTO', 7, "");       }
+    else if ( (KFDoorMover(A) != none || VSize(A.Location-Location) <= 250) && !bDecapitated ) {
+       bShotAnim = true;
+       SetAnimAction('ZombieBarfMoving');
+       RunAttackTimeout = GetAnimDuration('ZombieBarf', 1.0);
+       bMovingPukeAttack=true;
+
+       // Randomly send out a message about Bloat Vomit burning(3% chance)
+       if ( FRand() < 0.03 && KFHumanPawn(A) != none && PlayerController(KFHumanPawn(A).Controller) != none ) {
+           PlayerController(KFHumanPawn(A).Controller).Speech('AUTO', 7, "");
+       }
     }
 }
 //ZombieBarf animation triggers this
@@ -45,8 +69,13 @@ simulated function AnimEnd(int Channel) {
 
     GetAnimParams( ExpectingChannel, Sequence, Frame, Rate );
     super.AnimEnd(Channel);
-    if(Sequence == 'ZombieBarf')       bAmIBarfing= false;
+    if(Sequence == 'ZombieBarf')
+       bAmIBarfing= false;
 }
 defaultproperties
-{    bileCoolDownMax=0.750000    HeadHealth=125.000000    MenuName="Mean Bloat"    Skins(0)=Combiner'MeanZedSkins.bloat_cmb'
+{
+    bileCoolDownMax=0.750000
+    HeadHealth=125.000000
+    MenuName="Mean Bloat"
+    Skins(0)=Combiner'MeanZedSkins.bloat_cmb'
 }

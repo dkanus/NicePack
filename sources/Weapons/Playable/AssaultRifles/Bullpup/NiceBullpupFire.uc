@@ -1,4 +1,36 @@
 class NiceBullpupFire extends NiceFire;
 defaultproperties
-{    zedTimeFireSpeedUp=5.000000    ProjectileSpeed=45500.000000    FireAimedAnim="Fire_Iron"    RecoilRate=0.070000    maxVerticalRecoilAngle=210    maxHorizontalRecoilAngle=105    ShellEjectClass=Class'ROEffects.KFShellEjectBullpup'    ShellEjectBoneName="Bullpup"    bAccuracyBonusForSemiAuto=True    FireSoundRef="KF_BullpupSnd.Bullpup_Fire"    StereoFireSoundRef="KF_BullpupSnd.Bullpup_FireST"    NoAmmoSoundRef="KF_9MMSnd.9mm_DryFire"    DamageType=Class'NicePack.NiceDamTypeBullpup'    DamageMin=48    DamageMax=48    Momentum=8500.000000    bPawnRapidFireAnim=True    TransientSoundVolume=1.800000    FireLoopAnim="Fire"    TweenTime=0.025000    FireForce="AssaultRifleFire"    FireRate=0.100000    AmmoClass=Class'NicePack.NiceBullpupAmmo'    ShakeRotMag=(X=75.000000,Y=75.000000,Z=250.000000)    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)    ShakeRotTime=0.500000    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=10.000000)    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)    ShakeOffsetTime=1.000000    BotRefireRate=0.990000    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'    aimerror=42.000000
+{
+    zedTimeFireSpeedUp=5.000000
+    ProjectileSpeed=45500.000000
+    FireAimedAnim="Fire_Iron"
+    RecoilRate=0.070000
+    maxVerticalRecoilAngle=210
+    maxHorizontalRecoilAngle=105
+    ShellEjectClass=Class'ROEffects.KFShellEjectBullpup'
+    ShellEjectBoneName="Bullpup"
+    bAccuracyBonusForSemiAuto=True
+    FireSoundRef="KF_BullpupSnd.Bullpup_Fire"
+    StereoFireSoundRef="KF_BullpupSnd.Bullpup_FireST"
+    NoAmmoSoundRef="KF_9MMSnd.9mm_DryFire"
+    DamageType=Class'NicePack.NiceDamTypeBullpup'
+    DamageMin=48
+    DamageMax=48
+    Momentum=8500.000000
+    bPawnRapidFireAnim=True
+    TransientSoundVolume=1.800000
+    FireLoopAnim="Fire"
+    TweenTime=0.025000
+    FireForce="AssaultRifleFire"
+    FireRate=0.100000
+    AmmoClass=Class'NicePack.NiceBullpupAmmo'
+    ShakeRotMag=(X=75.000000,Y=75.000000,Z=250.000000)
+    ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)
+    ShakeRotTime=0.500000
+    ShakeOffsetMag=(X=6.000000,Y=3.000000,Z=10.000000)
+    ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
+    ShakeOffsetTime=1.000000
+    BotRefireRate=0.990000
+    FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'
+    aimerror=42.000000
 }

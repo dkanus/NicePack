@@ -1,4 +1,5 @@
 class NicePipeBombFire extends ScrnPipeBombFire;
 defaultproperties
-{    ProjectileClass=Class'NicePack.NicePipeBombProjectile'
+{
+    ProjectileClass=Class'NicePack.NicePipeBombProjectile'
 }

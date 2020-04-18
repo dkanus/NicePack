@@ -51,7 +51,8 @@ var const class<NiceAbilitiesEvents> events;
 //  Unfortunately this hackk is required to force replication of structure array
 var int hackCounter;
 replication{
-    reliable if(Role == ROLE_Authority)       currentAbilities, currentAbilitiesAmount, hackCounter;
+    reliable if(Role == ROLE_Authority)
+       currentAbilities, currentAbilitiesAmount, hackCounter;
 }
 simulated function PostBeginPlay(){
     relatedPlayer = NicePlayerController(owner);
@@ -60,7 +61,9 @@ function AddAbility(NiceAbilityDescription description){
     local int               i;
     local NiceAbilityStatus newRecord;
     if(currentAbilitiesAmount >= maxAbilitiesAmount) return;
-    for(i = 0;i < currentAbilitiesAmount;i ++)       if(currentAbilities[i].description.ID ~= description.ID)           return;
+    for(i = 0;i < currentAbilitiesAmount;i ++)
+       if(currentAbilities[i].description.ID ~= description.ID)
+           return;
     newRecord.description   = description;
     newRecord.cooldown      = 0.0;
     newRecord.myState       = ASTATE_READY;
@@ -73,10 +76,17 @@ function RemoveAbility(string abilityID){
     local int   i, j;
     local bool  wasRemoved;
     j = 0;
-    for(i = 0;i < currentAbilitiesAmount;i ++){       if(currentAbilities[i].description.ID ~= abilityID){           wasRemoved = true;           continue;       }       currentAbilities[j] = currentAbilities[i];       j += 1;
+    for(i = 0;i < currentAbilitiesAmount;i ++){
+       if(currentAbilities[i].description.ID ~= abilityID){
+           wasRemoved = true;
+           continue;
+       }
+       currentAbilities[j] = currentAbilities[i];
+       j += 1;
     }
     currentAbilitiesAmount = j;
-    if(wasRemoved)       events.static.CallAbilityRemoved(abilityID, relatedPlayer);
+    if(wasRemoved)
+       events.static.CallAbilityRemoved(abilityID, relatedPlayer);
     netUpdateTime = level.timeSeconds - 1;
 }
 function ClearAbilities(){
@@ -87,13 +97,16 @@ function ClearAbilities(){
 //  Returns '-1' if such ability doesn't exist.
 simulated function int GetAbilityIndex(string abilityID){
     local int i;
-    for(i = 0;i < currentAbilitiesAmount;i ++)       if(currentAbilities[i].description.ID ~= abilityID)           return i;
+    for(i = 0;i < currentAbilitiesAmount;i ++)
+       if(currentAbilities[i].description.ID ~= abilityID)
+           return i;
     return -1;
 }
 simulated function bool IsAbilityActive(string abilityID){
     local int index;
     index = GetAbilityIndex(abilityID);
-    if(index < 0)       return false;
+    if(index < 0)
+       return false;
     return (currentAbilities[index].myState == ASTATE_ACTIVE);
 }
 //  Sets ability to a proper state.
@@ -106,15 +119,29 @@ function SetAbilityState(int abilityIndex, EAbilityState newState){
     local EAbilityState currentState;
     if(abilityIndex < 0 || abilityIndex >= currentAbilitiesAmount) return;
     currentState = currentAbilities[abilityIndex].myState;
-    if(currentState == newState)       return;
-    if(     currentState == ASTATE_ACTIVE && newState == ASTATE_READY       &&  !currentAbilities[abilityIndex].description.canBeCancelled)       return;
+    if(currentState == newState)
+       return;
+    if(     currentState == ASTATE_ACTIVE && newState == ASTATE_READY
+       &&  !currentAbilities[abilityIndex].description.canBeCancelled)
+       return;
     currentAbilities[abilityIndex].myState = newState;
-    if(newState == ASTATE_COOLDOWN){       cooldown = currentAbilities[abilityIndex].description.cooldownLength;       events.static.CallModAbilityCooldown(           currentAbilities[abilityIndex].description.ID,           relatedPlayer,           cooldown       );       currentAbilities[abilityIndex].cooldown = cooldown;
+    if(newState == ASTATE_COOLDOWN){
+       cooldown = currentAbilities[abilityIndex].description.cooldownLength;
+       events.static.CallModAbilityCooldown(
+           currentAbilities[abilityIndex].description.ID,
+           relatedPlayer,
+           cooldown
+       );
+       currentAbilities[abilityIndex].cooldown = cooldown;
     }
     hackCounter ++;
     netUpdateTime = level.timeSeconds - 1;
     //  Fire off events
-    if(newState == ASTATE_ACTIVE){       events.static.CallAbilityActivated(           currentAbilities[abilityIndex].description.ID,           relatedPlayer       );
+    if(newState == ASTATE_ACTIVE){
+       events.static.CallAbilityActivated(
+           currentAbilities[abilityIndex].description.ID,
+           relatedPlayer
+       );
     }
 }
 //  Changes ability's cooldown by a given amount.
@@ -124,14 +151,19 @@ function AddToCooldown(int abilityIndex, float delta){
     if(abilityIndex < 0 || abilityIndex >= currentAbilitiesAmount)  return;
     if(currentAbilities[abilityIndex].myState != ASTATE_COOLDOWN)   return;
     currentAbilities[abilityIndex].cooldown += delta;
-    if(currentAbilities[abilityIndex].cooldown <= 0)       SetAbilityState(abilityIndex, ASTATE_READY);
+    if(currentAbilities[abilityIndex].cooldown <= 0)
+       SetAbilityState(abilityIndex, ASTATE_READY);
     hackCounter ++;
 }
 function Tick(float deltaTime){
     local int i;
     if(Role != Role_AUTHORITY) return;
-    for(i = 0;i < currentAbilitiesAmount;i ++)       AddToCooldown(i, -deltaTime);
+    for(i = 0;i < currentAbilitiesAmount;i ++)
+       AddToCooldown(i, -deltaTime);
 }
 defaultproperties
-{    maxAbilitiesAmount=5    Events=Class'NicePack.NiceAbilitiesEvents'    DrawType=DT_None
+{
+    maxAbilitiesAmount=5
+    Events=Class'NicePack.NiceAbilitiesEvents'
+    DrawType=DT_None
 }

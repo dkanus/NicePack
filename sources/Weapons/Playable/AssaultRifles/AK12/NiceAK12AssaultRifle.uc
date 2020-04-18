@@ -1,4 +1,62 @@
 class NiceAK12AssaultRifle extends NiceAssaultRifle;
 defaultproperties
-{    bSemiAutoFireEnabled=False    bBurstFireEnabled=True    reloadPreEndFrame=0.158000    reloadEndFrame=0.521000    reloadChargeEndFrame=0.726000    reloadMagStartFrame=0.363000    reloadChargeStartFrame=0.726000    MagazineBone="Bone_Magazine"    MagCapacity=30    ReloadRate=3.000000    ReloadAnim="Reload"    ReloadAnimRate=1.000000    WeaponReloadAnim="Reload_AK47"    Weight=6.000000    bHasAimingMode=True    IdleAimAnim="Idle_Iron"    StandardDisplayFOV=55.000000    SleeveNum=8    TraderInfoTexture=Texture'ScrnWeaponPack_T.AK12.AK12_trader'    bIsTier3Weapon=True    MeshRef="ScrnWeaponPack_A.AK12_mesh"    SkinRefs(0)="ScrnWeaponPack_T.AK12.AK12_tex_1_cmb"    SkinRefs(1)="ScrnWeaponPack_T.AK12.AK12_tex_2_cmb"    SkinRefs(2)="ScrnWeaponPack_T.AK12.AK12_tex_3_cmb"    SkinRefs(3)="ScrnWeaponPack_T.AK12.AK12_tex_4_cmb"    SkinRefs(4)="ScrnWeaponPack_T.AK12.AK12_tex_5_cmb"    SkinRefs(5)="ScrnWeaponPack_T.AK12.AK12_tex_6_cmb"    SkinRefs(6)="ScrnWeaponPack_T.AK12.AK12_tex_7_cmb"    SkinRefs(7)="ScrnWeaponPack_T.AK12.AK12_aimpoint_sh"    SkinRefs(8)="KF_Weapons_Trip_T.hands.hands_1stP_military_cmb"    SelectSoundRef="ScrnWeaponPack_SND.AK12.AK12_select"    HudImageRef="ScrnWeaponPack_T.AK12.AK12_Unselect"    SelectedHudImageRef="ScrnWeaponPack_T.AK12.AK12_select"    PlayerIronSightFOV=65.000000    ZoomedDisplayFOV=20.000000    FireModeClass(0)=Class'NicePack.NiceAK12Fire'    FireModeClass(1)=Class'KFMod.NoFire'    PutDownAnim="PutDown"    SelectAnimRate=1.300000    SelectForce="SwitchToAssaultRifle"    AIRating=0.550000    CurrentRating=0.550000    bShowChargingBar=True    Description="The Kalashnikov AK-12 (formerly AK-200) is the newest derivative of the Soviet/Russian AK-47 series of assault rifles and was proposed for possible general issue to the Russian Army. This version uses the 5.45x39mm ammo (the same as AK-74)"    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)    DisplayFOV=55.000000    Priority=145    CustomCrosshair=11    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"    InventoryGroup=4    GroupOffset=7    PickupClass=Class'NicePack.NiceAK12Pickup'    PlayerViewOffset=(X=-0.500000,Y=20.000000,Z=-3.000000)    BobDamping=6.000000    AttachmentClass=Class'NicePack.NiceAK12Attachment'    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)    ItemName="AK12"    TransientSoundVolume=1.250000
+{
+    bSemiAutoFireEnabled=False
+    bBurstFireEnabled=True
+    reloadPreEndFrame=0.158000
+    reloadEndFrame=0.521000
+    reloadChargeEndFrame=0.726000
+    reloadMagStartFrame=0.363000
+    reloadChargeStartFrame=0.726000
+    MagazineBone="Bone_Magazine"
+    MagCapacity=30
+    ReloadRate=3.000000
+    ReloadAnim="Reload"
+    ReloadAnimRate=1.000000
+    WeaponReloadAnim="Reload_AK47"
+    Weight=6.000000
+    bHasAimingMode=True
+    IdleAimAnim="Idle_Iron"
+    StandardDisplayFOV=55.000000
+    SleeveNum=8
+    TraderInfoTexture=Texture'ScrnWeaponPack_T.AK12.AK12_trader'
+    bIsTier3Weapon=True
+    MeshRef="ScrnWeaponPack_A.AK12_mesh"
+    SkinRefs(0)="ScrnWeaponPack_T.AK12.AK12_tex_1_cmb"
+    SkinRefs(1)="ScrnWeaponPack_T.AK12.AK12_tex_2_cmb"
+    SkinRefs(2)="ScrnWeaponPack_T.AK12.AK12_tex_3_cmb"
+    SkinRefs(3)="ScrnWeaponPack_T.AK12.AK12_tex_4_cmb"
+    SkinRefs(4)="ScrnWeaponPack_T.AK12.AK12_tex_5_cmb"
+    SkinRefs(5)="ScrnWeaponPack_T.AK12.AK12_tex_6_cmb"
+    SkinRefs(6)="ScrnWeaponPack_T.AK12.AK12_tex_7_cmb"
+    SkinRefs(7)="ScrnWeaponPack_T.AK12.AK12_aimpoint_sh"
+    SkinRefs(8)="KF_Weapons_Trip_T.hands.hands_1stP_military_cmb"
+    SelectSoundRef="ScrnWeaponPack_SND.AK12.AK12_select"
+    HudImageRef="ScrnWeaponPack_T.AK12.AK12_Unselect"
+    SelectedHudImageRef="ScrnWeaponPack_T.AK12.AK12_select"
+    PlayerIronSightFOV=65.000000
+    ZoomedDisplayFOV=20.000000
+    FireModeClass(0)=Class'NicePack.NiceAK12Fire'
+    FireModeClass(1)=Class'KFMod.NoFire'
+    PutDownAnim="PutDown"
+    SelectAnimRate=1.300000
+    SelectForce="SwitchToAssaultRifle"
+    AIRating=0.550000
+    CurrentRating=0.550000
+    bShowChargingBar=True
+    Description="The Kalashnikov AK-12 (formerly AK-200) is the newest derivative of the Soviet/Russian AK-47 series of assault rifles and was proposed for possible general issue to the Russian Army. This version uses the 5.45x39mm ammo (the same as AK-74)"
+    EffectOffset=(X=100.000000,Y=25.000000,Z=-10.000000)
+    DisplayFOV=55.000000
+    Priority=145
+    CustomCrosshair=11
+    CustomCrossHairTextureName="Crosshairs.HUD.Crosshair_Cross5"
+    InventoryGroup=4
+    GroupOffset=7
+    PickupClass=Class'NicePack.NiceAK12Pickup'
+    PlayerViewOffset=(X=-0.500000,Y=20.000000,Z=-3.000000)
+    BobDamping=6.000000
+    AttachmentClass=Class'NicePack.NiceAK12Attachment'
+    IconCoords=(X1=245,Y1=39,X2=329,Y2=79)
+    ItemName="AK12"
+    TransientSoundVolume=1.250000
 }
