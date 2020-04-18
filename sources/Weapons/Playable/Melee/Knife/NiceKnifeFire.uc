@@ -1,6 +1,6 @@
 class NiceKnifeFire extends NiceMeleeFire;
 var name LastFireAnim;
-/*function name GetCorrectAnim(bool bLoop, bool bAimed){
+function name GetCorrectAnim(bool bLoop, bool bAimed){
     FireAnim = super.GetCorrectAnim(bLoop, bAimed);
     if( LastFireAnim == FireAnims[1] && FireAnim == FireAnims[2]
        || LastFireAnim == FireAnims[2] && FireAnim == FireAnims[1]
@@ -8,7 +8,7 @@ var name LastFireAnim;
        FireAnim = FireAnims[0];
     LastFireAnim = FireAnim;
     return FireAnim;
-}*/
+}
 defaultproperties
 {
     damageDelay=0.450000

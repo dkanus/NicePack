@@ -21,7 +21,7 @@ simulated function DestroyEffects(){
     if(Flash2Emitter != none)
        Flash2Emitter.Destroy();
 }//MEANTODO
-/*function FlashMuzzleFlash(){
+function FlashMuzzleFlash(){
     if(currentContext.sourceWeapon == none)
        return;
     if(currentContext.sourceWeapon.MagAmmoRemainingClient == 2){
@@ -30,7 +30,7 @@ simulated function DestroyEffects(){
     }
     else if(FlashEmitter != none)
        FlashEmitter.Trigger(Weapon, Instigator);
-}*/
+}
 defaultproperties
 {
     MuzzleBoneLeft="Tip_Left"

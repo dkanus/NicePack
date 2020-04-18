@@ -1,7 +1,7 @@
 class NiceSealSquealHarpoonBomber extends NiceWeapon;
 // Stuck projectiles, fired from this weapon
 var array<int> stuckProjectiles;
-/*simulated function ExplodeAllHarpoons(){
+simulated function ExplodeAllHarpoons(){
     local int i;
     for(i = 0;i < stuckProjectiles.Length;i ++){
        if(stuckProjectiles[i] < 0)
@@ -22,7 +22,7 @@ simulated function Destroyed(){
     if(Role < ROLE_Authority)
        ExplodeAllHarpoons();
     super.Destroyed();
-}*/
+}
 defaultproperties
 {
     reloadPreEndFrame=0.195000

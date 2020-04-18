@@ -4,7 +4,7 @@ static function int GetStatValueInt(ClientPerkRepLink StatOther, byte ReqNum)
 {
   return StatOther.RFlameThrowerDamageStat;
 }
-/*
+
 static function int AddFireDamage(KFPlayerReplicationInfo KFPRI, KFMonster Injured, KFPawn DamageTaker, int InDamage, class<NiceWeaponDamageType> DmgType){
     if(class<NiceDamTypeFire>(DmgType) != none){
        if(GetClientVeteranSkillLevel(KFPRI) == 0)
@@ -157,7 +157,7 @@ static function string GetCustomLevelInfo( byte Level )
     ReplaceText(S,"%m",GetPercentStr(0.6 + 0.10*BonusLevel));
     ReplaceText(S,"%d",GetPercentStr(0.7 + fmin(0.2, 0.05*BonusLevel)));
     return S;
-}*/
+}
 defaultproperties
 {
     DefaultDamageType=Class'NicePack.NiceDamTypeFire'

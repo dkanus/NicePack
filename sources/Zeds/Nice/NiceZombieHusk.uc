@@ -341,7 +341,7 @@ simulated function ProcessHitFX()
 }
 function bool CheckStun(int stunScore, Pawn instigatedBy, Vector hitLocation, Vector momentum, class<NiceWeaponDamageType> damageType, float headshotLevel, KFPlayerReplicationInfo KFPRI){
     if(Health > 0 && damageType != none && damageType.default.HeadShotDamageMult >= 1.2
-       && stunScore >= 250 && ( /*(DamageType != class'NiceDamTypeMagnumPistol') ||*/ headshotLevel > 0.0) )//MEANTODO
+       && stunScore >= 250 && ( headshotLevel > 0.0) )//MEANTODO
        return true;
     return super.CheckStun(stunScore, instigatedBy, hitLocation, momentum, damageType, headshotLevel, KFPRI);
 }

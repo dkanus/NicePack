@@ -89,16 +89,16 @@ function ModDamage(out int Damage, Pawn instigatedBy, Vector hitLocation, Vector
     }//MEANTODO
     // He takes less damage to small arms fire (non explosives)
     // Frags and LAW rockets will bring him down way faster than bullets and shells.
-    if (true/* DamageType != class 'DamTypeFrag' && DamageType != class 'DamTypePipeBomb'
+    if (DamageType != class 'DamTypeFrag' && DamageType != class 'DamTypePipeBomb'
        && DamageType!=class'NiceDamTypeM41AGrenade' && DamageType != class'NiceDamTypeRocket'
-       && (DamageType == none || !DamageType.default.bIsExplosive)*/)
+       && (DamageType == none || !DamageType.default.bIsExplosive))
     {
        // Don't reduce the damage so much if it's a headshot
        if(headshotLevel > 0.0){
-           /*if(DamageType!= none && DamageType.default.HeadShotDamageMult >= 1.5)
+           if(DamageType!= none && DamageType.default.HeadShotDamageMult >= 1.5)
                Damage *= 0.75;
            else
-               Damage *= 0.5;*/
+               Damage *= 0.5;
             Damage *= 0.75;
        }
        else
@@ -110,8 +110,8 @@ function ModDamage(out int Damage, Pawn instigatedBy, Vector hitLocation, Vector
     }
     // A little extra damage from the grenade launchers, they are HE not shrapnel,
     // and its shrapnel that REALLY hurts the FP ;)//MEANTODO
-    else if(/* DamageType == class'NiceDamTypeM41AGrenade'
-        ||*/ (DamageType != none && DamageType.default.bIsExplosive))
+    else if(DamageType == class'NiceDamTypeM41AGrenade'
+        || (DamageType != none && DamageType.default.bIsExplosive))
        Damage *= 1.25;
     if(AnimAction == 'PoundBlock')
        Damage *= BlockDamageReduction;

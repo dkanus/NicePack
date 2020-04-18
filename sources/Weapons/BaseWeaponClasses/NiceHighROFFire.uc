@@ -9,7 +9,7 @@ var string  FireEndSoundRef;
 var string  FireEndStereoSoundRef;
 var string  AmbientFireSoundRef;
 //MEANTODO
-/*
+
 static function PreloadAssets(LevelInfo LevelInfo, optional KFFire Spawned){
     super.PreloadAssets(LevelInfo, Spawned);
     if(default.FireEndSound != none && default.FireEndSoundRef != "")
@@ -103,7 +103,7 @@ state FireLoop
 function PlayFireEnd(){
     if(!bWaitForRelease)
        Super.PlayFireEnd();
-}*/
+}
 defaultproperties
 {
     AmbientFireSoundRadius=500.000000

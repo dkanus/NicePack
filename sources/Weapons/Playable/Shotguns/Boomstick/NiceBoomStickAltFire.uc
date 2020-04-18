@@ -1,7 +1,7 @@
 class NiceBoomStickAltFire extends NiceBoomStickFire;
 // Overload to force last shot to have a different animation with reload
 // NICETODO: uncomment this
-/*function name GetCorrectAnim(bool bLoop, bool bAimed){
+function name GetCorrectAnim(bool bLoop, bool bAimed){
     if(currentContext.sourceWeapon != none && currentContext.sourceWeapon.MagAmmoRemainingClient > 0)
        return super.GetCorrectAnim(bLoop, bAimed);
     if(bAimed)
@@ -9,7 +9,7 @@ class NiceBoomStickAltFire extends NiceBoomStickFire;
     else
        return 'Fire_Last';
     return FireAnim;
-}*/
+}
 defaultproperties
 {
     KickMomentum=(X=-50.000000,Z=22.000000)

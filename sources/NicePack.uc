@@ -1074,7 +1074,7 @@ defaultproperties
     bNoLateFFIncrease=True
     junkieNextGoal=1
     bIsPreGame=True
-    /*pickupReplaceArray(0)=(vanillaClass=Class'KFMod.MAC10Pickup',scrnClass=Class'ScrnBalanceSrv.ScrnMAC10Pickup',NewClass=Class'NicePack.NiceMAC10Pickup')
+    pickupReplaceArray(0)=(vanillaClass=Class'KFMod.MAC10Pickup',scrnClass=Class'ScrnBalanceSrv.ScrnMAC10Pickup',NewClass=Class'NicePack.NiceMAC10Pickup')
     pickupReplaceArray(1)=(vanillaClass=Class'KFMod.WinchesterPickup',scrnClass=Class'ScrnBalanceSrv.ScrnWinchesterPickup',NewClass=Class'NicePack.NiceWinchesterPickup')
     pickupReplaceArray(2)=(vanillaClass=Class'KFMod.CrossbowPickup',scrnClass=Class'ScrnBalanceSrv.ScrnCrossbowPickup',NewClass=Class'NicePack.NiceCrossbowPickup')
     pickupReplaceArray(3)=(vanillaClass=Class'KFMod.SPSniperPickup',scrnClass=Class'ScrnBalanceSrv.ScrnSPSniperPickup',NewClass=Class'NicePack.NiceMaulerPickup')
@@ -1085,7 +1085,7 @@ defaultproperties
     pickupReplaceArray(8)=(vanillaClass=Class'KFMod.NailGunPickup',scrnClass=Class'ScrnBalanceSrv.ScrnNailGunPickup',NewClass=Class'NicePack.NiceNailGunPickup')
     pickupReplaceArray(9)=(vanillaClass=Class'KFMod.KSGPickup',scrnClass=Class'ScrnBalanceSrv.ScrnKSGPickup',NewClass=Class'NicePack.NiceKSGPickup')
     pickupReplaceArray(10)=(vanillaClass=Class'KFMod.BenelliPickup',scrnClass=Class'ScrnBalanceSrv.ScrnBenelliPickup',NewClass=Class'NicePack.NiceBenelliPickup')
-    pickupReplaceArray(11)=(vanillaClass=Class'KFMod.AA12Pickup',scrnClass=Class'ScrnBalanceSrv.ScrnAA12Pickup',NewClass=Class'NicePack.NiceAA12Pickup')*/
+    pickupReplaceArray(11)=(vanillaClass=Class'KFMod.AA12Pickup',scrnClass=Class'ScrnBalanceSrv.ScrnAA12Pickup',NewClass=Class'NicePack.NiceAA12Pickup')
     NiceUniversalDescriptions(0)="Survive on %m in ScrN Balance mode"
     NiceUniversalDescriptions(1)="Survive on %m in ScrN Balance mode with Hardcore Level 5+"
     NiceUniversalDescriptions(2)="Survive on %m in ScrN Balance mode with Hardcore Level 10+"

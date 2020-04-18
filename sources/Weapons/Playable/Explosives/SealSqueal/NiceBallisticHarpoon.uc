@@ -1,7 +1,7 @@
 class NiceBallisticHarpoon extends NiceBullet;
 // Have we added this harpoon to a stuck projectiles list?
 var bool bAddedMyself;
-/*simulated function Tick(float delta){
+simulated function Tick(float delta){
     local NiceSealSquealHarpoonBomber harpoonWeap;
     if(bInitFinished && !bAddedMyself && bStuck && nicePlayer == localPlayer){
        bAddedMyself = true;
@@ -22,7 +22,7 @@ function KillBullet(){
            }
     }
     super.KillBullet();
-}*/
+}
 defaultproperties
 {
     charMinExplosionDist=300.000000
