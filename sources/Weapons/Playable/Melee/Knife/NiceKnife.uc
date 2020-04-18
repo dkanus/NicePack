@@ -8,6 +8,7 @@ defaultproperties
     HudImage=Texture'KillingFloorHUD.WeaponSelect.knife_unselected'
     SelectedHudImage=Texture'KillingFloorHUD.WeaponSelect.knife'
     Weight=0.000000
+    bCanThrow=false
     bKFNeverThrow=True
     StandardDisplayFOV=75.000000
     TraderInfoTexture=Texture'KillingFloorHUD.Trader_Weapon_Images.Trader_Knife'
