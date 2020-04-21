@@ -457,7 +457,7 @@ function AccumulateHeadDamage(  float addDamage,
        HeadRecoveryCountDown = HeadRecoveryTime;
        if(AccHeadDamage > (default.HeadHealth / 1.5)
            && (Mind <= AccStunMindLvl && IsStunPossible()))
-           DoStun(,,,, 1.0);
+           DoStun(nicePlayer.pawn,,,, 1.0);
     }
     else if(HeadRecoveryCountDown > 0.0)
        HeadRecoveryCountDown = FMin(   HeadRecoveryCountDown,

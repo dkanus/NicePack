@@ -20,6 +20,7 @@ simulated event SetAnimAction(name NewAction){
 simulated function Unstun(){
     bCharging = true;
     MovementAnims[0] = 'ChargeF';
+    GoToState('RunningState');
     super.Unstun();
 }
 function TakeDamageClient(int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<NiceWeaponDamageType> damageType, float headshotLevel, float lockonTime){
