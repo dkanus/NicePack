@@ -99,7 +99,6 @@ function ModDamage(out int Damage, Pawn instigatedBy, Vector hitLocation, Vector
                Damage *= 0.75;
            else
                Damage *= 0.5;
-            Damage *= 0.75;
        }
        else
            Damage *= 0.5;
