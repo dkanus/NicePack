@@ -179,9 +179,7 @@ function bool MeleeDamageTarget(int hitdamage, vector pushdir) {
     local NiceHumanPawn targetPawn;
     result = Super(NiceMonster).MeleeDamageTarget(hitdamage, pushdir);
     targetPawn = NiceHumanPawn(Controller.Target);
-    if(result && targetPawn != none && (targetPawn.hmgShieldLevel <= 0 ||
-       !class'NiceVeterancyTypes'.static.HasSkill(NicePlayerController(targetPawn.Controller),
-           class'NiceSkillEnforcerFullCounter')) ){
+    if(result && targetPawn != none){
        if(targetPawn.ShieldStrength > 100)
            return result;
        else if(targetPawn.ShieldStrength < 0)
