@@ -313,6 +313,7 @@ simulated function Tick(float Delta)
 //can't teleport if set on fire
 function bool CanTeleport()
 {
+    if (HeadHealth <= 0) return false;
     return !bFlashTeleporting && !bOnFire && Physics == PHYS_Walking && Level.TimeSeconds > TeleportBlockTime 
        && LastFlashTime + 7.5 < Level.TimeSeconds && !bIsStunned;
 }
