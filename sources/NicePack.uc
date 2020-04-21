@@ -186,6 +186,7 @@ simulated function PostBeginPlay(){
     class'NicePack.NiceSCARMK17Pickup'.default.VariantClasses[class'NicePack.NiceSCARMK17Pickup'.default.VariantClasses.length] = class'NicePack.SkinCamoSCARMK17Pickup';
     // Abilities
     class'NiceAbilityManager'.default.events.static.AddAdapter(class'NiceSharpshooterAbilitiesAdapter', level);
+    class'NiceAbilityManager'.default.events.static.AddAdapter(class'NiceEnforcerAbilitiesAdapter', level);
     SetTimer(0.25, true);
     if(Role < ROLE_Authority)
        return;
@@ -761,9 +762,6 @@ function WaveStart(){
                nicePawn.getFreeJacket();
                nicePawn.bReactiveArmorUsed = false;
            }
-           // Update HMG's 'Full counter' level
-           if(nicePawn != none)
-               nicePawn.hmgShieldLevel = class'NiceSkillEnforcerFullCounter'.default.layersAmount;
        }
     }
     if(KFGameType(Level.Game).WaveNum == KFGameType(Level.Game).FinalWave && !bAppliedPlayersMult){

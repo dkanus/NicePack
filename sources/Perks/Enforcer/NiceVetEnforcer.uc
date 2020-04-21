@@ -46,7 +46,7 @@ static function float AddExtraAmmoFor(KFPlayerReplicationInfo KFPRI, Class<Ammun
     local float bonusNades;
     // Default bonus
     bonusNades = 2;
-    if(AmmoType == class'NicePack.NiceCryoNade' || AmmoType == class'NicePack.NiceNailNade')
+    if(AmmoType == class'FragAmmo')
        return 1.0 + 0.2 * bonusNades;
     return 1.0;
 }
@@ -56,11 +56,11 @@ static function int ReduceDamage(KFPlayerReplicationInfo KFPRI, KFPawn Injured, 
        InDamage *= (1 - class'NiceSkillEnforcerDetermination'.default.addedResist);
     if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillEnforcerUnshakable'))
        InDamage *= (1 - class'NiceSkillEnforcerUnshakable'.default.skillResist);
-    if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillHeavyCoating') && Injured.ShieldStrength > 0){
+    if(HasSkill(NicePlayerController(KFPRI.Owner), class'NiceSkillEnforcerCoating') && Injured.ShieldStrength > 0){
        if( class<KFWeaponDamageType>(DmgType) != none
            && ((class<KFWeaponDamageType>(DmgType).default.bDealBurningDamage && KFMonster(Instigator) != none)
            || DmgType == class'NiceZombieTeslaHusk'.default.MyDamageType) )
-           InDamage *= (1 - class'NiceSkillHeavyCoating'.default.huskResist);
+           InDamage *= (1 - class'NiceSkillEnforcerCoating'.default.huskResist);
     }
     return InDamage;
 }
@@ -123,16 +123,32 @@ static function float SlowingModifier(KFPlayerReplicationInfo KFPRI){
 static function string GetCustomLevelInfo(byte Level){
     return default.CustomLevelInfo;
 }
+static function SetupAbilities(KFPlayerReplicationInfo KFPRI){
+    local NicePlayerController                      nicePlayer;
+    local NiceAbilityManager.NiceAbilityDescription fullcounter;
+    if(KFPRI != none)
+       nicePlayer = NicePlayerController(KFPRI.Owner);
+    if(nicePlayer == none || nicePlayer.abilityManager == none)
+       return;
+    fullcounter.ID   = "fullcounter";
+    fullcounter.icon = Texture'NicePackT.HudCounter.fullCounter';
+    fullcounter.cooldownLength = 30.0;
+    fullcounter.canBeCancelled = false;
+    nicePlayer.abilityManager.AddAbility(fullcounter);
+}
+
 defaultproperties
 {
     bNewTypePerk=True
     SkillGroupA(0)=Class'NicePack.NiceSkillEnforcerUnstoppable'
     SkillGroupA(1)=Class'NicePack.NiceSkillEnforcerBombard'
-    SkillGroupA(2)=Class'NicePack.NiceSkillEnforcerFullCounter'
+    SkillGroupA(2)=Class'NicePack.NiceSkillEnforcerCoating'
+    SkillGroupA(3)=Class'NicePack.NiceSkillEnforcerStuporA'
     SkillGroupA(4)=Class'NicePack.NiceSkillEnforcerZEDBarrage'
     SkillGroupB(0)=Class'NicePack.NiceSkillEnforcerUnshakable'
     SkillGroupB(1)=Class'NicePack.NiceSkillEnforcerMultitasker'
     SkillGroupB(2)=Class'NicePack.NiceSkillEnforcerDetermination'
+    SkillGroupB(3)=Class'NicePack.NiceSkillEnforcerBrutalCarnageA'
     SkillGroupB(4)=Class'NicePack.NiceSkillEnforcerZEDJuggernaut'
     progressArray0(0)=100
     progressArray0(1)=1000

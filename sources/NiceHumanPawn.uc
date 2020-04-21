@@ -44,6 +44,9 @@ struct InvincExtentions{
 };
 var array<InvincExtentions> zedInvExtList;
 var int headshotStack;
+var float remainingFCArmor;
+var float remainingFCTime;
+var float brutalCranageTimer;
 replication{
     reliable if(Role == ROLE_Authority)
        headshotStack, hmgShieldLevel, forcedZedTimeCountDown, maniacTimeout, invincibilityTimer, safeMeleeMisses, ffScale,
@@ -225,25 +228,50 @@ simulated function Tick(float deltaTime){
     local NicePlayerController  nicePlayer;
     nicePlayer = NicePlayerController(Controller);
     if(Role == Role_AUTHORITY){
-       //  Calibration
-       if(     currentCalibrationState == CALSTATE_ACTIVE
-           &&  calibrationRemainingTime > 0.0){
-           calibrationScore = CalculateCalibrationScore();
-           calibrationRemainingTime -= deltaTime;
-           if(calibrationRemainingTime <= 0 || calibrationScore == 5){
-               currentCalibrationState = CALSTATE_FINISHED;
-               calibrateUsedZeds.length = 0;
-               if(nicePlayer != none && nicePlayer.abilityManager != none)
-                   nicePlayer.abilityManager.SetAbilityState(0, ASTATE_COOLDOWN);
-           }
-       }
-       //  Gunslinger
-       if(     gunslingerTimer > 0
-           &&  nicePlayer != none && nicePlayer.abilityManager != none){
-           gunslingerTimer -= deltaTime;
-           if(gunslingerTimer <= 0)
-               nicePlayer.abilityManager.SetAbilityState(1, ASTATE_COOLDOWN);
-       }
+        //  Brutal carnage
+        if (brutalCranageTimer > 0)
+        {
+            brutalCranageTimer -= deltaTime;
+            if (brutalCranageTimer <= 0)
+            {
+                if(nicePlayer != none && nicePlayer.abilityManager != none)
+                {
+                    nicePlayer.abilityManager.SetAbilityState(1, ASTATE_COOLDOWN);
+                }
+            }
+        }
+        //  Full counter remainingFCTime
+        if (remainingFCTime > 0)
+        {
+            remainingFCTime -= deltaTime;
+            if (remainingFCTime <= 0)
+            {
+                remainingFCArmor = 0;
+                if(nicePlayer != none && nicePlayer.abilityManager != none)
+                {
+                    nicePlayer.abilityManager.SetAbilityState(0, ASTATE_COOLDOWN);
+                }
+            }
+        }
+        //  Calibration
+        if(     currentCalibrationState == CALSTATE_ACTIVE
+            &&  calibrationRemainingTime > 0.0){
+            calibrationScore = CalculateCalibrationScore();
+            calibrationRemainingTime -= deltaTime;
+            if(calibrationRemainingTime <= 0 || calibrationScore == 5){
+                currentCalibrationState = CALSTATE_FINISHED;
+                calibrateUsedZeds.length = 0;
+                if(nicePlayer != none && nicePlayer.abilityManager != none)
+                    nicePlayer.abilityManager.SetAbilityState(0, ASTATE_COOLDOWN);
+            }
+        }
+        //  Gunslinger
+        if(     gunslingerTimer > 0
+            &&  nicePlayer != none && nicePlayer.abilityManager != none){
+            gunslingerTimer -= deltaTime;
+            if(gunslingerTimer <= 0)
+                nicePlayer.abilityManager.SetAbilityState(1, ASTATE_COOLDOWN);
+        }
        //  Regen
        if(class'NiceVeterancyTypes'.static.hasSkill(NicePlayerController(Controller), class'NiceSkillMedicRegeneration')){
            if(health < healthMax)
@@ -663,10 +691,10 @@ simulated function ModifyVelocity(float DeltaTime, vector OldVelocity){
            MovementMod *= TraderSpeedBoost;
        if(Health < HealthMax && medicAdrenaliteTime > 0){
            // Calulate boos from adrenaline
-           adrSpeedBonus = Health * (1 - class'NiceSkillMedicAdrenalineShot'.default.speedBoost) +
-               (100 * class'NiceSkillMedicAdrenalineShot'.default.speedBoost - class'NiceSkillMedicAdrenalineShot'.default.minHealth);
-           adrSpeedBonus /= (100 - class'NiceSkillMedicAdrenalineShot'.default.minHealth);
-           adrSpeedBonus = FMin(adrSpeedBonus, class'NiceSkillMedicAdrenalineShot'.default.speedBoost);
+           adrSpeedBonus = Health * (1 - class'NiceSkillCommandoAdrenalineShot'.default.speedBoost) +
+               (100 * class'NiceSkillCommandoAdrenalineShot'.default.speedBoost - class'NiceSkillCommandoAdrenalineShot'.default.minHealth);
+           adrSpeedBonus /= (100 - class'NiceSkillCommandoAdrenalineShot'.default.minHealth);
+           adrSpeedBonus = FMin(adrSpeedBonus, class'NiceSkillCommandoAdrenalineShot'.default.speedBoost);
            adrSpeedBonus = FMax(adrSpeedBonus, 1.0);
            MovementMod *= adrSpeedBonus;
        }
@@ -690,6 +718,7 @@ function getFreeJacket(){
     }
 }
 simulated function TakeDamage(int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType, optional int HitIndex){
+    local float FCArmorAbsorb;
     local int needArmor;
     local int healAmount;
     local float healPotency;
@@ -708,35 +737,33 @@ simulated function TakeDamage(int Damage, Pawn InstigatedBy, Vector Hitlocation,
     }
     // Adrenaline damage decrease
     if(medicAdrenaliteTime > 0){
-       adrResistance = Health * (1 - class'NiceSkillMedicAdrenalineShot'.default.resistBoost) +
-               (100 * class'NiceSkillMedicAdrenalineShot'.default.resistBoost - class'NiceSkillMedicAdrenalineShot'.default.minHealth);
-       adrResistance /= (100 - class'NiceSkillMedicAdrenalineShot'.default.minHealth);
-       adrResistance = FMin(adrResistance, class'NiceSkillMedicAdrenalineShot'.default.resistBoost);
+       adrResistance = Health * (1 - class'NiceSkillCommandoAdrenalineShot'.default.resistBoost) +
+               (100 * class'NiceSkillCommandoAdrenalineShot'.default.resistBoost - class'NiceSkillCommandoAdrenalineShot'.default.minHealth);
+       adrResistance /= (100 - class'NiceSkillCommandoAdrenalineShot'.default.minHealth);
+       adrResistance = FMin(adrResistance, class'NiceSkillCommandoAdrenalineShot'.default.resistBoost);
        adrResistance = FMax(adrResistance, 1.0);
        Damage *= adrResistance;
     }
     if(nicePlayer != none && nicePlayer.IsZedTimeActive()
        && class'NiceVeterancyTypes'.static.HasSkill(nicePlayer, class'NiceSkillZerkZEDUnbreakable'))
        return;
-    if(hmgShieldLevel > 0 && class'NiceVeterancyTypes'.static.HasSkill(nicePlayer, class'NiceSkillEnforcerFullCounter')){
-       if(Damage < 20 && InstigatedBy.default.HealthMax < 1500){
-           Damage *= class'NiceSkillEnforcerFullCounter'.default.damageReduction;
-           hmgShieldLevel --;
-       }
-       else{
-           if(hmgShieldLevel == class'NiceSkillEnforcerFullCounter'.default.layersAmount)
-               Damage *= class'NiceSkillEnforcerFullCounter'.default.damageReduction * float(hmgShieldLevel) /
-                   float(class'NiceSkillEnforcerFullCounter'.default.layersAmount);
-           hmgShieldLevel = 0;
-       }
-    }
     lastHMGShieldUpdateTime = Level.TimeSeconds;
     if(damageType != none && class<NiceDamTypeDrug>(damageType) == none){
        bOldArmorStops = damageType.default.bArmorStops;
-       if(class'NiceVeterancyTypes'.static.HasSkill(nicePlayer, class'NiceSkillHeavyCoating'))
+       if(class'NiceVeterancyTypes'.static.HasSkill(nicePlayer, class'NiceSkillEnforcerCoating'))
            damageType.default.bArmorStops = true;
     }
     lastExplosionDistance = 0.0;    // hack, but scrn fucks with usotherwise
+    if (remainingFCArmor > 0 && remainingFCTime > 0)
+    {
+        FCArmorAbsorb = FMin(Damage, remainingFCArmor);
+        Damage -= FCArmorAbsorb;
+        remainingFCArmor -= FCArmorAbsorb;
+        if(remainingFCArmor <= 0 && nicePlayer != none && nicePlayer.abilityManager != none)
+        {
+            nicePlayer.abilityManager.SetAbilityState(0, ASTATE_COOLDOWN);
+        }
+    }
     super.TakeDamage(Damage, InstigatedBy, hitLocation, Momentum, damageType, HitIndex);
     // Commando's zed time
     if( forcedZedTimeCountDown <= 0.0
@@ -783,11 +810,6 @@ function Timer(){
     }
     SetAmmoStatus();
     ApplyWeaponFlashlight(true);
-    // Regenerate HMG's full counter shield
-    if(hmgShieldLevel < class'NiceSkillEnforcerFullCounter'.default.layersAmount && Level.TimeSeconds - lastHMGShieldUpdateTime > class'NiceSkillEnforcerFullCounter'.default.coolDown){
-       lastHMGShieldUpdateTime = Level.TimeSeconds;
-       hmgShieldLevel ++;
-    }
 }
 simulated function Fire(optional float F){
     local bool bRecManualReload;

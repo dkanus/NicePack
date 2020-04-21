@@ -102,31 +102,45 @@ event Tick(float DeltaTime){
 }
 function Killed(Controller Killer, Controller Killed, Pawn KilledPawn, class<DamageType> dmgType){
     local GameRules rules;
+    local NicePlayerController nicePlayer;
+    local NiceAvoidMarkerCarnage AvoidArea;
     local ScrnGameRules scrnRules;
     local KFSteamStatsAndAchievements StatsAndAchievements;
     Super.Killed(Killer, Killed, KilledPawn, dmgType);
     if(PlayerController(Killer) != none){
+        nicePlayer = NicePlayerController(killer);
        if(NiceMonster(KilledPawn) != none && Killed != Killer){
-           StatsAndAchievements = KFSteamStatsAndAchievements(PlayerController(Killer).SteamStatsAndAchievements);
-           if(StatsAndAchievements != none){
-               if(KilledPawn.IsA('NiceZombieStalker') || KilledPawn.IsA('MeanZombieStalker')){
-                   if(class<NiceDamTypeWinchester>(dmgType) != none)
-                       StatsAndAchievements.AddStalkerKillWithLAR();
-               }
-               else if(KilledPawn.IsA('NiceZombieClot') || KilledPawn.IsA('MeanZombieClot')){
-                   if(class<NiceDamTypeWinchester>(dmgType) != none)
-                       KFSteamStatsAndAchievements(PlayerController(Killer).SteamStatsAndAchievements).AddClotKillWithLAR();
-               }
-               if(class<NiceWeaponDamageType>(dmgType) != none){
-                   for(rules = Level.Game.GameRulesModifiers;rules != none;rules = rules.NextGameRules)
-                       if(ScrnGameRules(rules) != none){
-                           scrnRules = ScrnGameRules(rules);
-                           break;
-                       }
-                   if(scrnRules != none)
-                       class<NiceWeaponDamageType>(dmgType).Static.AwardNiceKill(StatsAndAchievements, KFPlayerController(Killer), KFMonster(KilledPawn), scrnRules.HardcoreLevel);
-               }
-           }
+            //   Brutal carnage
+            if (nicePlayer != none && killer.pawn != none && nicePlayer.abilityManager != none && nicePlayer.abilityManager.IsAbilityActive("carnage"))
+            {
+                AvoidArea = Spawn(class'NiceAvoidMarkerCarnage', killer.pawn);
+                AvoidArea.SetLocation(KilledPawn.location);
+                AvoidArea.healthLevel = killedPawn.default.health;
+                AvoidArea.SetCollisionSize( class'NicePack.NiceSkillEnforcerBrutalCarnageA'.default.avoidRadius,
+                                            class'NicePack.NiceSkillEnforcerBrutalCarnageA'.default.avoidRadius);
+                AvoidArea.StartleBots();
+            }
+            //   Rest
+            StatsAndAchievements = KFSteamStatsAndAchievements(PlayerController(Killer).SteamStatsAndAchievements);
+            if(StatsAndAchievements != none){
+                if(KilledPawn.IsA('NiceZombieStalker') || KilledPawn.IsA('MeanZombieStalker')){
+                    if(class<NiceDamTypeWinchester>(dmgType) != none)
+                        StatsAndAchievements.AddStalkerKillWithLAR();
+                }
+                else if(KilledPawn.IsA('NiceZombieClot') || KilledPawn.IsA('MeanZombieClot')){
+                    if(class<NiceDamTypeWinchester>(dmgType) != none)
+                        KFSteamStatsAndAchievements(PlayerController(Killer).SteamStatsAndAchievements).AddClotKillWithLAR();
+                }
+                if(class<NiceWeaponDamageType>(dmgType) != none){
+                    for(rules = Level.Game.GameRulesModifiers;rules != none;rules = rules.NextGameRules)
+                        if(ScrnGameRules(rules) != none){
+                            scrnRules = ScrnGameRules(rules);
+                            break;
+                        }
+                    if(scrnRules != none)
+                        class<NiceWeaponDamageType>(dmgType).Static.AwardNiceKill(StatsAndAchievements, KFPlayerController(Killer), KFMonster(KilledPawn), scrnRules.HardcoreLevel);
+                }
+            }
        }
     }
 }
