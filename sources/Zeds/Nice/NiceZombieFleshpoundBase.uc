@@ -64,7 +64,7 @@ defaultproperties
     SeveredHeadAttachScale=1.500000
     PlayerCountHealthScale=0.250000
     OnlineHeadshotOffset=(X=22.000000,Z=68.000000)
-    OnlineHeadshotScale=1.300000
+    OnlineHeadshotScale=1.100000
     HeadHealth=700.000000
     PlayerNumHeadHealthScale=0.300000
     MotionDetectorThreat=5.000000
