@@ -1,4 +1,4 @@
-class NiceDamTypeM7A3M extends NiceDamTypeMedicBullet
+class NiceDamTypeM7A3M extends NiceDamageTypeVetCommando
     abstract;
 defaultproperties
 {

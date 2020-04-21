@@ -1,4 +1,4 @@
-class NiceDamTypeMP5M extends NiceDamTypeMedicBullet
+class NiceDamTypeMP5M extends NiceDamageTypeVetCommando
     abstract;
 defaultproperties
 {

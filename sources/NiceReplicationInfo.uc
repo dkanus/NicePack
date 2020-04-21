@@ -162,9 +162,9 @@ simulated function HandleNiceHealingMechanicsAndSkills
     if(nicePlayer == none)
        return;
     if(class'NiceVeterancyTypes'.static.
-       hasSkill(nicePlayer, class'NiceSkillMedicAdrenalineShot')){
+       hasSkill(nicePlayer, class'NiceSkillCommandoAdrenalineShot')){
        healed.medicAdrenaliteTime =
-           class'NiceSkillMedicAdrenalineShot'.default.boostTime;
+           class'NiceSkillCommandoAdrenalineShot'.default.boostTime;
     }
     if(class'NiceVeterancyTypes'.static.
        hasSkill(nicePlayer, class'NiceSkillMedicSymbioticHealth')){
@@ -176,7 +176,7 @@ simulated function HandleNiceHealingMechanicsAndSkills
            KFWeapon(healer.weapon));
     }
     hasZEDHeavenCanceller = class'NiceVeterancyTypes'.static.
-       hasSkill(nicePlayer, class'NiceSkillMedicZEDHeavenCanceller');
+       hasSkill(nicePlayer, class'NiceSkillCommandoZEDHeavenCanceller');
     if(nicePlayer.IsZedTimeActive() && hasZEDHeavenCanceller){
        healed.health = healed.healthMax;
        healed.bZedTimeInvincible = true;
@@ -253,7 +253,7 @@ simulated function HandleNiceDamageMechanicsAndSkills
     //  Medic's skills
     if(class<NiceDamTypeMedicDart>(damageType) != none){
        hasTranquilizer = class'NiceVeterancyTypes'.static.
-           hasSkill(nicePlayer, class'NiceSkillMedicTranquilizer');
+           hasSkill(nicePlayer, class'NiceSkillCommandoTranquilizer');
        hasZEDFrenzy = class'NiceVeterancyTypes'.static.
            hasSkill(nicePlayer, class'NiceSkillMedicZEDFrenzy');
        // Medic's suppression

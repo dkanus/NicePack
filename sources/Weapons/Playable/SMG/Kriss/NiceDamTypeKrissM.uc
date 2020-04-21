@@ -1,4 +1,4 @@
-class NiceDamTypeKrissM extends NiceDamTypeMedicBullet
+class NiceDamTypeKrissM extends NiceDamageTypeVetCommando
     abstract;
 defaultproperties
 {

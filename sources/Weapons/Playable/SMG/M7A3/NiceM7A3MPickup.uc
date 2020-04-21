@@ -14,6 +14,7 @@ defaultproperties
     AmmoItemName="7.6x40mm Ammo"
     AmmoMesh=StaticMesh'KillingFloorStatics.L85Ammo'
     EquipmentCategoryID=3
+    CorrespondingPerkIndex=3
     InventoryType=Class'NicePack.NiceM7A3MMedicGun'
     PickupMessage="You got the M7A3 Medic Gun"
     PickupSound=Sound'KF_M7A3Snd.M7A3_Pickup'

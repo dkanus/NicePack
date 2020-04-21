@@ -13,6 +13,7 @@ defaultproperties
     AmmoItemName="45. ACP Ammo"
     AmmoMesh=StaticMesh'KillingFloorStatics.L85Ammo'
     EquipmentCategoryID=3
+    CorrespondingPerkIndex=3
     VariantClasses(0)=Class'KFMod.NeonKrissMPickup'
     InventoryType=Class'NicePack.NiceKrissMMedicGun'
     PickupMessage="You got the KRISS Vector Medic Gun"

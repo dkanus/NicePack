@@ -272,17 +272,17 @@ simulated function Tick(float deltaTime){
             if(gunslingerTimer <= 0)
                 nicePlayer.abilityManager.SetAbilityState(1, ASTATE_COOLDOWN);
         }
-       //  Regen
-       if(class'NiceVeterancyTypes'.static.hasSkill(NicePlayerController(Controller), class'NiceSkillMedicRegeneration')){
-           if(health < healthMax)
-               regenTime += deltaTime;
-           while(regenTime > class'NiceSkillMedicRegeneration'.default.regenFrequency){
-               if(health < healthMax)
-                   health += 1;
-               else
-                   regenTime = 0.0;
-               regenTime -= class'NiceSkillMedicRegeneration'.default.regenFrequency;
-           }
+        //  Regen
+        if(class'NiceVeterancyTypes'.static.hasSkill(NicePlayerController(Controller), class'NiceSkillCommandoRegeneration')){
+            if(health < healthMax)
+                regenTime += deltaTime;
+            while(regenTime > class'NiceSkillCommandoRegeneration'.default.regenFrequency){
+                if(health < healthMax)
+                    health += 1;
+                else
+                    regenTime = 0.0;
+                regenTime -= class'NiceSkillCommandoRegeneration'.default.regenFrequency;
+            }
        }
        // Update adrenaline
        medicAdrenaliteTime -= deltaTime;

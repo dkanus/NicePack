@@ -14,6 +14,7 @@ defaultproperties
     AmmoItemName="9x19mm Ammo"
     AmmoMesh=StaticMesh'KillingFloorStatics.L85Ammo'
     EquipmentCategoryID=3
+    CorrespondingPerkIndex=3
     VariantClasses(0)=Class'KFMod.CamoMP5MPickup'
     InventoryType=Class'NicePack.NiceMP5MMedicGun'
     PickupMessage="You got the MP5M Medic Gun"
