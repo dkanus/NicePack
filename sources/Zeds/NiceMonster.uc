@@ -1188,14 +1188,14 @@ function float GetstunDurationMult( Pawn instigatedBy,
                                    class<NiceWeaponDamageType> damageType,
                                    float headshotLevel,
                                    KFPlayerReplicationInfo KFPRI){
-    local class<NiceVeterancyTypes>     niceVet;
-    //  Default out
-    if(KFPRI == none) return 1.0;
-    niceVet = class<NiceVeterancyTypes>(KFPRI.ClientVeteranSkill);
-    if(niceVet == none) return 1.0;
-    //  Perk's bonuses out
-    return niceVet.static.stunDurationMult( KFPRI, self, KFPawn(instigatedBy),
-                                           damageType);
+   local class<NiceVeterancyTypes>     niceVet;
+   //  Default out
+   if(KFPRI == none) return 1.0;
+   niceVet = class<NiceVeterancyTypes>(KFPRI.ClientVeteranSkill);
+   if(niceVet == none) return 1.0;
+   //  Perk's bonuses out
+   return niceVet.static.stunDurationMult( KFPRI, self, KFPawn(instigatedBy),
+                                          damageType);
 }
 function bool IsStunPossible(){
     return (remainingStuns != 0 || bIsStunned);
