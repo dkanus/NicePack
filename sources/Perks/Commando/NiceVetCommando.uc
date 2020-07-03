@@ -35,12 +35,7 @@ static function float GetMagCapacityMod(KFPlayerReplicationInfo KFPRI, KFWeapon 
     return 1.0;
 }
 static function float GetSyringeChargeRate(KFPlayerReplicationInfo KFPRI){
-    return 3.0;
-}
-static function float GetHealPotency(KFPlayerReplicationInfo KFPRI){
-    local float potency;
-    potency = 1.5;
-    return potency;
+    return 1.5;
 }
 static function float GetMovementSpeedModifier(KFPlayerReplicationInfo KFPRI, KFGameReplicationInfo KFGRI){
     return 1.1;
@@ -83,7 +78,7 @@ defaultproperties
     OnHUDIcons(3)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Commando_Blue',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Blue',DrawColor=(B=255,G=255,R=255,A=255))
     OnHUDIcons(4)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Commando_Purple',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Purple',DrawColor=(B=255,G=255,R=255,A=255))
     OnHUDIcons(5)=(PerkIcon=Texture'ScrnTex.Perks.Perk_Commando_Orange',StarIcon=Texture'ScrnTex.Perks.Hud_Perk_Star_Orange',DrawColor=(B=255,G=255,R=255,A=255))
-    CustomLevelInfo="Level up by doing damage with perked weapons|30% faster reload with all weapons|10% faster movement speed|You get four additional Zed-Time Extensions|See health and cloacked zeds from 16 meters distance|50% more potent medical injections|Better Syringe handling"
+    CustomLevelInfo="Level up by doing damage with perked weapons|30% faster reload with all weapons|10% faster movement speed|You get four additional Zed-Time Extensions|See health and cloacked zeds from 16 meters distance|Better Syringe handling"
     PerkIndex=3
     OnHUDIcon=Texture'KillingFloorHUD.Perks.Perk_Commando'
     OnHUDGoldIcon=Texture'KillingFloor2HUD.Perk_Icons.Perk_Commando_Gold'

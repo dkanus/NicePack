@@ -5,7 +5,7 @@ defaultproperties
     FireEndStereoSoundRef="KF_MP7Snd.MP7_tailST"
     AmbientFireSoundRef="KF_MP7Snd.MP7_FireLoop"
     ProjectileSpeed=36750.000000
-    RecoilRate=0.060000
+    RecoilRate=0.0060000
     maxVerticalRecoilAngle=70
     maxHorizontalRecoilAngle=35
     RecoilVelocityScale=0.000000
@@ -25,6 +25,6 @@ defaultproperties
     ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
     ShakeOffsetTime=1.250000
     FlashEmitterClass=Class'ROEffects.MuzzleFlash1stMP'
-    Spread=0.012000
+    Spread=500.0
     SpreadStyle=SS_Random
 }

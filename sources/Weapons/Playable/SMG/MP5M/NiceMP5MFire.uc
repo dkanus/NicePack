@@ -5,7 +5,7 @@ defaultproperties
     FireEndStereoSoundRef="KF_MP5Snd.MP5_Fire_Loop_End_S"
     AmbientFireSoundRef="KF_MP5Snd.MP5_Fire_Loop"
     ProjectileSpeed=21250.000000
-    RecoilRate=0.075000
+    RecoilRate=0.0075000
     maxVerticalRecoilAngle=160
     maxHorizontalRecoilAngle=80
     RecoilVelocityScale=0.000000
@@ -15,6 +15,8 @@ defaultproperties
     DamageType=Class'NicePack.NiceDamTypeMP5M'
     DamageMin=35
     DamageMax=35
+    Spread=500.0
+    SpreadStyle=SS_Random
     Momentum=5500.000000
     FireRate=0.075000
     AmmoClass=Class'NicePack.NiceMP5MAmmo'

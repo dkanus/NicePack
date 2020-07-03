@@ -17,7 +17,7 @@ defaultproperties
     bWaitForRelease=True
     TransientSoundVolume=1.800000
     FireForce="AssaultRifleFire"
-    FireRate=1.600000
+    FireRate=0.000000
     AmmoClass=Class'NicePack.NiceContenderAmmo'
     ShakeRotMag=(X=5.000000,Y=7.000000,Z=3.000000)
     ShakeRotRate=(X=10000.000000,Y=10000.000000,Z=10000.000000)

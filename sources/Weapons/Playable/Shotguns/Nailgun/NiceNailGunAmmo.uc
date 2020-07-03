@@ -3,9 +3,9 @@ class NiceNailGunAmmo extends NiceAmmo;
 defaultproperties
 {
     WeaponPickupClass=Class'NicePack.NiceNailGunPickup'
-    AmmoPickupAmount=42
-    MaxAmmo=210
-    InitialAmount=105
+    AmmoPickupAmount=28
+    MaxAmmo=168
+    InitialAmount=84
     IconMaterial=Texture'KillingFloorHUD.Generic.HUD'
     IconCoords=(X1=451,Y1=445,X2=510,Y2=500)
 }

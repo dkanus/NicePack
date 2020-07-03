@@ -417,15 +417,19 @@ Begin:
 function bool SetEnemy( pawn newEnemy,
                        optional bool bHateMonster,
                        optional float MonsterHateChanceOverride){
-    local NiceMonster   niceZed;
+    local NiceMonster           niceZed;
+    local NiceZombieFleshpound  niceFP;
     local bool          bCanForceFight;
     //  Can we fight anything?
     niceZed = NiceMonster(pawn);
+    niceFP = NiceZombieFleshpound(niceZed);
     if(niceZed != none)
        bCanForceFight =
                KFMonster(pawn).HeadHealth <= 0
            ||  KFMonster(pawn).bDecapitated
            ||  newEnemy.Health <= 15;
+    if (niceFP != none && niceFP.IsInState('RageCharging'))
+        bCanForceFight = false;
     if(newEnemy != none)
        bCanForceFight = bCanForceFight
            && newEnemy.Health > 0 && newEnemy != enemy;

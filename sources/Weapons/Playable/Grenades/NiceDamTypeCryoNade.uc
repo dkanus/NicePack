@@ -2,5 +2,5 @@ class NiceDamTypeCryoNade extends NiceWeaponDamageType
     abstract;
 defaultproperties
 {
-    freezePower=200.000000
+    freezePower=160.000000
 }

@@ -91,8 +91,8 @@ defaultproperties
     WaterSpeed=100.000000
     AccelRate=1024.000000
     JumpZ=340.000000
-    HealthMax=250.000000
-    Health=250
+    HealthMax=190.000000
+    Health=190
     MenuName="Shiver"
     MovementAnims(0)="ClotWalk"
     AmbientSound=SoundGroup'ScrnZedPack_S.Shiver.ShiverIdleGroup'

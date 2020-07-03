@@ -4,6 +4,7 @@ class NiceDamTypeWinchester extends NiceDamageTypeVetSharpshooter
 defaultproperties
 {
      stunMultiplier=1.500000
+     flinchMultiplier=0.8
      bIsProjectile=True
      HeadShotDamageMult=2.500000
      bSniperWeapon=True

@@ -10,7 +10,7 @@ defaultproperties
     reloadMagStartFrame=0.278000
     reloadChargeStartFrame=-1.000000
     FirstPersonFlashlightOffset=(X=-20.000000,Y=-22.000000,Z=8.000000)
-    MagCapacity=42
+    MagCapacity=28
     ReloadRate=2.600000
     ReloadAnim="Reload"
     ReloadAnimRate=1.000000

@@ -5,7 +5,7 @@ defaultproperties
     FireEndStereoSoundRef="KF_KrissSND.KF_WEP_KRISS_END_S"
     AmbientFireSoundRef="KF_KrissSND.Kriss_Fire_Loop"
     ProjectileSpeed=15200.000000
-    RecoilRate=0.100000
+    RecoilRate=0.0100000
     maxVerticalRecoilAngle=20
     maxHorizontalRecoilAngle=10
     RecoilVelocityScale=0.000000
@@ -25,4 +25,6 @@ defaultproperties
     ShakeOffsetRate=(X=1000.000000,Y=1000.000000,Z=1000.000000)
     ShakeOffsetTime=1.250000
     FlashEmitterClass=Class'ROEffects.MuzzleFlash1stMP'
+    Spread=500.0
+    SpreadStyle=SS_Random
 }

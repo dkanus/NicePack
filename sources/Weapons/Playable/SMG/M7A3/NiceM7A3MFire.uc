@@ -3,7 +3,7 @@ defaultproperties
 {
     ProjectileSpeed=21250.000000
     FireAimedAnim="Fire_Iron"
-    RecoilRate=0.085000
+    RecoilRate=0.0085000
     maxVerticalRecoilAngle=120
     maxHorizontalRecoilAngle=60
     ShellEjectClass=Class'ROEffects.KFShellEjectSCAR'
@@ -32,4 +32,6 @@ defaultproperties
     BotRefireRate=0.990000
     FlashEmitterClass=Class'ROEffects.MuzzleFlash1stSTG'
     aimerror=42.000000
+    Spread=500.0
+    SpreadStyle=SS_Random
 }

@@ -22,7 +22,7 @@ function Touch( actor Other ){
 function bool RelevantTo(Pawn P){
     local NiceMonster niceZed;
     niceZed = NiceMonster(P);
-    if(niceZed != none && niceZed.default.Health >= 1500)
+    if(niceZed != none && niceZed.default.Health >= 1000)
        return false;
     return (niceFP != none && VSizeSquared(niceFP.Velocity) >= 75 && Super.RelevantTo(P) && niceFP.Velocity dot (P.Location - niceFP.Location) > 0 );
 }

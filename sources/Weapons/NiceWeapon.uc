@@ -1122,6 +1122,7 @@ exec function ReloadMeNow(){
 }
 simulated function float GetCurrentReloadMult(){
     local float ReloadMulti;
+    local float timeDilationSpeedup;
     local NiceHumanPawn nicePawn;
     local NicePlayerController nicePlayer;
     local class<NiceVeterancyTypes> niceVet;
@@ -1142,8 +1143,15 @@ simulated function float GetCurrentReloadMult(){
            ReloadMulti *= activeSlowdown;
     else if(bCanActiveReload && reloadType == RTYPE_SINGLE && subReloadStage == 0)
        ReloadMulti *= activeSpeedup;
+    if(nicePlayer != none && niceVet.static.hasSkill(nicePlayer, class'NiceSkillCommandoZEDProfessional')) {
+        timeDilationSpeedup = (1.1 / Level.TimeDilation);
+    }
+    else {
+        timeDilationSpeedup = ((1.1 / Level.TimeDilation) - 1.0) * 0.5 + 1.0;
+        timeDilationSpeedup = FMax(1.0, timeDilationSpeedup);
+    }
     if(nicePlayer != none && niceVet.static.hasSkill(nicePlayer, class'NiceSkillCommandoZEDProfessional'))
-       ReloadMulti /= (Level.TimeDilation / 1.1);
+       ReloadMulti *= timeDilationSpeedup;
     if(bAutoReload && bAutoReloadRateApplied)
        ReloadMulti *= autoReloadSpeedModifier;
     return ReloadMulti;

@@ -3,5 +3,5 @@ class NiceSkillZerkZEDAccelerate extends NiceSkill
 defaultproperties
 {
     SkillName="Accelerate"
-    SkillEffects="Move and attack at the same speed during zed-time."
+    SkillEffects="Move and attack at regular speed during zed-time."
 }

@@ -185,11 +185,13 @@ function StartChargingFP(Pawn instigatedBy){
     if( rageTarget != none && KFGameType(Level.Game) != none
        && class'NiceVeterancyTypes'.static.HasSkill(NicePlayerController(rageTarget.Controller),
            class'NiceSkillCommandoPerfectExecution') ){
-       KFGameType(Level.Game).DramaticEvent(1.0);
+        NiceGameType(Level.Game).lessDramatic = true;
+        KFGameType(Level.Game).DramaticEvent(1.0);
     }
     else if( altRageTarget != none && KFGameType(Level.Game) != none
        && class'NiceVeterancyTypes'.static.HasSkill(NicePlayerController(altRageTarget.Controller),
            class'NiceSkillCommandoPerfectExecution') ){
+        NiceGameType(Level.Game).lessDramatic = true;
        KFGameType(Level.Game).DramaticEvent(1.0);
     }
 }

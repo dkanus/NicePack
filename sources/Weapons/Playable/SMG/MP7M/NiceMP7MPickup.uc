@@ -4,6 +4,7 @@ defaultproperties
     bBackupWeapon=True
     Weight=3.000000
     cost=200
+    AmmoCost=20
     BuyClipSize=40
     PowerValue=22
     SpeedValue=95

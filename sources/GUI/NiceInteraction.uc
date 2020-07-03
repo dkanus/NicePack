@@ -1,6 +1,7 @@
 class NiceInteraction extends Interaction
     dependson(NicePack)
     dependson(NiceAbilityManager);
+#exec OBJ LOAD FILE=KillingFloorHUD.utx
 #exec OBJ LOAD FILE=KillingFloor2HUD.utx
 var NicePack NicePackMutator;
 var Material bleedIcon, poisonIcon;
@@ -48,7 +49,6 @@ function PostRender(Canvas C){
        return;
     scrnHUDInstance = ScrnHUD(nicePlayer.myHUD);
     //// Draw bleed and poison icons
-    C.SetDrawColor(255, 255, 255);
     szRI = class'MeanReplicationInfo'.static.findSZri(ViewportOwner.Actor.PlayerReplicationInfo);
     offset = 4;
     if(szRI != none){

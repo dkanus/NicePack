@@ -1,6 +1,8 @@
 // made to fix KFStoryGameInfo loading for KFO maps
 class NiceGameType extends ScrnGameType;
 var NicePack NicePackMutator;
+var bool lessDramatic;
+var float LesserZedTimeSlomoScale;
 function RegisterMutator(NicePack activePack){
     NicePackMutator = activePack;
 }
@@ -68,7 +70,12 @@ State MatchInProgress{
 function DramaticEvent(float BaseZedTimePossibility, optional float DesiredZedTimeDuration){
     local bool bWasZedTime;
     bWasZedTime = bZEDTimeActive;
+    if (lessDramatic) {
+        ZedTimeSlomoScale = LesserZedTimeSlomoScale;
+    }
     Super.DramaticEvent(BaseZedTimePossibility, DesiredZedTimeDuration);
+    ZedTimeSlomoScale = default.ZedTimeSlomoScale;
+    lessDramatic = false;
     // Call event
     if(!bWasZedTime && bZEDTimeActive)
        NicePackMutator.ZedTimeActivated();
@@ -162,4 +169,6 @@ defaultproperties
 {
     GameName="Nice Floor"
     Description="Nice Edition of ScrN Killing Floor game mode (ScrnGameType)."
+    ZedTimeSlomoScale=0.4
+    LesserZedTimeSlomoScale=0.6
 }

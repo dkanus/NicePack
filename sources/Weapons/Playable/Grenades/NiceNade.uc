@@ -113,12 +113,6 @@ simulated function HurtRadius( float DamageAmount, float DamageRadius, class<Dam
 
                if ( damageScale <= 0)
                    continue;
-
-               // Scrake Nader ach    
-               if ( Role == ROLE_Authority && KFMonsterVictim != none && ZombieScrake(KFMonsterVictim) != none ) {
-                   // need to check Scrake's stun before dealing damage, because he can unstun by himself from damage received
-                   ScrakeNader(damageScale * DamageAmount, ZombieScrake(KFMonsterVictim), Stats);
-               }
            }
            if(NiceMonster(Victims) != none)
                Victims.TakeDamage(damageScale * DamageAmount,Instigator,Victims.Location - 0.5 * (Victims.CollisionHeight + Victims.CollisionRadius) * dir

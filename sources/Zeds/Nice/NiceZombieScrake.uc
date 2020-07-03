@@ -201,11 +201,13 @@ state RunningState
            if( rageTarget != none && KFGameType(Level.Game) != none
                && class'NiceVeterancyTypes'.static.HasSkill(NicePlayerController(rageTarget.Controller),
                    class'NiceSkillCommandoPerfectExecution') ){
+                NiceGameType(Level.Game).lessDramatic = true;
                KFGameType(Level.Game).DramaticEvent(1.0);
            }
            else if( rageCause != none && KFGameType(Level.Game) != none
                && class'NiceVeterancyTypes'.static.HasSkill(NicePlayerController(rageCause.Controller),
                    class'NiceSkillCommandoPerfectExecution') ){
+                NiceGameType(Level.Game).lessDramatic = true;
                KFGameType(Level.Game).DramaticEvent(1.0);
            }
        }

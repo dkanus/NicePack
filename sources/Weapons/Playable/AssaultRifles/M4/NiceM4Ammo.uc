@@ -4,8 +4,8 @@ defaultproperties
 {
     WeaponPickupClass=Class'NicePack.NiceM4Pickup'
     AmmoPickupAmount=30
-    MaxAmmo=180
-    InitialAmount=45
+    MaxAmmo=240
+    InitialAmount=60
     PickupClass=Class'NicePack.NiceM4AmmoPickup'
     IconMaterial=Texture'KillingFloorHUD.Generic.HUD'
     IconCoords=(X1=336,Y1=82,X2=382,Y2=125)
